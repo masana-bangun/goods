@@ -20,7 +20,7 @@ interface AccountScreenProps {
 export default function AccountScreen({
   userName = "User",
   email = "user@example.com",
-  isPremium = false,
+  isPremium = true,
   onNavigate = () => {},
 }: AccountScreenProps) {
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
@@ -115,22 +115,18 @@ export default function AccountScreen({
         <Text className="text-center text-gray-500 text-sm">Version 1.0.0</Text>
       </View>
 
-      {!isPremium && (
-        <View className="bg-purple-100 m-4 p-4 rounded-lg mb-6">
-          <Text className="text-lg font-semibold text-purple-800 mb-2">
-            Upgrade to Premium
-          </Text>
-          <Text className="text-gray-700 mb-3">
-            Get unlimited access to all features and remove ads.
-          </Text>
-          <TouchableOpacity
-            className="bg-purple-600 py-2 px-4 rounded-md items-center"
-            onPress={() => onNavigate("membership")}
-          >
-            <Text className="text-white font-medium">View Plans</Text>
-          </TouchableOpacity>
+      <View className="bg-green-100 m-4 p-4 rounded-lg mb-6">
+        <Text className="text-lg font-semibold text-green-800 mb-2">
+          Premium Features Unlocked!
+        </Text>
+        <Text className="text-gray-700 mb-3">
+          You now have unlimited access to all features and an ad-free
+          experience.
+        </Text>
+        <View className="bg-green-600 py-2 px-4 rounded-md items-center">
+          <Text className="text-white font-medium">All Features Active</Text>
         </View>
-      )}
+      </View>
     </ScrollView>
   );
 }

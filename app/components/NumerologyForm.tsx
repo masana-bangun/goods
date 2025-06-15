@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { normalisasiNama, formatTanggal } from "../utils/numerologyUtils";
+import { useTranslation } from "./MainApp";
 
 interface NumerologyFormProps {
   onSubmit: (name: string, birthdate: Date, gender: "Male" | "Female") => void;
@@ -18,6 +19,7 @@ interface NumerologyFormProps {
 export default function NumerologyForm({
   onSubmit = () => {},
 }: NumerologyFormProps) {
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const [birthdate, setBirthdate] = useState(new Date());
   const [normalizedName, setNormalizedName] = useState("");
@@ -27,7 +29,7 @@ export default function NumerologyForm({
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [gender, setGender] = useState<"Male" | "Female">("Male");
   const [analysisType, setAnalysisType] = useState<"basic" | "advanced">(
-    "basic",
+    "advanced",
   );
 
   const handleNameChange = (text: string) => {
@@ -44,9 +46,8 @@ export default function NumerologyForm({
   };
 
   const generateYears = () => {
-    const currentYear = new Date().getFullYear();
     const years = [];
-    for (let year = currentYear; year >= currentYear - 100; year--) {
+    for (let year = 10000; year >= 0; year--) {
       years.push(year);
     }
     return years;
@@ -62,18 +63,18 @@ export default function NumerologyForm({
   };
 
   const months = [
-    { value: 1, label: "January" },
-    { value: 2, label: "February" },
-    { value: 3, label: "March" },
-    { value: 4, label: "April" },
-    { value: 5, label: "May" },
-    { value: 6, label: "June" },
-    { value: 7, label: "July" },
-    { value: 8, label: "August" },
-    { value: 9, label: "September" },
-    { value: 10, label: "October" },
-    { value: 11, label: "November" },
-    { value: 12, label: "December" },
+    { value: 1, label: t("january") || "January" },
+    { value: 2, label: t("february") || "February" },
+    { value: 3, label: t("march") || "March" },
+    { value: 4, label: t("april") || "April" },
+    { value: 5, label: t("may") || "May" },
+    { value: 6, label: t("june") || "June" },
+    { value: 7, label: t("july") || "July" },
+    { value: 8, label: t("august") || "August" },
+    { value: 9, label: t("september") || "September" },
+    { value: 10, label: t("october") || "October" },
+    { value: 11, label: t("november") || "November" },
+    { value: 12, label: t("december") || "December" },
   ];
 
   const handleSubmit = () => {
@@ -86,7 +87,7 @@ export default function NumerologyForm({
     <ScrollView className="bg-white rounded-lg shadow-md w-full max-w-md">
       <View className="p-4">
         <Text className="text-2xl font-bold text-center mb-6 text-purple-800">
-          Numerology Analysis
+          {t("numerology_analysis")}
         </Text>
 
         <View className="flex-row mb-4">
@@ -99,7 +100,7 @@ export default function NumerologyForm({
                 analysisType === "basic" ? "text-white" : "text-gray-700"
               }
             >
-              Basic Analysis
+              {t("basic_analysis")}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -111,28 +112,30 @@ export default function NumerologyForm({
                 analysisType === "advanced" ? "text-white" : "text-gray-700"
               }
             >
-              Advanced Analysis
+              {t("advanced_analysis")}
             </Text>
           </TouchableOpacity>
         </View>
 
         <View className="mb-4">
-          <Text className="text-gray-700 mb-1 font-medium">Full Name</Text>
+          <Text className="text-gray-700 mb-1 font-medium">
+            {t("full_name")}
+          </Text>
           <TextInput
             className="border border-gray-300 rounded-md p-3 bg-gray-50"
-            placeholder="Enter your full name"
+            placeholder={t("enter_full_name")}
             value={name}
             onChangeText={handleNameChange}
           />
           {normalizedName ? (
             <Text className="text-xs text-gray-500 mt-1">
-              Normalized: {normalizedName}
+              {t("normalized")}: {normalizedName}
             </Text>
           ) : null}
         </View>
 
         <View className="mb-4">
-          <Text className="text-gray-700 mb-1 font-medium">Gender</Text>
+          <Text className="text-gray-700 mb-1 font-medium">{t("gender")}</Text>
           <View className="flex-row">
             <TouchableOpacity
               className={`flex-1 mr-2 p-3 rounded-md border ${
@@ -147,7 +150,7 @@ export default function NumerologyForm({
                   gender === "Male" ? "text-purple-700" : "text-gray-700"
                 }`}
               >
-                Male
+                {t("male")}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -163,14 +166,16 @@ export default function NumerologyForm({
                   gender === "Female" ? "text-purple-700" : "text-gray-700"
                 }`}
               >
-                Female
+                {t("female")}
               </Text>
             </TouchableOpacity>
           </View>
         </View>
 
         <View className="mb-6">
-          <Text className="text-gray-700 mb-1 font-medium">Birth Date</Text>
+          <Text className="text-gray-700 mb-1 font-medium">
+            {t("birth_date")}
+          </Text>
           <TouchableOpacity
             className="border border-gray-300 rounded-md p-3 bg-gray-50 flex-row justify-between items-center"
             onPress={() => setShowDatePicker(true)}
@@ -191,14 +196,14 @@ export default function NumerologyForm({
           <View className="flex-1 justify-center items-center bg-black bg-opacity-50">
             <View className="bg-white rounded-lg p-6 w-96 max-w-full max-h-[90%]">
               <Text className="text-lg font-bold text-center mb-4 text-purple-800">
-                Select Birth Date
+                {t("select_birth_date")}
               </Text>
 
               {/* Year and Month Dropdowns */}
               <View className="flex-row justify-between mb-4">
                 <View className="flex-1 mr-2">
                   <Text className="text-gray-700 mb-1 font-medium text-sm">
-                    Year
+                    {t("year")}
                   </Text>
                   <View className="border border-gray-300 rounded-md bg-gray-50">
                     <Picker
@@ -222,7 +227,7 @@ export default function NumerologyForm({
 
                 <View className="flex-1 ml-2">
                   <Text className="text-gray-700 mb-1 font-medium text-sm">
-                    Month
+                    {t("month")}
                   </Text>
                   <View className="border border-gray-300 rounded-md bg-gray-50">
                     <Picker
@@ -254,15 +259,21 @@ export default function NumerologyForm({
 
                 {/* Days of Week Header */}
                 <View className="flex-row mb-2">
-                  {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(
-                    (day) => (
-                      <View key={day} className="flex-1 p-2 bg-purple-100">
-                        <Text className="text-purple-800 text-center font-semibold text-xs">
-                          {day}
-                        </Text>
-                      </View>
-                    ),
-                  )}
+                  {[
+                    t("sun") || "Sun",
+                    t("mon") || "Mon",
+                    t("tue") || "Tue",
+                    t("wed") || "Wed",
+                    t("thu") || "Thu",
+                    t("fri") || "Fri",
+                    t("sat") || "Sat",
+                  ].map((day) => (
+                    <View key={day} className="flex-1 p-2 bg-purple-100">
+                      <Text className="text-purple-800 text-center font-semibold text-xs">
+                        {day}
+                      </Text>
+                    </View>
+                  ))}
                 </View>
 
                 {/* Calendar Days Grid */}
@@ -309,7 +320,9 @@ export default function NumerologyForm({
                                 className={`flex-1 border border-gray-200 min-h-[40px] justify-center items-center ${
                                   day ? "bg-white" : "bg-gray-50"
                                 } ${
-                                  day === selectedDay ? "bg-purple-600" : ""
+                                  day === selectedDay
+                                    ? "bg-purple-700 shadow-lg border-purple-800"
+                                    : ""
                                 }`}
                                 disabled={!day}
                                 onPress={() => {
@@ -325,9 +338,9 @@ export default function NumerologyForm({
                               >
                                 {day && (
                                   <Text
-                                    className={`text-sm font-medium ${
+                                    className={`text-sm font-bold ${
                                       day === selectedDay
-                                        ? "text-white"
+                                        ? "text-white shadow-sm"
                                         : "text-gray-800"
                                     }`}
                                   >
@@ -346,7 +359,8 @@ export default function NumerologyForm({
               {/* Selected Date Display */}
               <View className="mb-4 p-3 bg-purple-50 rounded-lg">
                 <Text className="text-center text-purple-800 font-semibold">
-                  Selected Date: {selectedDay}/{selectedMonth}/{selectedYear}
+                  {t("selected_date") || "Selected Date"}: {selectedDay}/
+                  {selectedMonth}/{selectedYear}
                 </Text>
               </View>
 
@@ -356,7 +370,7 @@ export default function NumerologyForm({
                   onPress={() => setShowDatePicker(false)}
                 >
                   <Text className="text-gray-700 text-center font-medium">
-                    Cancel
+                    {t("cancel")}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -364,7 +378,7 @@ export default function NumerologyForm({
                   onPress={() => setShowDatePicker(false)}
                 >
                   <Text className="text-white text-center font-medium">
-                    Done
+                    {t("done")}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -375,16 +389,20 @@ export default function NumerologyForm({
         {analysisType === "advanced" && (
           <View className="mb-4 p-3 bg-purple-50 rounded-lg">
             <Text className="text-purple-800 font-medium mb-2">
-              Advanced Analysis Features:
+              {t("advanced_analysis_features")}
             </Text>
+            <Text className="text-gray-700 mb-1">{t("life_path_number")}</Text>
             <Text className="text-gray-700 mb-1">
-              • Life Path Number (Hara)
+              {t("expression_number_feature")}
             </Text>
-            <Text className="text-gray-700 mb-1">• Expression Number</Text>
-            <Text className="text-gray-700 mb-1">• Soul Urge Number</Text>
-            <Text className="text-gray-700 mb-1">• Personality Number</Text>
-            <Text className="text-gray-700 mb-1">• Maturity Number</Text>
-            <Text className="text-gray-700">• Personal Year Number</Text>
+            <Text className="text-gray-700 mb-1">{t("soul_urge_number")}</Text>
+            <Text className="text-gray-700 mb-1">
+              {t("personality_number_feature")}
+            </Text>
+            <Text className="text-gray-700 mb-1">{t("maturity_number")}</Text>
+            <Text className="text-gray-700">
+              {t("personal_year_number_feature")}
+            </Text>
           </View>
         )}
 
@@ -392,7 +410,7 @@ export default function NumerologyForm({
           className="bg-purple-600 py-3 px-4 rounded-md items-center"
           onPress={handleSubmit}
         >
-          <Text className="text-white font-medium text-lg">Analyze</Text>
+          <Text className="text-white font-medium text-lg">{t("analyze")}</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

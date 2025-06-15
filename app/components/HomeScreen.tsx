@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
-import { ArrowRight, Star, Gift, Share2, User } from "lucide-react-native";
+import {
+  ArrowRight,
+  Star,
+  Gift,
+  Share2,
+  User,
+  Check,
+  Globe,
+} from "lucide-react-native";
+import { Picker } from "@react-native-picker/picker";
 import NameDictionary from "./NameDictionary";
+import { useTranslation } from "./MainApp";
 
 interface HomeScreenProps {
   userName?: string;
@@ -11,11 +21,23 @@ interface HomeScreenProps {
 
 export default function HomeScreen({
   userName = "User",
-  isPremium = false,
+  isPremium = true,
   onNavigate = () => {},
 }: HomeScreenProps) {
+  const { language, setLanguage, t } = useTranslation();
   const [currentPersonIndex, setCurrentPersonIndex] = useState(0);
   const [showNameDictionary, setShowNameDictionary] = useState(false);
+  const [showLanguageSelector, setShowLanguageSelector] = useState(false);
+
+  const languageOptions = [
+    { code: "en", name: "English", flag: "🇺🇸" },
+    { code: "fr", name: "Français", flag: "🇫🇷" },
+    { code: "es", name: "Español", flag: "🇪🇸" },
+    { code: "ar", name: "العربية", flag: "🇸🇦" },
+    { code: "zh", name: "中文", flag: "🇨🇳" },
+    { code: "hi", name: "हिन्दी", flag: "🇮🇳" },
+    { code: "id", name: "Indonesia", flag: "🇮🇩" },
+  ];
 
   const successfulPeople = [
     {
@@ -64,28 +86,74 @@ export default function HomeScreen({
     <ScrollView className="bg-gray-100">
       {/* Header */}
       <View className="bg-purple-700 p-6 rounded-b-3xl">
-        <Text className="text-white text-lg mb-1">Welcome back,</Text>
-        <Text className="text-white text-2xl font-bold">{userName}</Text>
+        <View className="flex-row justify-between items-start mb-4">
+          <View className="flex-1">
+            <Text className="text-white text-lg mb-1">{t("welcome_back")}</Text>
+            <Text className="text-white text-2xl font-bold">{userName}</Text>
+          </View>
 
-        {!isPremium && (
+          {/* Language Selector */}
           <TouchableOpacity
-            className="bg-yellow-400 mt-4 p-3 rounded-lg flex-row items-center justify-between"
-            onPress={() => onNavigate("membership")}
+            className="bg-white bg-opacity-20 p-2 rounded-lg flex-row items-center"
+            onPress={() => setShowLanguageSelector(!showLanguageSelector)}
           >
-            <View className="flex-row items-center">
-              <Star size={20} color="#7c3aed" />
-              <Text className="text-purple-800 font-medium ml-2">
-                Upgrade to Premium
-              </Text>
-            </View>
-            <ArrowRight size={20} color="#7c3aed" />
+            <Globe size={16} color="white" />
+            <Text className="text-white text-xs ml-1 font-medium">
+              {languageOptions.find((lang) => lang.code === language)?.flag}
+            </Text>
           </TouchableOpacity>
+        </View>
+
+        {/* Language Dropdown */}
+        {showLanguageSelector && (
+          <View className="bg-white rounded-lg p-2 mb-4">
+            <Text className="text-gray-700 font-medium mb-2 text-center">
+              {t("language")}
+            </Text>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              <View className="flex-row">
+                {languageOptions.map((lang) => (
+                  <TouchableOpacity
+                    key={lang.code}
+                    className={`mx-1 px-3 py-2 rounded-lg flex-row items-center ${
+                      language === lang.code ? "bg-purple-100" : "bg-gray-100"
+                    }`}
+                    onPress={() => {
+                      setLanguage(lang.code);
+                      setShowLanguageSelector(false);
+                    }}
+                  >
+                    <Text className="mr-1">{lang.flag}</Text>
+                    <Text
+                      className={`text-xs font-medium ${
+                        language === lang.code
+                          ? "text-purple-700"
+                          : "text-gray-700"
+                      }`}
+                    >
+                      {lang.name}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            </ScrollView>
+          </View>
         )}
+
+        <View className="bg-green-400 mt-4 p-3 rounded-lg flex-row items-center justify-between">
+          <View className="flex-row items-center">
+            <Star size={20} color="#047857" />
+            <Text className="text-green-800 font-medium ml-2">
+              {t("all_premium_features_unlocked")}
+            </Text>
+          </View>
+          <Check size={20} color="#047857" />
+        </View>
       </View>
 
       {/* Quick Actions - Single Row Layout */}
       <View className="p-4">
-        <Text className="text-lg font-bold mb-3">Quick Actions</Text>
+        <Text className="text-lg font-bold mb-3">{t("quick_actions")}</Text>
         <View className="flex-row justify-between items-center px-2">
           {/* Name Analysis */}
           <TouchableOpacity
@@ -94,10 +162,12 @@ export default function HomeScreen({
           >
             <View className="items-center">
               <Text className="text-xl mb-1">🔬</Text>
-              <Text className="text-white text-xs font-bold text-center">Name Analysis</Text>
+              <Text className="text-white text-xs font-bold text-center">
+                {t("name_analysis")}
+              </Text>
             </View>
           </TouchableOpacity>
-          
+
           {/* Compatibility */}
           <TouchableOpacity
             className="w-16 h-16 bg-gradient-to-br from-pink-400 to-red-500 rounded-xl items-center justify-center shadow-lg"
@@ -105,7 +175,9 @@ export default function HomeScreen({
           >
             <View className="items-center">
               <Text className="text-xl mb-1">💕</Text>
-              <Text className="text-white text-xs font-bold text-center">Love Couple</Text>
+              <Text className="text-white text-xs font-bold text-center">
+                {t("love_couple")}
+              </Text>
             </View>
           </TouchableOpacity>
 
@@ -116,10 +188,12 @@ export default function HomeScreen({
           >
             <View className="items-center">
               <Text className="text-lg mb-1">📚</Text>
-              <Text className="text-white text-xs font-bold">DictioName</Text>
+              <Text className="text-white text-xs font-bold">
+                {t("dictio_name")}
+              </Text>
             </View>
           </TouchableOpacity>
-            
+
           {/* Name Generator */}
           <TouchableOpacity
             className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-xl items-center justify-center shadow-lg"
@@ -127,24 +201,26 @@ export default function HomeScreen({
           >
             <View className="items-center">
               <Text className="text-xl mb-0">⭐⭐</Text>
-              <Text className="text-white text-xs font-bold text-center">Generator Name Optimizer</Text>
+              <Text className="text-white text-xs font-bold text-center">
+                {t("generator_name_optimizer")}
+              </Text>
             </View>
           </TouchableOpacity>
-            
+
           {/* Life Report */}
           <TouchableOpacity
-            className={`w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl items-center justify-center shadow-lg ${!isPremium ? "opacity-70" : ""}`}
+            className={`w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl items-center justify-center shadow-lg`}
             onPress={() => onNavigate("report")}
-            disabled={!isPremium}
+            disabled={false}
           >
             <View className="items-center">
               <Text className="text-xl mb-0">📈</Text>
-              <Text className="text-white text-xs font-bold text-center">LifePlan Report</Text>
-              {!isPremium && (
-                <View className="absolute -top-1 -right-1 bg-yellow-300 rounded-full p-1">
-                  <Star size={6} color="#7c3aed" />
-                </View>
-              )}
+              <Text className="text-white text-xs font-bold text-center">
+                {t("lifeplan_report")}
+              </Text>
+              <View className="absolute -top-1 -right-1 bg-green-300 rounded-full p-1">
+                <Check size={6} color="#047857" />
+              </View>
             </View>
           </TouchableOpacity>
         </View>
@@ -156,14 +232,16 @@ export default function HomeScreen({
           <View className="flex-row justify-between items-center">
             <View className="flex-1">
               <Text className="text-white font-bold text-sm mb-1">
-                Successful people's : {currentPerson.name}
+                {t("successful_people")} : {currentPerson.name}
               </Text>
               <Text className="text-white opacity-90 text-xs mb-2">
-                Synchronize: {Math.round(currentPerson.synchronize * 10)}% | Coherence: {Math.round(currentPerson.coherence * 10)}% | Momentum: {currentPerson.momentum}/10
+                {t("synchronize")}: {Math.round(currentPerson.synchronize * 10)}
+                % | {t("coherence")}: {Math.round(currentPerson.coherence * 10)}
+                % | {t("momentum")}: {currentPerson.momentum}/10
               </Text>
               <TouchableOpacity className="bg-white py-1.5 px-3 rounded-lg flex-row items-center self-start">
                 <Text className="text-green-600 font-medium text-xs">
-                  Discover the power of names through our comprehensive analysis tools. Want to have values like them? >> Learn More
+                  {t("discover_power_names")}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -174,23 +252,21 @@ export default function HomeScreen({
         </View>
       </View>
 
-
-
       {/* Earn Free Credits */}
       <View className="p-4 mb-4">
         <View className="bg-gradient-to-r from-purple-500 to-indigo-600 rounded-xl p-4">
           <View className="flex-row justify-between items-center">
             <View className="flex-1">
               <Text className="text-white font-bold text-lg mb-2">
-                Earn Free Credits
+                {t("earn_free_credits")}
               </Text>
               <Text className="text-white opacity-90 mb-3">
-                Share with friends to unlock premium features
+                {t("share_with_friends")}
               </Text>
               <TouchableOpacity className="bg-white py-2 px-4 rounded-lg flex-row items-center self-start">
                 <Share2 size={16} color="#8b5cf6" />
                 <Text className="text-purple-600 font-medium ml-1">
-                  Share Now
+                  {t("share_now")}
                 </Text>
               </TouchableOpacity>
             </View>

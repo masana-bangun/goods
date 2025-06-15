@@ -18,7 +18,7 @@ interface CompatibilityCheckerProps {
 }
 
 export default function CompatibilityChecker({
-  isPremium = false,
+  isPremium = true,
 }: CompatibilityCheckerProps) {
   // Person 1 state
   const [name1, setName1] = useState("");
@@ -197,22 +197,15 @@ export default function CompatibilityChecker({
             )}
           </View>
 
-          {!isPremium && (
-            <View className="bg-purple-100 p-4 rounded-lg mt-4">
-              <Text className="text-lg font-semibold text-purple-800 mb-2">
-                Detailed Analysis
-              </Text>
-              <Text className="text-gray-700 mb-3">
-                Upgrade to premium for in-depth compatibility analysis and
-                relationship advice.
-              </Text>
-              <TouchableOpacity className="bg-purple-600 py-2 px-4 rounded-md items-center">
-                <Text className="text-white font-medium">
-                  Upgrade to Premium
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
+          <View className="bg-green-100 p-4 rounded-lg mt-4">
+            <Text className="text-lg font-semibold text-green-800 mb-2">
+              Detailed Analysis - Unlocked!
+            </Text>
+            <Text className="text-gray-700 mb-3">
+              All premium features are now available for your compatibility
+              analysis.
+            </Text>
+          </View>
         </View>
       )}
     </ScrollView>

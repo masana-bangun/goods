@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Home, Search, BarChart2, Users, User } from "lucide-react-native";
+import { useTranslation } from "./MainApp";
 
 interface TabBarProps {
   activeTab: string;
@@ -17,17 +18,19 @@ export default function TabBar({
   activeTab = "home",
   onChangeTab = () => {},
 }: TabBarProps) {
+  const { t } = useTranslation();
+
   const tabs: TabItem[] = [
     {
       id: "home",
-      label: "Home",
+      label: t("home"),
       icon: (
         <Home size={24} color={activeTab === "home" ? "#8b5cf6" : "#6b7280"} />
       ),
     },
     {
       id: "analyze",
-      label: "Analyze",
+      label: t("analyze"),
       icon: (
         <Search
           size={24}
@@ -37,7 +40,7 @@ export default function TabBar({
     },
     {
       id: "names",
-      label: "Names",
+      label: t("names"),
       icon: (
         <BarChart2
           size={24}
@@ -47,7 +50,7 @@ export default function TabBar({
     },
     {
       id: "compatibility",
-      label: "Match",
+      label: t("match"),
       icon: (
         <Users
           size={24}
@@ -57,7 +60,7 @@ export default function TabBar({
     },
     {
       id: "account",
-      label: "Account",
+      label: t("account"),
       icon: (
         <User
           size={24}

@@ -19,7 +19,7 @@ export default function LifeReport({
   name = "",
   birthdate = new Date(),
   gender = "Male",
-  isPremium = false,
+  isPremium = true,
 }: LifeReportProps) {
   // Always show premium features
   const isPremiumEnabled = true;

@@ -98,7 +98,7 @@ const LANGUAGE_OPTIONS = [
 ];
 
 export default function NameGenerator({
-  isPremium = false,
+  isPremium = true,
   nameDatabase = SAMPLE_NAMES,
   analysisName = "",
   analysisBirthdate = null,
@@ -161,15 +161,11 @@ export default function NameGenerator({
   const [selectedPatternValue, setSelectedPatternValue] = useState<number>(1);
 
   const toggleLanguage = (langId: string) => {
-    if (isPremium) {
-      setSelectedLanguages((prev) =>
-        prev.includes(langId)
-          ? prev.filter((id) => id !== langId)
-          : [...prev, langId],
-      );
-    } else {
-      setSelectedLanguages(["id"]); // Free users can only use Indonesian
-    }
+    setSelectedLanguages((prev) =>
+      prev.includes(langId)
+        ? prev.filter((id) => id !== langId)
+        : [...prev, langId],
+    );
   };
 
   const handleAddTargetPattern = () => {
@@ -1041,9 +1037,9 @@ export default function NameGenerator({
       <Text className="text-gray-700 mb-1 font-medium">Generation Mode</Text>
       <View className="flex-row">
         <TouchableOpacity
-          className={`flex-1 py-2 px-2 rounded-md items-center mr-1 ${generationMode === "advanced" ? "bg-purple-600" : "bg-gray-200"} ${!isPremium ? "opacity-50" : ""}`}
-          onPress={() => isPremium && setGenerationMode("advanced")}
-          disabled={!isPremium}
+          className={`flex-1 py-2 px-2 rounded-md items-center mr-1 ${generationMode === "advanced" ? "bg-purple-600" : "bg-gray-200"}`}
+          onPress={() => setGenerationMode("advanced")}
+          disabled={false}
         >
           <Text
             className={
@@ -1055,9 +1051,9 @@ export default function NameGenerator({
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          className={`flex-1 py-2 px-2 rounded-md items-center ${generationMode === "combi" ? "bg-purple-600" : "bg-gray-200"} ${!isPremium ? "opacity-50" : ""}`}
-          onPress={() => isPremium && setGenerationMode("combi")}
-          disabled={!isPremium}
+          className={`flex-1 py-2 px-2 rounded-md items-center ${generationMode === "combi" ? "bg-purple-600" : "bg-gray-200"}`}
+          onPress={() => setGenerationMode("combi")}
+          disabled={false}
         >
           <Text
             className={
@@ -1069,16 +1065,11 @@ export default function NameGenerator({
           </Text>
         </TouchableOpacity>
       </View>
-      {!isPremium && (
-        <Text className="text-xs text-gray-500 mt-1">
-          Upgrade to premium to access all generation modes
-        </Text>
-      )}
     </View>
   );
 
   const renderCombiModeInputs = () => {
-    if (generationMode !== "combi" || !isPremium) return null;
+    if (generationMode !== "combi") return null;
 
     return (
       <View className="mb-4 p-3 bg-purple-50 rounded-lg">
@@ -1167,7 +1158,7 @@ export default function NameGenerator({
                 key={lang.id}
                 className={`m-2 w-12 h-12 rounded-full items-center justify-center ${selectedLanguages.includes(lang.id) ? "bg-purple-100 border-2 border-purple-600" : "bg-gray-100 border-2 border-gray-300"} ${!isPremium && lang.id !== "id" ? "opacity-50" : ""}`}
                 onPress={() => toggleLanguage(lang.id)}
-                disabled={!isPremium && lang.id !== "id"}
+                disabled={false}
                 style={{
                   elevation: selectedLanguages.includes(lang.id) ? 4 : 2,
                 }}
@@ -1176,11 +1167,6 @@ export default function NameGenerator({
               </TouchableOpacity>
             ))}
           </View>
-          {!isPremium && (
-            <Text className="text-xs text-gray-500 mt-1 text-center">
-              Upgrade to premium to access more languages
-            </Text>
-          )}
         </View>
 
         {
@@ -1237,21 +1223,6 @@ export default function NameGenerator({
                 </Text>
               }
             />
-          </View>
-        )}
-
-        {!isPremium && (
-          <View className="bg-purple-100 p-4 rounded-lg mt-4">
-            <Text className="text-lg font-semibold text-purple-800 mb-2">
-              Premium Features
-            </Text>
-            <Text className="text-gray-700 mb-3">
-              Unlock access to international name databases, advanced name
-              optimization, and more.
-            </Text>
-            <TouchableOpacity className="bg-purple-600 py-2 px-4 rounded-md items-center">
-              <Text className="text-white font-medium">Upgrade to Premium</Text>
-            </TouchableOpacity>
           </View>
         )}
       </View>
@@ -1870,7 +1841,7 @@ export default function NameGenerator({
   );
 
   function renderAdvancedModeInputs() {
-    if (generationMode !== "advanced" || !isPremium) return null;
+    if (generationMode !== "advanced") return null;
 
     return (
       <View className="mb-4 p-3 bg-purple-50 rounded-lg">
