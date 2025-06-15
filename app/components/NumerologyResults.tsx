@@ -448,7 +448,7 @@ export default function NumerologyResults({
         </View>
       </View>
 
-      {true ? (
+      {isPremium ? (
         <>
           <View className="mb-6">
             <Text className="text-xl font-semibold mb-2">
