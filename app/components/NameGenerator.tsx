@@ -432,7 +432,7 @@ export default function NameGenerator({
 
   const processAdvancedSearchBatch = () => {
     const BATCH_PROCESSING_LIMIT_MS = 150;
-    const MAX_RESULTS_PER_CLICK = 10;
+    const MAX_RESULTS_PER_CLICK = 25;
     const startTime = Date.now();
 
     // Track how many new results we found in this batch
@@ -681,7 +681,7 @@ export default function NameGenerator({
 
   const processCombiSearchBatch = () => {
     const BATCH_PROCESSING_LIMIT_MS = 150;
-    const MAX_RESULTS_PER_CLICK = 10;
+    const MAX_RESULTS_PER_CLICK = 25;
     const startTime = Date.now();
 
     // Calculate target results based on current results count
