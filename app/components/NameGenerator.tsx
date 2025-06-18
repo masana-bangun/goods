@@ -35,6 +35,432 @@ import {
   searchNameDictionary,
   getAvailableLanguages,
 } from "../utils/numerologyUtils";
+import { useTranslation } from "./MainApp";
+
+// Vlookup table for G1-G9 descriptions (extracted from NumerologyResults)
+const vlookupTable: { [key: number]: { [lang: string]: string } } = {
+  1: {
+    id: "😎 Mengembangkan Hobi dan kegemaran, hobi yang menghasilkan (keuangan, pujian) serta kehormatan",
+    en: "😎 Develop hobbies and hobbies, hobbies that produce (financial, praise) and honor",
+    fr: "😎 Développer des passe-temps et des passe-temps, des passe-temps qui produisent (financiers, louanges) et honorent",
+    es: "😎 Desarrollar pasatiempos y aficiones, pasatiempos que produzcan (financieros, elogios) y honor.",
+    ar: "😎 تنمية الهوايات والهوايات، هوايات تنتج (مالية، مديحاً) وتكريماً",
+    zh: "😎 培养爱好和爱好，产生（财务、表扬）和荣誉的爱好",
+    hi: "😎 शौक और शौक विकसित करें, ऐसे शौक जो (वित्तीय, प्रशंसा) और सम्मान पैदा करें",
+  },
+  3: {
+    id: "😇 Senantiasalah ingat pada tuhan, Agamais, percaya pada kekuatan ruh, rohani dan spiritual",
+    en: "😇 Always remember God, be religious, believe in the power of the spirit, spirit and spirit",
+    fr: "😇 Souvenez-vous toujours de Dieu, soyez religieux, croyez en la puissance de l'esprit, de l'esprit et de l'esprit",
+    es: "😇 Recuerda siempre a Dios, sé religioso, cree en el poder del espíritu, espíritu y espíritu.",
+    ar: "😇 اذكر الله دائمًا، وكن متدينًا، وآمن بقوة الروح والروح والروح",
+    zh: "😇 永远记住上帝，虔诚，相信精神、精神和精神的力量",
+    hi: "😇 सदैव ईश्वर को याद रखें, धार्मिक बनें, आत्मा, आत्मा और आत्मा की शक्ति पर विश्वास रखें",
+  },
+  4: {
+    id: "👮 Mengembangkan keteguhan, tegas berpengaruh, tetap bijaksana dalam kekuasaan",
+    en: "👮 Develop firmness, be firm in influence, remain wise in power",
+    fr: "👮 Développer la fermeté, être ferme en influence, rester sage en puissance",
+    es: "👮 Desarrolla firmeza, sé firme en la influencia, permanece sabio en el poder.",
+    ar: "👮 كن حازماً، حازماً في التأثير، حافظاً على الحكمة في السلطة",
+    zh: "👮 培养坚定性，坚定影响力，保持明智的权力",
+    hi: "👮 दृढ़ता विकसित करो, प्रभाव में दृढ़ रहो, शक्ति में बुद्धिमान रहो",
+  },
+  5: {
+    id: "💑 Menjaga kehormatan diri/keluarga agar meraih kebahagiaan, kehormatan dan pernikahan",
+    en: "💑 Maintain self/family honor in order to achieve happiness, honor and marriage",
+    fr: "💑 Maintenir l'honneur de soi et de sa famille afin d'atteindre le bonheur, l'honneur et le mariage",
+    es: "💑 Mantener el honor propio y familiar para lograr la felicidad, el honor y el matrimonio.",
+    ar: "💑 الحفاظ على شرف الذات/العائلة لتحقيق السعادة والشرف والزواج",
+    zh: "💑 维护自我/家庭荣誉，以获得幸福、荣誉和婚姻",
+    hi: "💑खुशी, सम्मान और विवाह की प्राप्ति के लिए अपना/पारिवारिक सम्मान बनाए रखें",
+  },
+  6: {
+    id: "🤹 Tetap berusaha melakukan yang terbaik, sepenuh hati hingga mudah meraih kesempurnaan",
+    en: "🤹 Keep trying to do your best, wholeheartedly until you can easily achieve perfection",
+    fr: "🤹 Continuez à essayer de faire de votre mieux, de tout cœur, jusqu'à ce que vous puissiez facilement atteindre la perfection.",
+    es: "🤹 Sigue intentando hacer lo mejor que puedas, de todo corazón hasta que puedas alcanzar fácilmente la perfección.",
+    ar: "🤹 استمر في محاولة بذل قصارى جهدك بكل إخلاص حتى تتمكن من تحقيق الكمال بسهولة",
+    zh: "🤹 不断努力，全心全意，直到轻松达到完美",
+    hi: "🤹जब तक आप आसानी से पूर्णता प्राप्त नहीं कर लेते, तब तक पूरे दिल से अपना सर्वश्रेष्ठ करने का प्रयास करते रहें",
+  },
+  7: {
+    id: "😁 Teruslah mencari jalan kehidupan yang tentram, kebebasan, merdeka, bahagia dan kesempurnaan",
+    en: "😁 Continue to look for a path of life that is peaceful, freedom, independence, happiness and perfection",
+    fr: "😁 Continuez à chercher un chemin de vie paisible, libre, indépendant, heureux et parfait.",
+    es: "😁 Sigue buscando un camino de vida que sea pacífico, libertad, independencia, felicidad y perfección.",
+    ar: "😁 استمر في البحث عن طريق حياة يسوده السلام والحرية والاستقلال والسعادة والكمال",
+    zh: "😁 继续寻找平静、自由、独立、幸福、完美的人生之路",
+    hi: "😁जीवन के ऐसे मार्ग की तलाश जारी रखें जो शांतिपूर्ण, स्वतंत्रता, स्वतंत्रता, खुशी और पूर्णता हो",
+  },
+  10: {
+    id: "🙃 Berlatih tekun dan beribadah/puasa agar berhasil baik, pintar dan beruntung",
+    en: "🙃 Practice diligently and worship/fast to be successful, smart and lucky",
+    fr: "🙃 Pratiquez avec diligence et adorez/jeûnez pour réussir, être intelligent et chanceux",
+    es: "🙃 Practica diligentemente y adora/ayuna para tener éxito, ser inteligente y tener suerte.",
+    ar: "🙃 تدرب باجتهاد وعبادة/سريعًا لتحقيق الرخاء والذكاء والحظ",
+    zh: "🙃 勤奋修行，膜拜/斋戒，获得成功、聪明和幸运",
+    hi: "🙃 सफल, चतुर और भाग्यशाली बनने के लिए लगन से अभ्यास करें और पूजा/उपवास करें",
+  },
+  12: {
+    id: "🙂 Berusaha menjadi lebih bermanfaat dalam hal baik dan berguna",
+    en: "🙂 Try to be more useful in good and useful ways",
+    fr: "🙂 Essayez d'être plus utile de manière bonne et utile",
+    es: "🙂 Trate de ser más útil de maneras buenas y útiles.",
+    ar: "🙂 حاول أن تكون أكثر فائدة بطرق جيدة ومفيدة",
+    zh: "🙂 尝试以好的和有用的方式变得更有用",
+    hi: "🙂 अच्छे और उपयोगी तरीकों से अधिक उपयोगी बनने का प्रयास करें",
+  },
+  15: {
+    id: "👳 Tetap menjaga ketaatan dalam ibadah, berperilaku baik budi dan sopan",
+    en: "👳 Continue to maintain obedience in worship, behave kindly and politely",
+    fr: "👳 Continuez à maintenir l'obéissance dans l'adoration, comportez-vous avec gentillesse et politesse",
+    es: "👳 Continúe manteniendo la obediencia en la adoración, compórtese con amabilidad y cortesía.",
+    ar: "👳المداومة على الطاعة في العبادة والتصرف بلطف وأدب",
+    zh: "👳 继续保持敬拜中的服从，表现得友善和有礼貌",
+    hi: "👳पूजा में आज्ञाकारिता बनाए रखें, नम्रता एवं नम्रता से व्यवहार करें",
+  },
+  16: {
+    id: "👫 Tebarkan rasa Kecintaan dan teruslah berusaha meraih kebahagiaan",
+    en: "👫 Spread love and keep trying to achieve happiness",
+    fr: "👫 Répandez l'amour et continuez à essayer d'atteindre le bonheur",
+    es: "👫 Difunde amor y sigue intentando alcanzar la felicidad.",
+    ar: "👫 انشر الحب واستمر في المحاولة لتحقيق السعادة",
+    zh: "👫 传播爱，不断努力获得幸福",
+    hi: "👫 प्यार फैलाएं और खुशियां हासिल करने की कोशिश करते रहें",
+  },
+  21: {
+    id: "🕵️ Penuhi diri dengan Semangat dalam hidup, bergerak, aktif, pengetahuan dan keindahan",
+    en: "🕵️ Fill yourself with enthusiasm for life, movement, activity, knowledge and beauty",
+    fr: "🕵️ Remplissez-vous d'enthousiasme pour la vie, le mouvement, l'activité, la connaissance et la beauté",
+    es: "🕵️ Llénate de entusiasmo por la vida, el movimiento, la actividad, el conocimiento y la belleza.",
+    ar: "🕵️ املأ نفسك بالحماس للحياة والحركة والنشاط والمعرفة والجمال",
+    zh: "🕵️ 让自己充满对生活、运动、活动、知识和美的热情",
+    hi: "🕵️जीवन, गति, गतिविधि, ज्ञान और सौंदर्य के प्रति अपने आप को उत्साह से भरें",
+  },
+  24: {
+    id: "👣 Nikmati situasi wara-wiri, petualangan dan travelling",
+    en: "👣 Enjoy the atmosphere of war, adventure and traveling",
+    fr: "👣 Profitez de l'atmosphère de guerre, d'aventure et de voyage",
+    es: "👣 Disfruta del ambiente de guerra, aventura y viajes.",
+    ar: "👣 استمتع بأجواء الحرب والمغامرة والسفر",
+    zh: "👣享受战争、冒险和旅行的氛围",
+    hi: "👣 युद्ध, रोमांच और यात्रा के माहौल का आनंद लें",
+  },
+  25: {
+    id: "🕌 Berupaya adil dalam memiliki pengaruh, pemerintahan dan kekuasaan",
+    en: "🕌 Striving to be fair in having influence, government and power",
+    fr: "🕌 S'efforcer d'être juste en matière d'influence, de gouvernement et de pouvoir",
+    es: "🕌 Organice cuidadosamente su estilo de vida y sus patrones comerciales para lograr la prosperidad",
+    ar: "🕌 رتب نمط حياتك وأنماط عملك بعناية لتحقيق الرخاء",
+    zh: "🕌 精心安排你的生活方式和商业模式，实现繁荣",
+    hi: "🕌समृद्धि प्राप्त करने के लिए अपनी जीवनशैली और व्यवसाय पैटर्न को सावधानीपूर्वक व्यवस्थित करें",
+  },
+  26: {
+    id: "👩‍🔧 Jadikan sikap menjadi alamat baik dan berfaedah, berguna bagi banyak orang",
+    en: "👩‍🔧 Turn your attitude into a good and useful address, useful for many people",
+    fr: "👩‍🔧 Transformez votre attitude en une bonne adresse utile, utile à de nombreuses personnes",
+    es: "👩‍🔧 Convierte tu actitud en un discurso bueno y útil, útil para muchas personas.",
+    ar: "👩‍🔧 حول سلوكك إلى خطاب طيب ومفيد، مفيد لكثير من الناس",
+    zh: "👩‍🔧 把你的态度变成一个好的有用的地址，对很多人有用",
+    hi: "👩‍🔧अपने दृष्टिकोण को एक अच्छे और उपयोगी संबोधन में बदलें, जो कई लोगों के लिए उपयोगी हो",
+  },
+  27: {
+    id: "💪 Kendalikan mental. Berjiwa gagah, kuat dan bersifat tabah",
+    en: "💪 Control your mentality. Brave, strong and steadfast",
+    fr: "💪 Contrôlez votre mentalité. Courageux, fort et inébranlable",
+    es: "💪 Controla tu mentalidad. Valiente, fuerte y firme",
+    ar: "💪 تحكم في عقليتك. شجاع وقوي وصامد",
+    zh: "💪控制你的心态。勇敢、坚强、坚定",
+    hi: "💪अपनी मानसिकता पर नियंत्रण रखें। बहादुर, मजबूत और दृढ़",
+  },
+  28: {
+    id: "💞 Upayakan sikap kecintaan, ramah dan bijaklah. Tetap tidak berlebihan",
+    en: "💞 Strive for an attitude of love, kindness and wisdom. Still don't overdo it",
+    fr: "💞 Efforcez-vous d’adopter une attitude d’amour, de gentillesse et de sagesse. N'en faites toujours pas trop",
+    es: "💞 Esfuérzate por tener una actitud de amor, bondad y sabiduría. Todavía no te excedas",
+    ar: "💕اجتهد في التحلي بموقف الحب واللطف والحكمة. لا تزال لا تبالغي في ذلك",
+    zh: "💞 努力追求爱、仁慈和智慧的态度。还是不要太过分",
+    hi: "💞 प्रेम, दया और ज्ञान के दृष्टिकोण के लिए प्रयास करें। फिर भी इसे ज़्यादा मत करो",
+  },
+  29: {
+    id: "✍️ Sepenuh hatilah ketika bergelut dalam administrasi dan surat-menyurat, analisis, sastrawan, content creator/ media",
+    en: "✍️ Be wholehearted when working in administration and correspondence, analysis, writers, content creators/media",
+    fr: "✍️ Soyez sans réserve lorsque vous travaillez dans l'administration et la correspondance, l'analyse, les rédacteurs, les créateurs de contenu/médias",
+    es: "✍️ Sea incondicional cuando trabaje en administración y correspondencia, análisis, escritores, creadores de contenido/medios.",
+    ar: "✍️ كن مخلصًا عند العمل في الإدارة والمراسلات والتحليل والكتاب ومنشئي المحتوى / الوسائط",
+    zh: "✍️从事行政和通信、分析、作家、内容创作者/媒体工作时要全心全意",
+    hi: "✍️ प्रशासन और पत्राचार, विश्लेषण, लेखक, सामग्री निर्माता/मीडिया में काम करते समय पूरे दिल से काम करें",
+  },
+  30: {
+    id: "🤠 Berada dalam dunia sendiri, menata dunianya sendiri (nyata)/maya (meditasi, kontemplasi, spiritual)",
+    en: "🤠 Being in your own world, organizing your own world (real)/virtual (meditation, contemplation, spiritual)",
+    fr: "🤠 Être dans son propre monde, organiser son propre monde (réel)/virtuel (méditation, contemplation, spirituel)",
+    es: "🤠 Estar en tu propio mundo, organizar tu propio mundo (real)/virtual (meditación, contemplación, espiritual)",
+    ar: "🤠 أن تكون في عالمك الخاص، تنظم عالمك الخاص (الحقيقي)/الافتراضي (التأمل، التأمل، الروحي)",
+    zh: "🤠 活在自己的世界里，组织自己的世界（真实）/虚拟（冥想、沉思、精神）",
+    hi: "🤠अपनी दुनिया में रहना, अपनी दुनिया को व्यवस्थित करना (वास्तविक)/आभासी (ध्यान, चिंतन, आध्यात्मिक)",
+  },
+  31: {
+    id: "🤗 Tanamkan sifat baik hati, kasih sayang dan berlatih menghasilkan kesempurnaan",
+    en: "🤗 Cultivate kindness, compassion and practice to produce perfection",
+    fr: "🤗 Cultivez la gentillesse, la compassion et la pratique pour produire la perfection",
+    es: "🤗 Cultive la bondad, la compasión y practique para producir la perfección.",
+    ar: "🤗 زراعة اللطف والرحمة والممارسة لإنتاج الكمال",
+    zh: "🤗 培养慈悲心和修行以达到完美",
+    hi: "🤗 दया, करुणा का विकास करें और पूर्णता उत्पन्न करने का अभ्यास करें",
+  },
+  32: {
+    id: "💪 Potensi berfisik prima, bertenaga dan kekuatan (daya pengaruh besar)",
+    en: "💪 Excellent physical potential, energy and strength (great influence)",
+    fr: "💪 Excellent potentiel physique, énergie et force (grande influence)",
+    es: "💪 Excelente potencial físico, energía y fuerza (gran influencia)",
+    ar: "💪 إمكانات بدنية وطاقة وقوة ممتازة (تأثير كبير)",
+    zh: "💪 出色的身体潜力、精力和力量（影响力很大）",
+    hi: "💪 उत्कृष्ट शारीरिक क्षमता, ऊर्जा और शक्ति (महान प्रभाव)",
+  },
+  33: {
+    id: "🙇 Cara atau ketelitian yang amat sangat, namun jaga keseimbangan perilaku dan pola",
+    en: "🙇 Extremely thorough, but maintain a balance in behavior and patterns",
+    fr: "🙇 Extrêmement minutieux, mais maintenir un équilibre dans les comportements et les modèles",
+    es: "🙇 Extremadamente minucioso, pero mantiene un equilibrio en el comportamiento y los patrones.",
+    ar: "🙇 دقيق للغاية، ولكن يحافظ على التوازن في السلوك والأنماط",
+    zh: "🙇 非常彻底，但在行为和模式上保持平衡",
+    hi: "🙇 अत्यंत गहन, लेकिन व्यवहार और पैटर्न में संतुलन बनाए रखें",
+  },
+  35: {
+    id: "💞 Upayakan sikap kecintaan, ramah dan bijaklah. Tetap tidak berlebihan",
+    en: "💞 Strive for an attitude of love, kindness and wisdom. Still don't overdo it",
+    fr: "💞 Efforcez-vous d'adopter une attitude d'amour, de gentillesse et de sagesse. N'en faites toujours pas trop",
+    es: "💞 Esfuérzate por tener una actitud de amor, bondad y sabiduría. Todavía no te excedas",
+    ar: "💞اجتهد في التحلي بموقف الحب واللطف والحكمة. لا تزال لا تبالغي في ذلك",
+    zh: "💞 努力追求爱、仁慈和智慧的态度。还是不要太过分",
+    hi: "💞 प्रेम, दया और ज्ञान के दृष्टिकोण के लिए प्रयास करें। फिर भी इसे ज़्यादा मत करो",
+  },
+  36: {
+    id: "👨‍👩‍👧‍👦 Ciptakan jalan hidup manis, hidup rukun dalam berumahtangga. Komunikasi intens",
+    en: "👨‍👩‍👧‍👦 Create a sweet way of life, live in harmony in a household. Intense communication",
+    fr: "👨‍👩‍👧‍👦 Créer une douceur de vivre, vivre en harmonie dans un foyer. Communication intense",
+    es: "👨‍👩‍👧‍👦 Crea una dulce forma de vida, vive en armonía en un hogar. comunicación intensa",
+    ar: "👨‍👩‍👧‍👦 اصنع أسلوب حياة جميل، وعش في وئام في المنزل. التواصل المكثف",
+    zh: "👨‍👩‍👧‍👦创造甜蜜生活方式，和睦相处。密切沟通",
+    hi: "👨‍👩‍👧‍👦 मधुर जीवन शैली बनाएं, घर-परिवार में सद्भाव से रहें। गहन संचार",
+  },
+  37: {
+    id: "👀 Berpotensi menyukai dan mengamati alam, suka ilmu bintang (ilmu fisika alam)",
+    en: "👀 Potential to like and observe nature, likes star science (natural physics)",
+    fr: "👀 Potentiel d'aimer et d'observer la nature, aime la science des étoiles (physique naturelle)",
+    es: "👀 Potencial para gustarle y observar la naturaleza, le gusta la ciencia estelar (física natural)",
+    ar: "👀 إمكانية الإعجاب بالطبيعة ومراقبتها، يحب علم النجوم (الفيزياء الطبيعية)",
+    zh: "👀 有喜欢和观察自然的潜力，喜欢明星科学（自然物理）",
+    hi: "👀 प्रकृति को पसंद करने और उसका अवलोकन करने की क्षमता, तारा विज्ञान (प्राकृतिक भौतिकी) पसंद है",
+  },
+  40: {
+    id: "🕌 Potensi berpengaruh dalam lingkungan agamais, tokoh agama",
+    en: "🕌 Potential influence in religious circles, religious figures",
+    fr: "🕌 Influence potentielle dans les milieux religieux, personnalités religieuses",
+    es: "🕌 Influencia potencial en círculos religiosos, figuras religiosas.",
+    ar: "🕌 التأثير المحتمل في الأوساط الدينية والشخصيات الدينية",
+    zh: "🕌 在宗教界、宗教人士中的潜在影响力",
+    hi: "🕌धार्मिक मंडलियों, धार्मिक हस्तियों में संभावित प्रभाव",
+  },
+  43: {
+    id: "💎 Jagalah selalu kebersihan dan kesucian diri baik jasmani maupun rohani",
+    en: "💎 Always keep yourself clean and pure, both physically and spiritually",
+    fr: "💎 Gardez-vous toujours propre et pur, tant physiquement que spirituellement",
+    es: "💎 Mantente siempre limpio y puro, tanto física como espiritualmente.",
+    ar: "💎 حافظ دائمًا على نظافتك ونقائك جسديًا وروحيًا",
+    zh: "💎 始终保持自己身体和精神上的清洁和纯洁",
+    hi: "💎खुद को हमेशा शारीरिक और आध्यात्मिक रूप से स्वच्छ और शुद्ध रखें",
+  },
+  44: {
+    id: "🤗 Tanamkan sifat baik hati, kasih sayang dan berlatih menghasilkan kesempurnaan",
+    en: "🤗 Cultivate kindness, compassion and practice to produce perfection",
+    fr: "🤗 Cultivez la gentillesse, la compassion et la pratique pour produire la perfection",
+    es: "🤗 Cultive la bondad, la compasión y practique para producir la perfección.",
+    ar: "🤗 زراعة اللطف والرحمة والممارسة لإنتاج الكمال",
+    zh: "🤗 培养慈悲心和修行以达到完美",
+    hi: "🤗 दया, करुणा का विकास करें और पूर्णता उत्पन्न करने का अभ्यास करें",
+  },
+  45: {
+    id: "💪 Potensi berfisik prima, bertenaga dan kekuatan (daya pengaruh besar)",
+    en: "💪 Excellent physical potential, energy and strength (great influence)",
+    fr: "💪 Excellent potentiel physique, énergie et force (grande influence)",
+    es: "💪 Excelente potencial físico, energía y fuerza (gran influencia)",
+    ar: "💪 إمكانات بدنية وطاقة وقوة ممتازة (تأثير كبير)",
+    zh: "💪 出色的身体潜力、精力和力量（影响力很大）",
+    hi: "💪 उत्कृष्ट शारीरिक क्षमता, ऊर्जा और शक्ति (महान प्रभाव)",
+  },
+  46: {
+    id: "🤠 Keangkeran, memiliki pengaruh, pemerintahan dan potensi kekuasaan",
+    en: "🤠 Awesomeness, having influence, governance and potential power",
+    fr: "🤠 Génialité, avoir de l'influence, de la gouvernance et du pouvoir potentiel",
+    es: "🤠 Genialidad, tener influencia, gobernanza y poder potencial.",
+    ar: "🤠 الروعة وامتلاك النفوذ والحكم والقوة المحتملة",
+    zh: "🤠 令人敬畏，有影响力、治理力和潜在权力",
+    hi: "🤠अद्भुतता, प्रभाव, शासन और संभावित शक्ति से युक्त",
+  },
+  47: {
+    id: "☺️ Berkasih sayang, sangat pengasih, pengampunan",
+    en: "☺️ Compassionate, very loving, forgiving",
+    fr: "☺️ Compatissant, très aimant, indulgent",
+    es: "☺️ Compasivo, muy cariñoso, perdonador.",
+    ar: "☺️ رحيم، محب للغاية، متسامح",
+    zh: "☺️富有同情心，非常有爱心，宽容",
+    hi: "☺️ दयालु, अत्यंत प्रेममय, क्षमाशील",
+  },
+  50: {
+    id: "🙏 Yakinlah dengan tuhan atas pengampunan, kebebasan dan kemerdekaan",
+    en: "🙏 Have faith in God for forgiveness, freedom and liberty",
+    fr: "🙏 Ayez foi en Dieu pour le pardon, la liberté et la liberté",
+    es: "🙏 Ten fe en Dios para el perdón, la libertad y la independencia.",
+    ar: "🙏ثق بالله من أجل المغفرة والحرية والاستقلال",
+    zh: "🙏 相信上帝的宽恕、自由和独立",
+    hi: "🙏 क्षमा, मुक्ति और स्वतंत्रता के लिए ईश्वर पर विश्वास रखें",
+  },
+  70: {
+    id: "🧗 Penuhi diri dengan Semangat dalam hidup, bergerak, aktif, pengetahuan dan keindahan",
+    en: "🧗 Fill yourself with enthusiasm for life, movement, activity, knowledge and beauty",
+    fr: "🧗 Remplissez-vous d'enthousiasme pour la vie, le mouvement, l'activité, la connaissance et la beauté",
+    es: "🧗 Llénate de entusiasmo por la vida, el movimiento, la actividad, el conocimiento y la belleza.",
+    ar: "🧗 املأ نفسك بالحماس للحياة والحركة والنشاط والمعرفة والجمال",
+    zh: "🧗 让自己充满对生活、运动、活动、知识和美的热情",
+    hi: "🧗जीवन, गति, गतिविधि, ज्ञान और सौंदर्य के प्रति अपने आप को उत्साह से भरें",
+  },
+  75: {
+    id: "🏇 Berada dalam dunia sendiri, menata dunianya sendiri (nyata)/ maya (meditasi, kontemplasi, spiritual)",
+    en: "🏇 Being in your own world, organizing your own world (real)/virtual (meditation, contemplation, spiritual)",
+    fr: "🏇 Être dans son propre monde, organiser son propre monde (réel)/virtuel (méditation, contemplation, spirituel)",
+    es: "🏇 Estar en tu propio mundo, organizar tu propio mundo (real)/virtual (meditación, contemplación, espiritual)",
+    ar: "🏇 أن تكون في عالمك الخاص، تنظم عالمك الخاص (الحقيقي)/الافتراضي (التأمل، التأمل، الروحي)",
+    zh: "🏇 活在自己的世界里，组织自己的世界（真实）/虚拟（冥想、沉思、精神）",
+    hi: "🏇 अपनी दुनिया में रहना, अपनी दुनिया को व्यवस्थित करना (वास्तविक)/आभासी (ध्यान, चिंतन, आध्यात्मिक)",
+  },
+  81: {
+    id: "💃 Latih diri dalam Keahlian dalam ilmu seni, artistik, berjiwa seni",
+    en: "💃 Train yourself in skills in art, artistic knowledge, artistic spirit",
+    fr: "💃 Formez-vous aux compétences en art, aux connaissances artistiques, à l'esprit artistique",
+    es: "💃 Fórmate en habilidades en el arte, conocimientos artísticos, espíritu artístico.",
+    ar: "💃 درب نفسك على مهارات الفن والمعرفة الفنية والروح الفنية",
+    zh: "💃 训练自己的艺术技能、艺术知识、艺术精神",
+    hi: "💃 कला, कलात्मक ज्ञान, कलात्मक भावना में कौशल में खुद को प्रशिक्षित करें",
+  },
+  100: {
+    id: "😇 Taatlah agar mendapat keberkahan yang maha Agung",
+    en: "😇 Be obedient to get the greatest blessings",
+    fr: "😇 Soyez obéissant pour obtenir les plus grandes bénédictions",
+    es: "😇 Se obediente para obtener las mayores bendiciones.",
+    ar: "😇 كن على طاعة لتحصل على أعظم النعم",
+    zh: "😇 顺服才能得到最大的福报",
+    hi: "😇सबसे बड़ा आशीर्वाद पाने के लिए आज्ञाकारी बनें",
+  },
+  120: {
+    id: "🏝️ Semangat cinta negeri kampung halaman, gemar melakukan kebaikan",
+    en: "🏝️ Spirit of love for your hometown, likes to do good",
+    fr: "🏝️ Esprit d'amour pour ta ville natale, aime faire le bien",
+    es: "🏝️Espíritu de amor por tu ciudad natal, le gusta hacer el bien",
+    ar: "🏝️ روح محبة لمسقط رأسك، تحب فعل الخير",
+    zh: "🏝️热爱家乡、喜欢行善的精神",
+    hi: "🏝️ अपने गृहनगर के प्रति प्रेम की भावना, अच्छा करना पसंद करती है",
+  },
+  300: {
+    id: "👼 Potensi hidup sentausa, kepercayaan dan sifat suka ilmu pengetahuan",
+    en: "👼 Potential for eternal life, trust and love of knowledge",
+    fr: "👼 Potentiel de vie éternelle, de confiance et d'amour de la connaissance",
+    es: "👼 Potencial de vida eterna, confianza y amor al conocimiento.",
+    ar: "👼إمكانية الحياة الأبدية والثقة وحب المعرفة",
+    zh: "👼 永生的潜力、对知识的信任和热爱",
+    hi: "👼अनन्त जीवन, विश्वास और ज्ञान के प्रेम की संभावना",
+  },
+  318: {
+    id: "😇 Titah utusan yang maha Agung, menjaga amanah",
+    en: "😇 The command of the Almighty Messenger, guarding the trust",
+    fr: "😇 Le commandement du Messager Tout-Puissant, gardant la confiance",
+    es: "😇 La orden del Mensajero Todopoderoso, guardando la confianza",
+    ar: "😇أمر الرسول تعالى بحراسة الأمانة",
+    zh: "😇 全能使者的命令，守护信任",
+    hi: "😇 सर्वशक्तिमान दूत का आदेश, अमानत की रखवाली",
+  },
+  360: {
+    id: "🤝 Potensi pada lingkungan rumah, rombongan dan suka berkawan, bentuk komunitas",
+    en: "🤝 Potential in the home environment, groups and friends, forming a community",
+    fr: "🤝 Potentiel dans l'environnement familial, les groupes et les amis, formant une communauté",
+    es: "🤝 Potencial en el entorno hogareño, grupos y amigos, formando comunidad",
+    ar: "🤝الإمكانات في البيئة المنزلية والمجموعات والأصدقاء وتكوين مجتمع",
+    zh: "🤝 家庭环境、团体和朋友的潜力，形成社区",
+    hi: "🤝घरेलू माहौल, समूहों और दोस्तों में एक समुदाय बनाने की क्षमता",
+  },
+  365: {
+    id: "👁️ Berpotensi menyukai dan mengamati alam, suka ilmu bintang (ilmu fisika alam)",
+    en: "👁️ Potential to like and observe nature, likes star science (natural physics)",
+    fr: "👁️ Potentiel d'aimer et d'observer la nature, aime la science des étoiles (physique naturelle)",
+    es: "👁️ Potencial para gustarle y observar la naturaleza, le gusta la ciencia estelar (física natural)",
+    ar: "👁️ إمكانية الإعجاب بالطبيعة ومراقبتها، يحب علم النجوم (الفيزياء الطبيعية)",
+    zh: "👁️ 有喜欢和观察自然的潜力，喜欢明星科学（自然物理）",
+    hi: "👁️ प्रकृति को पसंद करने और उसका अवलोकन करने की क्षमता, तारा विज्ञान (प्राकृतिक भौतिकी) पसंद है",
+  },
+  490: {
+    id: "🕌 Potensi berpengaruh dalam lingkungan agamais, tokoh agama",
+    en: "🕌 Potential influence in religious circles, religious figures",
+    fr: "🕌 Influence potentielle dans les milieux religieux, personnalités religieuses",
+    es: "🕌 Influencia potencial en círculos religiosos, figuras religiosas.",
+    ar: "🕌 التأثير المحتمل في الأوساط الدينية والشخصيات الدينية",
+    zh: "🕌 在宗教界、宗教人士中的潜在影响力",
+    hi: "🕌धार्मिक मंडलियों, धार्मिक हस्तियों में संभावित प्रभाव",
+  },
+  500: {
+    id: "💎 Jagalah selalu kebersihan dan kesucian diri baik jasmani maupun rohani",
+    en: "💎 Always keep yourself clean and pure, both physically and spiritually",
+    fr: "💎 Gardez-vous toujours propre et pur, tant physiquement que spirituellement",
+    es: "💎 Mantente siempre limpio y puro, tanto física como espiritualmente.",
+    ar: "💎 حافظ دائمًا على نظافتك ونقائك جسديًا وروحيًا",
+    zh: "💎 始终保持自己身体和精神上的清洁和纯洁",
+    hi: "💎खुद को हमेशा शारीरिक और आध्यात्मिक रूप से स्वच्छ और शुद्ध रखें",
+  },
+  600: {
+    id: "🤗 Tanamkan sifat baik hati, kasih sayang dan berlatih menghasilkan kesempurnaan",
+    en: "🤗 Cultivate kindness, compassion and practice to produce perfection",
+    fr: "🤗 Cultivez la gentillesse, la compassion et la pratique pour produire la perfection",
+    es: "🤗 Cultive la bondad, la compasión y practique para producir la perfección.",
+    ar: "🤗 زراعة اللطف والرحمة والممارسة لإنتاج الكمال",
+    zh: "🤗 培养慈悲心和修行以达到完美",
+    hi: "🤗 दया, करुणा का विकास करें और पूर्णता उत्पन्न करने का अभ्यास करें",
+  },
+  700: {
+    id: "💪 Potensi berfisik prima, bertenaga dan kekuatan (daya pengaruh besar)",
+    en: "💪 Excellent physical potential, energy and strength (great influence)",
+    fr: "💪 Excellent potentiel physique, énergie et force (grande influence)",
+    es: "💪 Excelente potencial físico, energía y fuerza (gran influencia)",
+    ar: "💪 إمكانات بدنية وطاقة وقوة ممتازة (تأثير كبير)",
+    zh: "💪 出色的身体潜力、精力和力量（影响力很大）",
+    hi: "💪 उत्कृष्ट शारीरिक क्षमता, ऊर्जा और शक्ति (महान प्रभाव)",
+  },
+  800: {
+    id: "🤠 Keangkeran, memiliki pengaruh, pemerintahan dan potensi kekuasaan",
+    en: "🤠 Awesomeness, having influence, governance and potential power",
+    fr: "🤠 Génialité, avoir de l'influence, de la gouvernance et du pouvoir potentiel",
+    es: "🤠 Genialidad, tener influencia, gobernanza y poder potencial.",
+    ar: "🤠 الروعة وامتلاك النفوذ والحكم والقوة المحتملة",
+    zh: "🤠 令人敬畏，有影响力、治理力和潜在权力",
+    hi: "🤠अद्भुतता, प्रभाव, शासन और संभावित शक्ति से युक्त",
+  },
+  1000: {
+    id: "👨‍👩‍👧‍👦 Ciptakan jalan hidup manis, hidup rukun dalam berumahtangga. Komunikasi intens",
+    en: "👨‍👩‍👧‍👦 Create a sweet way of life, live in harmony in a household. Intense communication",
+    fr: "👨‍👩‍👧‍👦 Créer une douceur de vivre, vivre en harmonie dans un foyer. Communication intense",
+    es: "👨‍👩‍👧‍👦 Crea una dulce forma de vida, vive en armonía en un hogar. comunicación intensa",
+    ar: "👨‍👩‍👧‍👦 اصنع أسلوب حياة جميل، وعش في وئام في المنزل. التواصل المكثف",
+    zh: "👨‍👩‍👧‍👦创造甜蜜生活方式，和睦相处。密切沟通",
+    hi: "👨‍👩‍👧‍👦 मधुर जीवन शैली बनाएं, घर-परिवार में सद्भाव से रहें। गहन संचार",
+  },
+};
+
+// Available ANGKA values for dropdown
+const AVAILABLE_ANGKA_VALUES = [
+  1, 3, 4, 5, 6, 7, 10, 12, 15, 16, 21, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
+  35, 36, 37, 40, 43, 44, 45, 46, 47, 50, 70, 75, 81, 100, 120, 300, 318, 360,
+  365, 490, 500, 600, 700, 800, 1000,
+];
 
 interface NameGeneratorProps {
   isPremium?: boolean;
@@ -160,12 +586,51 @@ export default function NameGenerator({
   const [selectedPattern, setSelectedPattern] = useState<string | null>(null);
   const [selectedPatternValue, setSelectedPatternValue] = useState<number>(1);
 
+  // Target description dropdown states
+  const [selectedTargetDescription, setSelectedTargetDescription] = useState<
+    number | null
+  >(null);
+  const { t, language } = useTranslation();
+
   const toggleLanguage = (langId: string) => {
     setSelectedLanguages((prev) =>
       prev.includes(langId)
         ? prev.filter((id) => id !== langId)
         : [...prev, langId],
     );
+  };
+
+  // Function to get description based on ANGKA value and language
+  const getVlookupDescription = (value: number): string => {
+    const entry = vlookupTable[value];
+    if (!entry) return `G${value}: ${value}`;
+
+    const langKey =
+      language === "id"
+        ? "id"
+        : language === "en"
+          ? "en"
+          : language === "fr"
+            ? "fr"
+            : language === "es"
+              ? "es"
+              : language === "ar"
+                ? "ar"
+                : language === "zh"
+                  ? "zh"
+                  : language === "hi"
+                    ? "hi"
+                    : "en";
+    return entry[langKey] || entry["en"] || `G${value}: ${value}`;
+  };
+
+  // Get dropdown options for target descriptions
+  const getTargetDescriptionOptions = () => {
+    return AVAILABLE_ANGKA_VALUES.map((value) => ({
+      value,
+      label: `${value} - ${getVlookupDescription(value).substring(0, 50)}...`,
+      fullDescription: getVlookupDescription(value),
+    }));
   };
 
   const handleAddTargetPattern = () => {
@@ -1370,15 +1835,37 @@ export default function NameGenerator({
 
               <View className="mb-4">
                 <Text className="text-gray-700 mb-1 font-medium">
-                  Target Angka Saran Deskripsi (Optional)
+                  Target Deskripsi (Optional)
                 </Text>
-                <TextInput
-                  className="border border-gray-300 rounded-md p-3 bg-gray-50"
-                  placeholder="Enter specific number"
-                  value={targetDeskripsi}
-                  onChangeText={setTargetDeskripsi}
-                  keyboardType="numeric"
-                />
+                <View className="border border-gray-300 rounded-md bg-gray-50">
+                  <Picker
+                    selectedValue={selectedTargetDescription}
+                    onValueChange={(value) => {
+                      setSelectedTargetDescription(value);
+                      setTargetDeskripsi(value ? value.toString() : "");
+                    }}
+                    style={{ height: 40 }}
+                  >
+                    <Picker.Item label="Pilih Target Deskripsi" value={null} />
+                    {getTargetDescriptionOptions().map((option) => (
+                      <Picker.Item
+                        key={option.value}
+                        label={option.label}
+                        value={option.value}
+                      />
+                    ))}
+                  </Picker>
+                </View>
+                {selectedTargetDescription && (
+                  <View className="mt-2 p-3 bg-blue-50 rounded-lg">
+                    <Text className="text-blue-800 text-sm font-medium mb-1">
+                      Deskripsi Lengkap:
+                    </Text>
+                    <Text className="text-blue-700 text-xs">
+                      {getVlookupDescription(selectedTargetDescription)}
+                    </Text>
+                  </View>
+                )}
               </View>
 
               {generationMode === "combi" ? (

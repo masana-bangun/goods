@@ -48,6 +48,28 @@ const translations = {
     account: "Account",
     // Common
     language: "Language",
+    hara_1_desc:
+      "🤠Positive in independence and self-reliance, new (beginning) developments, usually initiated by a new thing/job/project, a relocation, career change, or similar major step. Independence and strength, likely to be an individualist. Potential to have authority/resistance to dominant figures. More profitable business opportunities for personal but less suitable/profitable if done in a cooperative manner. There will be a lot of potential for good fortune in finances and adventures. Tend to get support from several sources. In the long phase you will be financially stable, strong, and successful in business",
+    hara_2_desc:
+      "🤠Positive in independence and self-reliance, new (beginning) developments, usually initiated by a new thing/job/project, a relocation, career change, or similar major step. Independence and strength, likely to be an individualist. Potential to have authority/resistance to dominant figures. More profitable business opportunities for personal but less suitable/profitable if done in a cooperative manner. There will be a lot of potential for good fortune in finances and adventures. Tend to get support from several sources. In the long phase you will be financially stable, strong, and successful in business",
+    hara_3_desc:
+      "💡Potential for ideas and creativity, easygoing and enjoyment of all things that need to be controlled. In the short phase potential for ACTION of creativity and originality, increased self-expression. This is Capital. Full of inspiration and motivation and ideas of life. When socializing, you will bring comfort, Potential to experience a life full of travel and inspire others. Will increase other pleasures of the material world / Money",
+    hara_4_desc:
+      "✔️Potential for career and relationships to strengthen, moving forward, responsibilities completed practically. In the short phase, there is the potential for promising business opportunities, the disappearance of difficulties with authorities, especially institutions and their regulations. Finances that are on the rise. Strength and determination can help you realize your plans. In the long phase, you have the potential to experience improvements in career and finances. You can also expect a strengthening relationship, especially with someone close to you",
+    hara_5_desc:
+      "❌Potential bad tendencies, unlucky, tend to be easily fooled, betrayal, misfortune, illness, end badly. The name must be changed or added. Easily fooled by people, potentially often experiencing bad luck and bad things, on average negative things that happen in other ending code parameters also occur in this number. So you should be careful if your name contains Ending Code. In addition, it has the potential to be easily fooled by people, betrayed by friends, and others",
+    hara_6_desc:
+      "🏡Potential to develop in terms of family, social, helping young and old, improvement, healing, progress. In the short phase there is an opportunity to involve yourself in the family, please and help various generations. Potential to experience interest in environmental and political issues and also has the potential to make you a more responsible person. In the long phase has the potential to get prospects that seem very good. In all areas of your life there is the potential to experience improvement, healing and progress",
+    hara_7_desc:
+      "😠Potential financial problems, emotional conflicts (causing misfortune), fickleness, nervous disorders, abnormal cells. Short phase: in life will experience difficulties in allocating and, experiencing financial problems. Long phase: High potential for cancer and tumors and emotional conflicts (example love triangle)",
+    hara_8_desc:
+      "🤕Potential for unpleasant travel, must be careful not to get hurt, get sick (long recovery), misdiagnosis, end something badly (serious impact)",
+    hara_9_desc:
+      "🤧Potential financial disruption, drug disruption or drug insertion, unhealthy/experiencing illnesses such as viral outbreaks and ending badly (anything) because of what other parties do",
+    hara_11_desc:
+      "🤢Potential for business failure, being a scapegoat, psychological pressure or betrayal, complications, separation due to different principles, health problems",
+    hara_13_desc:
+      "😳Potential disappointment with household or business results (bankruptcy, loss), betrayal by close people, and the inability to get maximum and optimal results from all efforts undertaken",
     // Numerology Results
     hara: "Hara",
     expression: "Expression",
@@ -195,6 +217,28 @@ const translations = {
     account: "Compte",
     // Common
     language: "Langue",
+    hara_1_desc:
+      "🤝Des liens et une coopération renforcés, favorisés par une relation solide et durable. À court terme, on observe un potentiel de nouvelles relations professionnelles ou relationnelles, une plus grande reconnaissance pour la vie, une sensibilité accrue aux instincts de la vie et des affaires, une volonté de partenariat, une facilité de négociation et une sagesse accrues. À long terme, des relations harmonieuses sont également porteuses de succès, de finances et d'économies saines",
+    hara_2_desc:
+      "🤝Des liens et une coopération renforcés, favorisés par une relation solide et durable. À court terme, on observe un potentiel de nouvelles relations professionnelles ou relationnelles, une plus grande reconnaissance pour la vie, une sensibilité accrue aux instincts de la vie et des affaires, une volonté de partenariat, une facilité de négociation et une sagesse accrues. À long terme, des relations harmonieuses sont également porteuses de succès, de finances et d'économies saines",
+    hara_3_desc:
+      "💡Potentiel d'idées et de créativité, facilité et plaisir à maîtriser tout ce qui nécessite d'être maîtrisé. À court terme, potentiel d'ACTION, de créativité et d'originalité, expression personnelle accrue. C'est le Capital. Plein d'inspiration, de motivation et d'idées de vie. En socialisant, vous apporterez du réconfort, vous aurez le potentiel de vivre une vie riche en voyages et d'inspirer les autres. Vous augmenterez les autres plaisirs du monde matériel / Argent",
+    hara_4_desc:
+      "✔️Potentiel de renforcement professionnel et relationnel, d'avancement et de responsabilités pratiquement accomplies. À court terme, opportunités commerciales prometteuses, résolution des difficultés avec les autorités, notamment les institutions et leurs réglementations, et perspectives financières en hausse. Force et détermination peuvent vous aider à concrétiser vos projets. À long terme, vous avez le potentiel d'améliorer votre carrière et vos finances. Vous pouvez également vous attendre à un renforcement relationnel, notamment avec un proche",
+    hara_5_desc:
+      "❌ Tous les mauvais potentiels : malchance, facile à tromper, trahison, désastre, maladie, fin malheureuse. Toute la malchance et les mauvaises choses du harani précédent se retrouvent dans celui-ci. Soyez donc prudent si vous avez un harani 5, que cela vous plaise ou non. Les problèmes de confiance sont dangereux. On a tendance à envisager de tromper son amant par tentation. Tomber dans un piège peut entraîner la perte de tout ce qui compte vraiment pour nous. Le nom doit être modifié ou ajouté. Facilement dupé, mourir d'une maladie chronique, mourir d'un empoisonnement sans que l'empoisonneur ne soit jamais découvert, mourir d'un accident, être trahi par son propre ami, et le summum est le risque d'être tué par un ami et non par un adversaire (son propre petit ami, son propre frère ou sa propre sœur). Ce harani est le pire de tous les nombres de codes de fin. Il peut souvent être associé à la malchance et aux mauvaises choses. En moyenne, les effets négatifs des autres paramètres de codes de fin se produisent également dans ce nombre. Soyez donc prudent si votre nom contient un code de fin. De plus, vous risquez d'être facilement trompé, trahi par vos amis et d'autres personnes",
+    hara_6_desc:
+      "🏡Potentiel de développement familial et social, d'entraide entre jeunes et moins jeunes, d'amélioration, de guérison et de progrès. À court terme, possibilité de s'impliquer dans la famille, faire plaisir et aider les différentes générations. Intérêt pour les questions environnementales et politiques, et potentiel de devenir une personne plus responsable. À long terme, potentiel d'avenir prometteur. Amélioration, guérison et progrès dans tous les domaines de la vie",
+    hara_7_desc:
+      "😠Problèmes financiers potentiels, conflits émotionnels (causant des malheurs), inconstance, troubles nerveux, cellules anormales. Phase courte : difficultés à gérer ses dépenses et problèmes financiers. Phase longue : fort risque de cancer, de tumeurs et de conflits émotionnels (exemple : triangle amoureux)",
+    hara_8_desc:
+      "🤕Possibilité de voyage désagréable, il faut faire attention à ne pas se blesser, tomber malade (longue convalescence), mauvais diagnostic, mauvaise fin de quelque chose (impact grave)",
+    hara_9_desc:
+      "🤧Perturbation financière potentielle, ou perturbation de la consommation de médicaments ou insertion de médicaments, ou maladies malsaines/vivantes telles que des épidémies virales et fin mal (n'importe quoi) à cause de ce que font les autres parties",
+    hara_11_desc:
+      "🤢Potentiel d'échec commercial, ou bouc émissaire, ou pression psychologique ou trahison, ou complications, ou séparation due à des principes différents, ou problèmes de santé",
+    hara_13_desc:
+      "😳Potentiel de déception avec les résultats du ménage ou de l'entreprise (faillite, perte), trahison de la part de proches et incapacité à obtenir des résultats maximaux et optimaux de tous les efforts entrepris",
     // Numerology Results
     hara: "Hara",
     expression: "Expression",
@@ -306,7 +350,7 @@ const translations = {
     g5_desc:
       "Épris de liberté et aventureux, avec un fort désir de variété et de changement. Personnalité dynamique et polyvalente.",
     g6_desc:
-      "Nourricier et responsable, avec une forte orientation familiale. Attentionné et solidaire avec des capacités de guérison.",
+      "Nourricier et responsable, avec une forte orientation familiale. Cariñoso et solidaire avec des capacités de guérison.",
     g7_desc:
       "Analytique et introspectif, avec de fortes inclinations spirituelles. Chercheur et quêteur de vérité et de sagesse.",
     g8_desc:
@@ -343,6 +387,28 @@ const translations = {
     account: "Cuenta",
     // Common
     language: "Idioma",
+    hara_1_desc:
+      "🤠Positivo en independencia y autosuficiencia, nuevos desarrollos (inicios), generalmente iniciados por una nueva cosa/trabajo/proyecto, una reubicación, un cambio de carrera o un paso importante similar. Independencia y fortaleza, con probabilidad de individualismo. Potencial para tener autoridad/resistencia a figuras dominantes. Oportunidades de negocio más rentables para el ámbito personal, pero menos adecuadas/rentables si se desarrollan de forma cooperativa. Habrá un gran potencial de buena fortuna en las finanzas y aventuras. Tendrá la posibilidad de recibir apoyo de diversas fuentes. En la fase larga, será financieramente estable, fuerte y exitoso en los negocios",
+    hara_2_desc:
+      "🤝Mayores conexiones y cooperación, gracias a una buena relación a largo plazo. En la fase corta, existe el potencial de nuevas conexiones en negocios o relaciones, mayor gratitud por la vida, mayor sensibilidad hacia la vida y los instintos empresariales, disposición para colaborar con otros, facilidad para negociar y sabiduría. En la fase larga, las relaciones fluidas también tienen el potencial de éxito, finanzas y economía estables",
+    hara_3_desc:
+      "💡Potencial para las ideas y la creatividad, tranquilidad y disfrute de todo aquello que requiere control. En la fase corta, potencial para la ACCIÓN, creatividad y originalidad, mayor autoexpresión. Esto es Capital. Lleno de inspiración, motivación e ideas para la vida. Al socializar, aportarás comodidad. Potencial para experimentar una vida llena de viajes e inspirarás a otros. Aumentarás otros placeres del mundo material/dinero",
+    hara_4_desc:
+      "✔️Potencial para fortalecer tu carrera y tus relaciones, avanzar y cumplir con tus responsabilidades de forma práctica. En la fase corta, existe la posibilidad de oportunidades de negocio prometedoras y la desaparición de dificultades con las autoridades, especialmente con las instituciones y sus regulaciones. Tus finanzas están en alza. La fuerza y la determinación pueden ayudarte a hacer realidad tus planes. En la fase larga, tienes el potencial de experimentar mejoras en tu carrera y tus finanzas. También puedes esperar un fortalecimiento de tus relaciones, especialmente con alguien cercano",
+    hara_5_desc:
+      "❌Todos los malos potenciales: mala suerte, fácil de engañar, traición, desastre, enfermedad, mal final. Toda la mala suerte y las cosas malas del harani anterior están en este harani, así que ten cuidado si hay un harani 5, te guste o no. Hay peligro en los problemas de confianza. Existe la tendencia a pensar en engañar a tu pareja por la tentación. Si caes en una trampa, tienes el potencial de perder todo lo que consideras muy importante. El nombre debe ser cambiado o añadido. Fácil de engañar, morir de una enfermedad crónica, morir por envenenamiento sin que el envenenador sea detectado, morir por un accidente, ser traicionado por tu propio amigo, y el punto culminante es el potencial de ser asesinado por un amigo, no por un oponente (tu propio novio, tu propio hermano). Este harani es un número que se puede decir que es el peor de todos los números del Código Final, tiene el potencial de experimentar a menudo mala suerte y cosas malas; en promedio, las cosas negativas que ocurren en otros parámetros del código final también ocurren en este número harani. Así que ten cuidado si tu nombre contiene el Código Final. Además, podrías ser fácilmente engañado, traicionado por tus propios amigos y otros",
+    hara_6_desc:
+      "🏡Potencial de desarrollo familiar y social, ayuda a jóvenes y mayores, mejora, sanación y progreso. En la fase corta, existe la oportunidad de involucrarse en la familia, complacer y ayudar a varias generaciones. Potencial de interés por temas ambientales y políticos, y también tiene el potencial de convertirse en una persona más responsable. En la fase larga, existe el potencial de obtener muy buenas perspectivas. En todas las áreas de la vida, existe el potencial de experimentar mejora, sanación y progreso",
+    hara_7_desc:
+      "Posibles problemas financieros, conflictos emocionales (que pueden causar desgracias), inconstancia, trastornos nerviosos, células anormales. Fase corta: En la vida, se experimentarán dificultades para distribuir recursos y problemas financieros. Fase larga: Alto potencial de cáncer, tumores y conflictos emocionales (por ejemplo, un triángulo amoroso)",
+    hara_8_desc:
+      "🤕Posibilidad de un viaje desagradable, hay que tener cuidado de no lastimarse, enfermarse (recuperación prolongada), diagnóstico erróneo, terminar algo mal (impacto grave)",
+    hara_9_desc:
+      "🤧Posible interrupción financiera, interrupción de medicamentos o inserción de medicamentos, enfermedades no saludables/experiencia de enfermedades como brotes virales y final mal (cualquier cosa) debido a lo que hacen otras partes",
+    hara_11_desc:
+      "🤢Potencial de fracaso empresarial, ser chivo expiatorio, presión psicológica o traición, complicaciones, separación por diferentes principios, problemas de salud",
+    hara_13_desc:
+      "😳Posible decepción con los resultados del hogar o del negocio (quiebra, pérdidas), traición por parte de personas cercanas e incapacidad de obtener resultados máximos y óptimos de todos los esfuerzos realizados",
     // Numerology Results
     hara: "Hara",
     expression: "Expresión",
@@ -490,53 +556,33 @@ const translations = {
     // Common
     language: "اللغة",
     // Parameter Details
-    hara_1_desc: "🤠إيجابي في الاستقلالية والاستقلال، التطوير (الأولي) الجديد",
-    hara_2_desc: "🤝تحسين الاتصال والتعاون، بمساعدة علاقة تسير بشكل جيد وطويل",
+    hara_1_desc:
+      "🤠 إيجابي في الاستقلال والاعتماد على الذات، وتطورات جديدة (بداية)، عادةً ما يسبقها شيء/وظيفة/مشروع جديد، أو انتقال، أو تغيير مهني، أو خطوة رئيسية مماثلة. استقلالية وقوة، وإمكانية التفرد. إمكانية امتلاك السلطة/مقاومة الشخصيات المهيمنة. فرص عمل أكثر ربحية للأفراد، ولكنها أقل ملاءمة/ربحية إذا تم ذلك في شكل تعاون. ستكون هناك احتمالات كبيرة للتوفيق في الأمور المالية والمغامرات. تميل إلى الحصول على الدعم من مصادر متعددة. على المدى الطويل، ستكون مستقرًا ماليًا، وقويًا، وناجحًا في العمل",
+    hara_2_desc:
+      "🤝تعزيز الروابط والتعاون، مدعومًا بعلاقة جيدة وطويلة الأمد. في المرحلة القصيرة، هناك إمكانية لتكوين علاقات جديدة في مجال الأعمال أو العلاقات، وزيادة الوعي بالامتنان للحياة، وزيادة الحساسية لغرائز الحياة والأعمال، والاستعداد للشراكة مع الآخرين، وسهولة التفاوض والحكمة. في المرحلة الطويلة، تتمتع العلاقات الجيدة بإمكانية النجاح، وتحسن الوضع المالي والاقتصادي",
     hara_3_desc:
-      "💡إمكانات الأفكار والإبداع، الطبيعة المريحة والاستمتاع بكل الأشياء التي تحتاج إلى السيطرة عليها",
+      "💡إمكانية الأفكار والإبداع، والهدوء والاستمتاع بكل ما يحتاج إلى ضبط. في المرحلة القصيرة، هناك إمكانية للإبداع والأصالة، وزيادة التعبير عن الذات. هذا هو رأس المال. مليء بالإلهام والتحفيز وأفكار الحياة. عند التواصل الاجتماعي، ستجلب الراحة، وإمكانية لتجربة حياة مليئة بالسفر وإلهام الآخرين. ستكون هناك ملذات متزايدة - ملذات أخرى من الجوانب المادية للعالم / المال",
     hara_4_desc:
-      "✔️إمكانات المهنة والعلاقات التي تقوى، الانتقال للمضي قدماً، المسؤوليات تُحل بطريقة عملية",
+      "✔️تتعزز فرصك المهنية والعاطفية، وتتقدم للأمام، وتُنجز مسؤولياتك عمليًا. في المرحلة القصيرة، هناك إمكانية للحصول على فرص عمل واعدة، واختفاء الصعوبات مع السلطات، وخاصة المؤسسات ولوائحها. ميزانيتك في ازدياد. القوة والعزيمة ستساعدك على تحقيق خططك. في المرحلة الطويلة، لديك القدرة على تحسين وضعك المهني والمالي. كما يمكنك توقع علاقات أقوى، خاصة مع شخص قريب منك",
     hara_5_desc:
-      "إيجابي في الحركة والموارد، لكن احذر من ❌جميع الإمكانات السيئة؛ سوء الحظ، سهولة الخداع، الخيانة، المصيبة، المرض، النهاية السيئة",
+      "❌قد يكون من السهل خداعك، أو خيانة، أو سوء حظ، أو مرض، أو نهاية سيئة. يجب تغيير الاسم أو إضافته. سهل الخداع، وقد يتعرض غالبًا لسوء الحظ وأمور سيئة، وفي المتوسط، قد تظهر أيضًا أمور سلبية تحدث في معلمات رمز النهاية الأخرى في هذا الرقم. لذا، كن حذرًا إذا كان اسمك يحتوي على رمز النهاية. بالإضافة إلى ذلك، قد يكون من السهل خداعه، أو خيانته من الأصدقاء، أو من الآخرين",
     hara_6_desc:
-      "🏡إمكانية التطور في الأمور العائلية، الاجتماعية، مساعدة الكبار والصغار، التحسين، الشفاء، التقدم",
+      "🏡 لديك القدرة على النمو في المجالات العائلية والاجتماعية، ومساعدة الصغار والكبار، والتحسن، والشفاء، والتقدم. في المرحلة القصيرة، لديك فرصة للانخراط في الأسرة، وإسعاد ومساعدة مختلف الأجيال. لديك القدرة على الاهتمام بالقضايا البيئية والسياسية، كما أن لديك القدرة على أن تصبح شخصًا أكثر مسؤولية. في المرحلة الطويلة، لديك القدرة على الحصول على آفاق تبدو واعدة جدًا. في جميع مجالات حياتك، لديك القدرة على التحسن، والشفاء، والتقدم",
     hara_7_desc:
-      "متأمل😠إمكانية مشاكل مالية، صراع عاطفي (تظهر المصيبة)، تردد، اضطراب عصبي، خلايا غير طبيعية",
+      "😠مشاكل مالية محتملة، صراعات عاطفية (مما قد يؤدي إلى سوء الحظ)، تقلبات مزاجية، اضطرابات عصبية، خلايا غير طبيعية. مرحلة قصيرة: سيواجه في حياته صعوبات في تخصيص موارده، وسيواجه مشاكل مالية. مرحلة طويلة: احتمالية عالية للإصابة بالسرطان والأورام، وصراعات عاطفية (مثال على مثلثات الحب)",
     hara_8_desc:
-      "🤕إمكانية المصيبة، المرض (شفاء طويل)، تشخيص خاطئ، إنهاء شيء بطريقة سيئة (تأثير خطير)",
+      "🤕احتمالية السفر غير المريحة، يجب الحذر من التعرض للأذى، أو المرض (فترة نقاهة طويلة)، أو التشخيص الخاطئ، أو إنهاء أمر سيء (تأثير خطير)",
     hara_9_desc:
-      "🤧إمكانية اضطراب مالي، اضطراب دوائي، صحة ضعيفة، النهاية (أي شيء) بسبب فعل طرف آخر",
+      "🤧احتمالية حدوث اضطرابات مالية، أو إدمان المخدرات، أو الإصابة بأمراض غير صحية، مثل تفشي الفيروسات، أو نهاية سيئة (أو أيًا كان) بسبب ما يفعله الآخرون",
     hara_11_desc:
-      "🤢إمكانية فشل الأعمال، أن تصبح كبش فداء، ضغط نفسي، مضاعفات، انفصال بسبب اختلاف المبادئ، اضطرابات صحية",
+      "🤢احتمالية فشل العمل، أن يصبح كبش فداء، ضغط نفسي أو خيانة، تعقيدات، انفصال بسبب اختلاف المبادئ، مشاكل صحية",
     hara_13_desc:
-      "😳إمكانية خيبة أمل من النتائج (إفلاس، خسارة) في الأسرة والأعمال، خيانة من أشخاص مقربين",
-    expression_1_desc:
-      "أنت مقدر لتكون قائداً في مجال عملك. يجب أن تتعلم الاعتماد على قدراتك الخاصة، وتظهر الشجاعة والعزيمة وتتجنب الجوانب السلبية مثل الأنانية وحب الذات. سينظر إليك الناس للحصول على التوجيه والإرشاد من وقت لآخر ويجب أن تكون مستعداً لذلك. وُلدت لتصبح شخصاً متميزاً في مجال عمل في هذه الحياة.",
-    expression_2_desc:
-      "التعاون والدبلوماسية والتعايش السلمي هي أهداف الحياة. التطوير يحدث في الشراكات بدلاً من الاستقلالية. قد تُدعى للتحكيم وصنع السلام من وقت لآخر. التعاون والمشاركة والارتباط سيجلب لك النجاح. إذا تمكنت من تجنب الجوانب السلبية، يجب أن تُعرف كصانع سلام.",
-    expression_3_desc:
-      "الشعبية والسعادة للذات والآخرين والحب والرومانسية والممتلكات المادية هي السمات البارزة للحياة، بشرط الاستخدام الإيجابي للموهبة. أنت معطي الفرح للآخرين ووُلدت لتجعل الآخرين سعداء. من خلال الخيال والإخلاص والبهجة، أنت مقدر لتظهر النور للإنسانية في خط من الإبداع.",
-    expression_4_desc:
-      "أنت مقدر لتحمل المسؤولية وسيعتمد عليك الآخرون للمساعدة والدعم. البناء والتنظيم والإدارة ستبقيك مشغولاً لبقية حياتك. في كثير من الأحيان ستأتي إليك مشاكل الأقارب، وقيود الحياة قد تزعجك. من خلال الصبر والعزيمة والنظام والإخلاص والصدق والخدمة ستوفر الأمان للآخرين ولنفسك إذا تم التغلب على الجوانب السلبية.",
-    expression_5_desc:
-      "وُلدت للتعامل مع الناس بشكل عام ولتعزيز 'الحرية' و'التقدم'. التغيير والظروف الجديدة والمناهج الجديدة والتنوع والتعدد والأحداث غير المتوقعة ستكون السمات البارزة لحياتك. قد تجد صعوبة في العمل على نفس الخطوط أو مع نفس الأشخاص لفترة طويلة. ستعلم الناس تحقيق 'الحرية' والعيش بسعادة، إذا تم السيطرة على السلبية.",
-    expression_6_desc:
-      "جئت إلى هذا العالم لخدمة الإنسانية بالحب والواجب والمسؤولية والأعمال الخيرية. ستُعرف كشخص يمكن الاعتماد عليه. يجب أن تكون كريماً مع الأقارب ولكن ليس إلى حد التضحية. سيطرق الناس بابك للمساعدة طوال حياتك وكلما فعلت أكثر للآخرين، كلما أحاطك المزيد من الحب والراحة والمال. لتقدمك الشخصي تحتاج إلى الجمال والرفقة والحب والانسجام. أنت قادر على استكشاف فلسفة الحياة وتحقيق المرتفعات الروحية.",
-    expression_7_desc:
-      "أنت مقدر للبحث عن الحكمة أو الحقائق المخفية في المجال العلمي أو الجنائي أو الفلسفي أو الديني. قد تجد نفسك وحيداً حتى عندما تكون وسط الناس وقد تكون خارج الطبقة العادية. قد تتعمق في فلسفة الحياة؛ تجرب وتختبر وتبرهن الحقائق التي اكتشفها آخرون. الشعبية والحب والاحترام يجب أن تأتي إليك للمعرفة المكتسبة ويجب أن تُعرف كمعلم. الأعمال الشخصية والحب وحتى الزواج قد يُضحى بها في الطريق الصعب الذي تتبعه، لكنك قد تحصل على رضا أكبر في العثور على الحقيقة (غالباً في الخطوط الغامضة أو الروحية) وتعليم الناس.",
-    expression_8_desc:
-      "الإدارة والتنظيم والإدارة يجب أن تقودك إلى منصب سلطة واعتراف. سيتعين عليك إجراء تقييم مناسب للأشخاص والأحداث من وقت لآخر، وهذه ليست مهمة سهلة. إذا تم تطوير الملكة الفلسفية وتم إصدار حكم غير متحيز، فإن مكافأتك ستكون إنجازها. المال قد لا يكون دائماً خطوط التطوير بالإضافة إلى الأعمال التي قد تشتهر بها.",
-    expression_9_desc:
-      "أنت مقدر لتكون شعبياً في خط من الأعمال الخيرية أو الإنسانية أو الخيرية. حب الأخوة وخدمة البشرية ستكون جزءاً من شخصيتك، من ناحية بينما الحب والرومانسية والموسيقى والفن يجب أن تهتم بك بعمق من ناحية أخرى. الرحمة والكرم وفهم احتياجات الآخرين ستجعلك شعبياً جداً. الأنانية والحب الشخصي وعدم المغفرة يمكن أن تثبت ضررها وتجلب خيبات الأمل. كونك غير شخصي وتطوير الحب العالمي يمكن أن يجعلك قائداً روحياً.",
-    expression_11_desc:
-      "الإلهام والوعي الروحي (غالباً كامن) والحدس والقدرة النفسية يمكن أن تؤدي إلى السعادة الداخلية والاستنارة إذا تم السيطرة على الجوانب السلبية لجميعها. أنت مقدر لتحقيق قيم أعلى للحياة؛ والحياة العائلية والمكاسب المادية والمكانة الاجتماعية قد تُفقد بسهولة إذا تم الالتزام بها بصرامة. يجب أن تتغلب على الحساسية والعصبية والتمركز حول الذات وتأخذ الحياة المادية والاجتماعية بخفة فقط. أنت مُنحت قوى تحقيق المرتفعات الروحية لنفسك وإظهار النور للآخرين. أحياناً تعاني بسبب الخسارة المادية مما يؤدي إلى خيبات أمل متكررة في العلاقات والشراكات.",
-    expression_22_desc:
-      "القدرة على التعامل مع المشاريع الكبيرة بكفاءة من المحتمل أن تضعك في منصب سلطة في خط عمل واحد في العالم المادي في نقطة ما من الحياة. من المحتمل أن تحصل على مشاريع مهمة في الحياة. لكن الإنجاز سيعتمد على فحصك للرغبة في 'أخذ عمل أكثر مما يمكنك التعامل معه' و'إبقاء الوعي الروحي من التدخل في النهج العملي'. من ناحية أخرى إذا كنت تميل للعمل في الخطوط الصوفية والغامضة قد تفعل الكثير من الخير للآخرين وتصبح مشهوراً كمعطي نور.",
+      "😳 خيبة أمل محتملة بسبب نتائج أعمال المنزل أو العمل (إفلاس، خسارة)، وخيانة المقربين، وعدم القدرة على تحقيق أقصى النتائج الممكنة من جميع الجهود المبذولة",
     // Numerology Results
     hara: "هارا",
     expression: "التعبير",
     time: "الوقت",
-    dimensional_analysis: "التحليل الأبعادي",
+    dimensional_analysis: "التحليل الأبعاد",
     synchronize_score: "نقاط المزامنة",
     coherence_value: "قيمة التماسك",
     synergize_value: "قيمة التآزر",
@@ -632,7 +678,7 @@ const translations = {
     legend: "وسيلة الإيضاح:",
     // G1-G9 Descriptions
     g1_desc:
-      "مستقل وموجه نحو القيادة، مع مبادرة قوية وروح رائدة. قائد بالفطرة مع قدرات إبداعية.",
+      "مستقل وموجه نحو القيادة، مع مبادرة قوية وروح رائد. قائد بالفطرة مع قدرات إبداعية.",
     g2_desc:
       "تعاوني ودبلوماسي، ممتاز في الشراكات والعمل الجماعي. صبور ومهتم بالتفاصيل مع قدرات حدسية قوية.",
     g3_desc:
@@ -641,31 +687,12 @@ const translations = {
       "عملي ومنظم، مع أخلاقيات عمل قوية واهتمام بالتفاصيل. موثوق ومنهجي في النهج.",
     g5_desc:
       "محب للحرية ومغامر، مع رغبة قوية في التنوع والتغيير. شخصية ديناميكية ومتعددة الاستخدامات.",
-    g6_desc: "مغذي ومسؤول، مع توجه عائلي قوي. مهتم وداعم مع قدرات شفائية.",
+    g6_desc: "مغذي ومسؤول، مع توجه عائلي قوي. مهتم وداعم مع قدرات شفاء.",
     g7_desc: "تحليلي وتأملي، مع ميول روحية قوية. باحث وساعي للحقيقة والحكمة.",
     g8_desc:
       "طموح وموجه نحو الأعمال، مع تركيز مادي قوي. منظم طبيعي مع قدرات تنفيذية.",
     g9_desc:
       "إنساني وكريم، مع رغبة قوية في خدمة الآخرين. رحيم ومتفهم مع نظرة عالمية.",
-    // Time Descriptions
-    time_1_desc:
-      "مليء بالأفكار الإبداعية، قوي الإرادة، مستقل، شجاع، ومليء بالنضال. النقص المحمول هو العناد والكذب والرغبة في الهيمنة والأنانية التي تجعل الذات تشعر بمعرفة كل شيء. الحكمة هي التركيز الرئيسي. يمتلك تحليلاً قوياً. إذا استُخدم بشكل صحيح، سيصبح شخصاً متعلماً. عادة لا يجيب فوراً بنعم أو لا، سيفكر أولاً. مفصل جداً في أشياء كثيرة. قوي جداً في الإبداع ومتيقظ جداً. هذه الشخصية ستقود إلى إنتاج الثروة. ماهر في الترفيه وموثوق في بناء العلاقات. الثروة عادة تُحقق حوالي سن 32 إلى 42. يمتلك مهارات قيادية. الجنس الآخر كثيرون مهتمون. سيبدو أفضل أو أجمل مع تقدم العمر - فوق الثلاثينات وما بعدها، سيبدو أكثر وسامة. الجانب السلبي هو الشعور بالوحدة كثيراً، الشعور بأنه متجول. كن حذراً عند تحليل شخص أو موقف، التحليل الخاطئ سيؤدي إلى مشاكل لا يجب أن تحدث.",
-    time_2_desc:
-      "مليء بالسلام، متواضع، ودود، وله تأثير روحي. النقص المحمول هو المشاعر الحساسة وسهولة الجرح، الاهتمام المفرط بالأشياء الصغيرة حتى يضيع الكثير من الوقت. ماهر ويمتلك شخصية ممتعة وكثير الكلام. موثوق في العمل المتعلق بالتعاون. هادئ جداً، ودود، ولطيف القلب. يؤكد دائماً على النظافة والنظام ومنظم جداً. مستعد للعمل بجد، ناضج جداً في طريقة تفكيره. معتاد على التعامل مع أشخاص أكبر سناً. يمتلك القدرة على التوجيه وإنجاز العمل. الجانب السلبي هو الرغبة في الاستماع لآراء الآخرين، لكن ربما ليس لاتباعها. عنيد، يثير الكثير من الكلام السيء ويميل إلى 'مجرد الكلام فقط'. غيور جداً في مسائل الحب.",
-    time_3_desc:
-      "مليء بالمواهب الفنية، روح النضال، يمتلك القدرة على رؤية 3 أزمنة. النقص المحمول هو طبيعة الإسراف، الكلام المتحرر، صعوبة المغفرة. جذاب وطويل التفكير، لكن غير صبور جداً. واضح ويعرف ما يريد ويعرف كيف وأين يحصل عليه. سريع جداً في التمييز بين الجيد والسيء. يمكن أن يشغل منصباً عالياً، غني ومزدهر. حياة جيدة في عيون المجتمع. يمتلك القدرة والموهبة وماهر في الاستفادة من الموقف. سريع الغضب، لكن أيضاً سريع الهدوء. امرأة جميلة، أو رجل وسيم في سن مبكرة. الجانب السلبي هو الميل إلى تبسيط كل شيء وعدم الحزم. أحياناً يمكن أن يكون مؤذياً. أحياناً قاسي عند التحدث. هناك مد وجزر في الزواج، وإذا لم يحافظ عليه جيداً قد يجلب الكارثة والعنف. عادة يعتقد أن الذات محقة في أي شيء يفعله ويقوله، بينما الآخرون مخطئون.",
-    time_4_desc:
-      "مليء بالمسؤولية، التفكير العلمي، الصدق والإخلاص. النقص المحمول هو العناد، حب الجدال والرغبة في الهيمنة، طبيعة مدمن العمل. ذكي، فني ومتفوق في امتحانات الحياة. جدير بالثقة وسهل التعامل في المجتمع. مليء بالرحمة وكاريزمي. بطبيعته مخطط ومفكر، يفكر قبل أن يتصرف. يحب السفر وعيش نمط حياة حر. يمتلك القدرة في سن صغيرة جداً. قادر على النهوض بسرعة بعد المرور بصعوبات الحياة. إذا كانت امرأة، تدلل شريكها. الجانب السلبي هو الضعف في جمع الثروة. يجب أن يكون حذراً في العلاقات أو الزواج، وإلا سيتورط في حوادث سيئة غير ضرورية.",
-    time_5_desc:
-      "مليء بطاقة الجنسانية، حب الحرية والتغيير، مليء بالعقل والأفعال السريعة، قادر على الترفيه. النقص المحمول هو عدم الإخلاص في 'الحب والزواج'، وعدم القدرة على السيطرة على القلق وعدم الرضا. يمتلك شخصية قوية جداً. وُلد بروح قيادية، عادة يمتلك منصباً فوق كثير من الناس في العمل. يمتلك غريزة قوية في أشياء كثيرة. واقعي وعامل جاد. يمكنه التكيف والتأقلم مع الموقف أو الظروف الحالية. رغم مواجهة عقبات الحياة، لكن إذا واجه مشاكل مالية دائماً هناك طريقة للتغلب عليها. الجانب السلبي هو إذا جاء من عائلة أقل حظاً، يمتلك طبيعة عنيدة. إذا كان في الطريق الخطأ، يميل إلى الدوران ليس لأهداف جيدة، حتى يميل إلى الكذب. انتقائي جداً ومتذمر لأشياء ومشاكل كثيرة. تعلم ألا تكون كذلك حتى يقدرك الناس أكثر.",
-    time_6_desc:
-      "مليء بالتوازن، لا يفكر في النفس، يحب الأنشطة الإنسانية، مخلص وثابت في التفكير في رفاهية الآخرين. النقص المحمول هو حب المدح والشعبية، عدم القدرة على السيطرة على الذات في التضحية. مثابر، ماهر في السيطرة على الثروة والرفاهية. مهذب جداً وذو ذوق عالي. يمتلك مهنة جيدة في الفن أو الدين أو التعليم. يمكن أن يصبح شخصية شعبية إلى حد ما. لا يستمع بسهولة للآخرين خاصة الرؤساء، لكن يفكر ويهتم بالمرؤوسين. يعتني بالعائلة والأقارب المقربين. موجه نحو العائلة. الجانب السلبي هو الغرور والفخر، عدم الرغبة في القيام بعمل بسيط. في مسائل العلاقات، يكون متملكاً ويريد دائماً السيطرة على كل شخص وكل شيء، لكن عادة لن يعترف. تخلص من موقف الرغبة في الهيمنة حتى يحبك الشخص المحبوب أكثر.",
-    time_7_desc:
-      "مليء بالذكاء، الوحدة، الصوفية، شخصية مليئة بالجاذبية. النقص المحمول هو صعوبة التعبير عن الذات، عدم الثقة بالآخرين، الاهتمام المفرط بالذات بحيث يفتقر إلى الفهم لاحتياجات 'الشريك'. مفصل في إدارة أشياء مختلفة. لن ينسى أبداً أي شخص ساعد من قبل. قادر على التغيير والانعطاف في موقف. يحب مطاردة الشهرة والحظ. موثوق في إدارة مجال الترفيه. يمكن أن يصبح شخصية روحية/قائد ديني، عادة في الخمسينات فما فوق. الجانب السلبي هو حب الجدال، عدم الحزم/تغيير الرأي كثيراً وعدم سرعة اتخاذ القرارات. يميل إلى مشاكل في الزواج. رغم كونه ماهراً في الشكر، هناك ميل أن الذات قد لا تظهر الامتنان للآخرين.",
-    time_8_desc:
-      "مليء بالمثالية، المادية، حارس أسرار موثوق. النقص المحمول هو الرغبة في إظهار القوة، نقص الإنسانية والعناد. تقريباً جميع الأشخاص مع الوقت 8 يحصلون على مأساة كنتيجة نهائية. صامت، محافظ، يميل إلى السلبية، لكن متحمس بين الآخرين. مسؤول جداً، رغم الشعور بالضغط أحياناً. مليء بالفضيلة وجدير بالثقة. لن يلعب بالناس. يبدو قاسياً من الخارج، لكن في الحقيقة لطيف من الداخل. الجانب السلبي هو الغضب، حب التأجيل والميل إلى الانتظار أو المراقبة. غالباً سيجعل يفقد الفرص. يحتاج إلى أن يكون أكثر ذكاءً في رؤية الموقف. كونه حذراً جداً لن يحصل على أي شيء. ثق في وجهة نظرك الخاصة وافعل شيئاً بطريقتك الخاصة. أحياناً غير واضح مع ما يعمل عليه. إذا كان في الطريق الخطأ، فسيصبح متنمراً، يريد الهيمنة، أناني، قاسي ويفكر فقط في تقدم نفسه.",
-    time_9_desc:
-      "مليء بالإنسانية، الكرم، الحب، والروح الروحية. النقص المحمول هو كونه حساساً جداً، متسرعاً في اتخاذ القرارات، أناني، متملك، غير متسامح وحتى غشاش. متفائل جداً ومنفتح الذهن. يحب أن يبدو جميلاً/أنيقاً ويرتدي ملابس جيدة. بسيط، يبدو قاسياً لكن لطيف من الداخل. متيقظ جداً وحساس. يعرف متى وكيف يهاجم ويدافع. ماهر في كسب قلوب الآخرين. يفعل كل شيء بسرعة لكن أقل تفصيلاً. عاطفي إلى حد ما. موثوق في العمل. يمتلك أهدافاً وأحلاماً كبيرة. أي شيء يفعله غالباً ما ينجح أكثر من عدم النجاح. الجانب السلبي هو الشعور بالوحدة كثيراً في الشيخوخة. هناك مستوى عالي من الجشع في الذات. يميل إلى نسيان الاهتمام بالمرؤوسين. ليس لديه أصدقاء حقيقيون كثيرون. نمط الحياة يميل إلى المادية.",
   },
   zh: {
     // Home Screen
@@ -694,6 +721,29 @@ const translations = {
     account: "账户",
     // Common
     language: "语言",
+    // Parameter Details
+    hara_1_desc:
+      "🤠 积极独立和自力更生，新（开始）发展，通常由新事物/工作/项目、搬迁、职业变动或类似的重大举措引发。独立性和力量，可能成为个人主义者。可能拥有权威/抵抗支配性人物的能力。个人拥有更多盈利的商业机会，但如果以合作的方式进行则不太合适/盈利较少。财务和冒险方面有很大的幸运潜力。倾向于从多个来源获得支持。长期来看，你将财务稳定、实力雄厚，并在商业上取得成功",
+    hara_2_desc:
+      "🤝良好的长期关系有助于增进人脉与合作。短期内，有可能在商业或人际关系中建立新的联系，增强对生活的感恩之心，对生活和商业直觉更加敏感，愿意与他人合作，易于谈判且睿智。长期来看，顺畅的人际关系也有可能带来成功，财务和经济状况也更加顺畅",
+    hara_3_desc:
+      "💡创意和想法的潜力，轻松的性格和对所有需要控制的事物的享受。在短期阶段，创造力和原创性的行动潜力，自我表达的增加。这是资本。充满灵感、动力和生活理念。在社交时，你会带来舒适，有可能体验充满旅行的生活并激励他人。将增加物质世界/金钱的其他乐趣",
+    hara_4_desc:
+      "✔️事业和人际关系有望增强，前进，责任切实完成。短期内，可能出现前景光明的商业机会，与当局（尤其是机构及其监管）的矛盾消失。财务状况正在好转。力量和决心可以帮助您实现计划。长期来看，您的事业和财务状况有望改善。您还可能期待人际关系的加强，尤其是与亲近之人",
+    hara_5_desc:
+      "❌潜在的不良倾向，不幸，容易被欺骗，背叛，不幸，疾病，结局不好。必须更改或添加姓名。容易被人欺骗，可能经常遭遇厄运和坏事，平均而言，其他结尾代码参数中发生的负面事情也会出现在这个数字中。因此，如果您的姓名包含结尾代码，则应谨慎处理。此外，它还可能容易被人欺骗，被朋友和其他人背叛",
+    hara_6_desc:
+      "🏡在家庭、社交、帮助老少、改善、疗愈和进步方面有发展潜力。短期内，您有机会融入家庭，取悦并帮助不同世代的人。您有可能对环境和政治议题产生兴趣，也有可能成为更有责任感的人。长期来看，您有可能获得看似美好的前景。在生活的各个方面，您都有可能获得改善、疗愈和进步",
+    hara_7_desc:
+      "😠潜在的财务问题、情感冲突（导致不幸）、反复无常、神经紊乱、细胞异常。短期：生活中会经历分配困难和财务问题。长期：患癌症、肿瘤和情感冲突（例如三角恋）的可能性较高",
+    hara_8_desc:
+      "🤕 旅途可能不愉快，必须小心，以免受伤、生病（恢复期较长）、误诊、结局不好（严重影响)",
+    hara_9_desc:
+      "🤧潜在的财务混乱、毒品混乱或毒品插入、不健康/经历疾病（如病毒爆发）以及由于其他方的行为而导致的悲惨结局（任何事情)",
+    hara_11_desc:
+      "🤢生意失败、成为替罪羊、心理压力或背叛、复杂情况、因原则不同而分离、健康问题",
+    hara_13_desc:
+      "😳对家庭或生意结果可能感到失望（破产、亏损）、被亲近的人背叛，以及无法从所做的所有努力中获得最大和最佳的结果",
     // Numerology Results
     hara: "哈拉",
     expression: "表达",
@@ -837,6 +887,29 @@ const translations = {
     account: "खाता",
     // Common
     language: "भाषा",
+    // Parameter Details
+    hara_1_desc:
+      "🤠स्वतंत्रता और आत्मनिर्भरता में सकारात्मक, नए (शुरुआती) विकास, आमतौर पर एक नई चीज़/नौकरी/प्रोजेक्ट, स्थानांतरण, करियर में बदलाव या इसी तरह के बड़े कदम से शुरू होते हैं। स्वतंत्रता और ताकत, एक व्यक्तिवादी होने की संभावना। प्रमुख व्यक्तियों के लिए अधिकार/प्रतिरोध की संभावना। व्यक्तियों के लिए अधिक लाभदायक व्यवसाय के अवसर लेकिन सहकारी तरीके से किए जाने पर कम उपयुक्त/लाभदायक। वित्त और रोमांच में अच्छे भाग्य की बहुत संभावना होगी। कई स्रोतों से समर्थन मिलने की संभावना है। लंबे चरण में आप आर्थिक रूप से स्थिर, मजबूत और व्यवसाय में सफल रहेंगे।",
+    hara_2_desc:
+      "🤝बढ़े हुए संपर्क और सहयोग, अच्छे और दीर्घकालिक संबंधों से सहायता प्राप्त होती है। लघु चरण में, व्यापार या रिश्तों में नए कनेक्शन की संभावना होती है, जीवन के प्रति कृतज्ञता की जागरूकता बढ़ती है, जीवन और व्यावसायिक प्रवृत्तियों के प्रति संवेदनशीलता बढ़ती है, दूसरों के साथ साझेदारी करने की इच्छा होती है, बातचीत करने में आसानी होती है और समझदारी होती है। दीर्घ चरण में, सहज संबंध, सफलता, सुचारू वित्त और अर्थव्यवस्था की भी संभावना होती है",
+    hara_3_desc:
+      "💡रचनात्मकता और विचारों की क्षमता, सहज व्यक्तित्व, हर उस चीज़ का आनंद लें जिसे नियंत्रित करने की आवश्यकता है। अल्पावधि में, रचनात्मक और मूल कार्यों की क्षमता, आत्म-अभिव्यक्ति में वृद्धि। यह पूंजी है। प्रेरणा, प्रेरणा और जीवन दर्शन से भरपूर। सामाजिकता के दौरान, आप दूसरों को आराम पहुँचाएँगे, यात्रा से भरपूर जीवन का अनुभव करेंगे और दूसरों को प्रेरित करेंगे। यह भौतिक दुनिया/धन के अन्य सुखों को भी बढ़ाएगा",
+    hara_4_desc:
+      "✔️करियर और रिश्तों में मजबूती, आगे बढ़ने, व्यावहारिक रूप से जिम्मेदारियां पूरी होने की संभावना है। छोटे चरण में, आशाजनक व्यावसायिक अवसरों की संभावना है, अधिकारियों, विशेष रूप से संस्थानों और उनके नियमों के साथ कठिनाइयों का गायब होना। वित्तीय स्थिति में वृद्धि हो रही है। ताकत और दृढ़ संकल्प आपको अपनी योजनाओं को साकार करने में मदद कर सकते हैं। लंबे चरण में, आपके पास करियर और वित्त में सुधार का अनुभव करने की क्षमता है। आप एक मजबूत रिश्ते की भी उम्मीद कर सकते हैं, खासकर अपने किसी करीबी के साथ।",
+    hara_5_desc:
+      "❌संभावित बुरी प्रवृत्तियाँ, बदकिस्मत, आसानी से मूर्ख बनने की प्रवृत्ति, विश्वासघात, दुर्भाग्य, बीमारी, बुरी तरह से समाप्त होना। नाम को बदलना या जोड़ना होगा। लोगों द्वारा आसानी से मूर्ख बनाया जाना, संभावित रूप से अक्सर बुरी किस्मत और बुरी चीजों का अनुभव करना, औसतन नकारात्मक चीजें जो अन्य अंत कोड मापदंडों में होती हैं, वे भी इस संख्या में होती हैं। इसलिए यदि आपके नाम में एंडिंग कोड है तो आपको सावधान रहना चाहिए। इसके अलावा, इसमें लोगों द्वारा आसानी से मूर्ख बनाए जाने, दोस्तों द्वारा धोखा दिए जाने और अन्य लोगों द्वारा धोखा दिए जाने की संभावना है।",
+    hara_6_desc:
+      "🏡 पारिवारिक, सामाजिक, युवा और वृद्धों की मदद, सुधार, उपचार, प्रगति के मामले में विकास की संभावना। छोटे चरण में खुद को परिवार में शामिल करने, विभिन्न पीढ़ियों को खुश करने और उनकी मदद करने का अवसर है। पर्यावरण और राजनीतिक मुद्दों में रुचि का अनुभव करने की क्षमता और आपको अधिक जिम्मेदार व्यक्ति बनाने की क्षमता भी है। लंबे चरण में ऐसी संभावनाएँ मिलने की संभावना है जो बहुत अच्छी लगती हैं। आपके जीवन के सभी क्षेत्रों में सुधार, उपचार और प्रगति का अनुभव करने की क्षमता है।",
+    hara_7_desc:
+      "😠संभावित वित्तीय समस्याएँ, भावनात्मक संघर्ष (दुर्भाग्य का कारण), चंचलता, तंत्रिका विकार, असामान्य कोशिकाएँ। लघु चरण: जीवन में आवंटन में कठिनाइयों का अनुभव होगा और वित्तीय समस्याओं का अनुभव होगा। दीर्घ चरण: कैंसर और ट्यूमर और भावनात्मक संघर्षों की उच्च संभावना (उदाहरण प्रेम त्रिकोण)",
+    hara_8_desc:
+      "🤕 अप्रिय यात्रा की संभावना, चोट न लगने, बीमार न पड़ने (लंबी रिकवरी), गलत निदान, कुछ बुरी तरह से समाप्त होने (गंभीर प्रभाव) के प्रति सावधान रहना चाहिए",
+    hara_9_desc:
+      "🤧संभावित वित्तीय व्यवधान, दवा व्यवधान या दवा सम्मिलन, अस्वस्थ/वायरल प्रकोप जैसी बीमारियों का अनुभव करना और अन्य पक्षों द्वारा किए गए कार्यों के कारण बुरी तरह समाप्त होना (कुछ भी)",
+    hara_11_desc:
+      "🤢व्यापार में असफलता, बलि का बकरा बनने, मनोवैज्ञानिक दबाव या विश्वासघात, जटिलताएं, पिसाह बदा प्रिंसिपल, गंगुआ केस्ट रोग",
+    hara_13_desc:
+      "😳घरेलू या व्यावसायिक परिणामों (दिवालियापन, हानि) से संभावित निराशा, करीबी लोगों द्वारा विश्वासघात, और किए गए सभी प्रयासों से अधिकतम और इष्टतम परिणाम प्राप्त करने में असमर्थता।",
     // Numerology Results
     hara: "हारा",
     expression: "अभिव्यक्ति",
@@ -984,27 +1057,27 @@ const translations = {
     language: "Bahasa",
     // Parameter Details
     hara_1_desc:
-      "🤠Positif dalam kemandirian dan independensi, perkembangan (awal) yang baru",
+      "🤠Positif dalam kemandirian dan independensi, perkembangan (awal) yang baru, biasanya diawali oleh suatu hal/pekerjaan/proyek baru, suatu relokasi, perubahan karir, atau langkah penting serupa. Kemandiran dan kekuatan, kemungkinan menjadi seorang yang cenderung individual. Berpotensi memiliki kewenangan / perlawanan terhadap figur yang mendominasi. Lebih banyak peluang - peluang bisnis menguntungkan untuk pribadi tetapi kurang cocok/menguntungkan jika dikerjakan dalam bentuk kerjasama. Akan banyak potensi keberuntungan dalam keuangan serta petualangan - petualangan. Cenderung mendapatkan dukungan dari beberapa sumber. Dalam fase panjang Anda akan mantap dalam  keuangan, kuat, dan sukses bisnis",
     hara_2_desc:
-      "🤝Peningkatan koneksi dan kerjasama, dibantu oleh suatu hubungan yang berjalan baik dan lama",
+      "🤝Peningkatan koneksi dan kerjasama, dibantu oleh suatu hubungan yang berjalan baik dan lama. Dalam fase pendek berpotensi memiliki koneksi - koneksi baru dalam bisnis atau pergaulan, meningkatnya kesadaran akan rasa syukur terhadap kehidupan , meningkatnya kepekaan terhadap insting kehidupan dan bisnis, memiliki kemauan untuk bermitra dengan orang lain, mudah bernegosiasi dan bijaksana. Dalam fase panjang Dalam fase panjang  lancar dalam hubungan, juga berpotensi sukses, lancarnya keuangan dan perekonomian",
     hara_3_desc:
-      "💡Potensi ide dan kreativitas, pembawaan santai dan kenikmatan atas segala hal yang perlu dikendalikan",
+      "💡Potensi ide dan kreativitas, pembawaan santai dan kenikmatan atas segala hal yang perlu dikendalikan. Dalam fase pendek berpotensi memiliki AKSI kreativitas dan orisinalitas, meningkatnya ekpresi diri. Ini adalah Modal. Penuh inspirasi dan motivasi serta ide-ide kehidupan. Ketika bersosialisasi, anda akan membawa kenyamanan, Berpotensi mengalami hidup yang penuh dengan perjalanan dan menginspirasi orang lain. Akan meningkatnya  kesenangan - kesenangan lain dari aspek material dunia/ Uang",
     hara_4_desc:
-      "✔️Potensi karir dan hubungan yang menguat, berpindah untuk bergerak maju, tanggung jawab terselesaikan dengan praktis",
+      "✔️Potensi karir dan hubungan yang menguat, berpindah untuk bergerak maju, tanggung jawab terselesaikan dengan praktis. Dalam fase pendek berpotensi mendapatkan peluang - peluang bisnis yang menjanjikan, Hilangnya Kesulitan - kesulitan dengan pihak berwenang, Khususnya institusi - institusi serta peraturannya. Keuangan yang grafiknya naik. Kekuatan dan tekadlah  dapat membantu anda mewujudkan rencana - rencana anda. Dalam fase panjang anda berpotensi mengalami perbaikan - perbaikan dalam karir dan keuangan. Anda juga bisa berharap adanya hubungan yang menguat, khususnya terhadap seseorang yang dekat dengan anda",
     hara_5_desc:
-      "❌Segala potensi buruk ; apes, mudah dikelabui, pengkhianatan, celaka, sakit, berakhir buruk",
+      "❌Kecenderungan potensi buruk, apes, cenderung mudah dikelabui, pengkhianatan, celaka, sakit, berakhir buruk. Namanya harus di rubah atau di tambahkan. Mudah di tipu orang, berpotensi sering mengalami kesialan dan keburukan, rata - rata hal negatif yang terjadi dalam parameter ending code yang lain terjadi juga di angka ini. maka sebaiknya berhati - hatilah jika nama anda mengandung Ending Code. selain itu berpotensi mudah ditipu orang, dihianati oleh teman sendiri, dan lainnya",
     hara_6_desc:
-      "🏡Potensi berkembang dalam hal kekeluargaan, sosial, membantu tua muda, perbaikan, kesembuhan, kemajuan",
+      "🏡Potensi berkembang dalam hal kekeluargaan, sosial, membantu tua muda, perbaikan, kesembuhan, kemajuan. Dalam fase pendek ada peluang untuk melibatkan diri dalam keluarga, menyenangkan dan membantu berbagai macam generasi. Berpotensi mengalami ketertarikan dalam masalah - masalah lingkungan dan politik dan juga berpotensi membuat anda menjadi seseorang yang lebih bertanggung jawab. Dalam fase panjang berpotensi mendapatkan prospek - prospek yang kelihatannya amat baik. Di semua area kehidupan anda berpotensi mengalami perbaikan, kesembuhan dan kemajuan",
     hara_7_desc:
-      "😠Potensi masalah finansial, konflik emosional (timbul celaka), plin-plan, gangguan syaraf, sel abnormal",
+      "😠Potensi masalah finansial, konflik emosional (timbul celaka), plin-plan, gangguan syaraf, sel abnormal. Fase pendek : dalam kehidupan akan mengalami kesulitan dalam mengalokasikan dan, mengalami masalah keuangan. Fase panjang : Berpotensi besar menderita kanker dan tumor dan konflik Emosional (contoh cinta segitiga)",
     hara_8_desc:
-      "🤕Potensi celaka, sakit (pemulihan lama), salah diagnosis, mengakhiri sesuatu secara buruk (berdampak serius)",
+      "🤕Potensi mengalami perjalanan tidak menyenangkan, harus berhati-hati agar tidak celaka, sakit (pemulihan lama), salah diagnosis, mengakhiri sesuatu secara buruk (berdampak serius)",
     hara_9_desc:
-      "🤧Potensi gangguan finansial, gangguan obat, kurang sehat, berakhir (apa saja) karena dilakukan pihak lain",
+      "🤧Potensi gangguan finansial, gangguan obat atau memasukkan obat, kurang sehat/mengalami penyakit seperti wabah virus dan berakhir dengan buruk (apa saja) karena dilakukan pihak lain",
     hara_11_desc:
-      "🤢Potensi gagal usaha, jadi kambing hitam, tekanan psikologi, komplikasi, pisah karena beda prinsip, gangguan kesehatan",
+      "🤢Potensi gagal usaha, jadi kambing hitam, tekanan atau pengkhianatan psikologis, komplikasi, pisah karena beda prinsip, gangguan kesehatan",
     hara_13_desc:
-      "😳Potensi kecewa atas hasil (bangkrut,rugi) rumah tangga maupun bisnis, dikhianati oleh orang dekat",
+      "😳Potensi kecewa atas hasil (bangkrut,rugi) rumah tangga maupun bisnis, dikhianati oleh orang dekat, dan ketidakmampuan mendapatkan hasil yang maksimal dan optimal dari segala Usaha yang dijalankan",
     // Numerology Results
     hara: "Hara",
     expression: "Ekspresi",
@@ -1143,11 +1216,69 @@ export default function MainApp() {
 
   // Translation function
   const t = (key: string) => {
-    return (
-      translations[language as keyof typeof translations]?.[key] ||
-      translations.en[key] ||
-      key
-    );
+    // Early return for invalid inputs
+    if (!key || typeof key !== "string" || key.trim() === "") {
+      return "";
+    }
+
+    try {
+      // Ensure translations object exists and is valid
+      if (
+        !translations ||
+        typeof translations !== "object" ||
+        translations === null
+      ) {
+        return key;
+      }
+
+      // Safely get current language translations with explicit null checks
+      const currentLangTranslations =
+        translations[language as keyof typeof translations];
+
+      // Try current language first with comprehensive safety checks
+      if (
+        currentLangTranslations &&
+        typeof currentLangTranslations === "object" &&
+        currentLangTranslations !== null &&
+        !Array.isArray(currentLangTranslations)
+      ) {
+        const translation =
+          currentLangTranslations[key as keyof typeof currentLangTranslations];
+        if (
+          translation &&
+          typeof translation === "string" &&
+          translation.trim() !== ""
+        ) {
+          return translation;
+        }
+      }
+
+      // Fallback to English with explicit null checks
+      const englishTranslations = translations.en;
+      if (
+        englishTranslations &&
+        typeof englishTranslations === "object" &&
+        englishTranslations !== null &&
+        !Array.isArray(englishTranslations)
+      ) {
+        const translation =
+          englishTranslations[key as keyof typeof englishTranslations];
+        if (
+          translation &&
+          typeof translation === "string" &&
+          translation.trim() !== ""
+        ) {
+          return translation;
+        }
+      }
+
+      // Return the key itself if no translation found
+      return key;
+    } catch (error) {
+      // Log error but don't throw - graceful degradation
+      console.warn(`Translation error for key "${key}":`, error);
+      return key;
+    }
   };
 
   const handleAnalysisSubmit = (
