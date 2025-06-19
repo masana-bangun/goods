@@ -1146,22 +1146,22 @@ export default function NameGenerator({
 
   const processCombiSearchBatch = () => {
     const BATCH_PROCESSING_LIMIT_MS = 150;
-    const MAX_RESULTS_PER_CLICK = 25;
+    const MAX_PROCESSING_TIME_PER_CLICK = 7000; // 7 seconds
+    const clickStartTime = Date.now();
     const startTime = Date.now();
 
-    // Calculate target results based on current results count
-    const currentResultsCount = combiResults.length;
-    const targetResultsCount = currentResultsCount + MAX_RESULTS_PER_CLICK;
+    // Track combinations processed in this click
+    let combinationsProcessedThisClick = 0;
     let newResultsFound = 0;
 
     const processBatch = () => {
       while (
-        combiState.foundNamesThisOverallRun.length < targetResultsCount &&
+        Date.now() - clickStartTime < MAX_PROCESSING_TIME_PER_CLICK &&
         !combiState.isFinishedCurrentPairSequence
       ) {
         if (Date.now() - startTime > BATCH_PROCESSING_LIMIT_MS) {
           setCombiProgress(
-            `Memproses... Total kombinasi dicek: ${combiState.totalCombinationsChecked}`,
+            `Memproses... Waktu: ${Math.round((Date.now() - clickStartTime) / 1000)}/${Math.round(MAX_PROCESSING_TIME_PER_CLICK / 1000)}s, Kombinasi klik ini: ${combinationsProcessedThisClick.toLocaleString()}, Total hasil: ${combiState.foundNamesThisOverallRun.length}, Total kombinasi: ${combiState.totalCombinationsChecked.toLocaleString()}`,
           );
           combiTimeoutRef.current = setTimeout(processBatch, 0);
           return;
@@ -1335,6 +1335,7 @@ export default function NameGenerator({
           const newName =
             combiState.currentVariations[combiState.currentVariationIndex];
           combiState.totalCombinationsChecked++;
+          combinationsProcessedThisClick++;
           const metrics = calculateMetricsForNameBasic(
             newName,
             userBirthdate,
@@ -1385,7 +1386,7 @@ export default function NameGenerator({
                 (result) => result.name === newName,
               );
               if (!isDuplicate) {
-                combiState.foundNamesThisOverallRun.push({
+                const newResult = {
                   name: newName,
                   hara: metrics.hara,
                   sync: metrics.sync,
@@ -1395,7 +1396,11 @@ export default function NameGenerator({
                   momenSukses: metrics.momenSukses,
                   grafologiIndex: metrics.grafologiIndex,
                   saranAngka: metrics.saranAngka,
-                });
+                };
+                combiState.foundNamesThisOverallRun.push(newResult);
+                newResultsFound++;
+                // Update results immediately when found
+                setCombiResults([...combiState.foundNamesThisOverallRun]);
               }
             }
           }
@@ -1403,30 +1408,27 @@ export default function NameGenerator({
         }
       }
 
-      // Update results with all found names (accumulate from state)
-      setCombiResults([...combiState.foundNamesThisOverallRun]);
+      // Results are updated immediately when found, no need to update here again
 
       if (combiState.isFinishedCurrentPairSequence) {
         if (combiState.foundNamesThisOverallRun.length === 0) {
           setCombiProgress(
-            `Pencarian Combi selesai. Tidak ada nama yang cocok dari ${combiState.totalCombinationsChecked} kombinasi.`,
+            `Pencarian Combi selesai. Tidak ada nama yang cocok dari ${combiState.totalCombinationsChecked.toLocaleString()} kombinasi.`,
           );
         } else {
           setCombiProgress(
-            `Pencarian Combi selesai. Total ditemukan ${combiState.foundNamesThisOverallRun.length} nama dari ${combiState.totalCombinationsChecked} kombinasi.`,
+            `Pencarian Combi selesai. Total ditemukan ${combiState.foundNamesThisOverallRun.length} nama dari ${combiState.totalCombinationsChecked.toLocaleString()} kombinasi.`,
           );
         }
         setIsCombiSearching(false);
-      } else if (
-        combiState.foundNamesThisOverallRun.length >= targetResultsCount
-      ) {
+      } else if (Date.now() - clickStartTime >= MAX_PROCESSING_TIME_PER_CLICK) {
         setCombiProgress(
-          `Menampilkan ${combiState.foundNamesThisOverallRun.length} hasil total. Klik lagi untuk hasil berikutnya.`,
+          `Selesai memproses selama ${Math.round(MAX_PROCESSING_TIME_PER_CLICK / 1000)} detik. Kombinasi dicek klik ini: ${combinationsProcessedThisClick.toLocaleString()}, Total hasil: ${combiState.foundNamesThisOverallRun.length} nama (${newResultsFound} baru klik ini). Total kombinasi dicek: ${combiState.totalCombinationsChecked.toLocaleString()}. Klik lagi untuk lanjut.`,
         );
         setIsCombiSearching(false);
       } else {
         setCombiProgress(
-          `Melanjutkan pencarian Combi... Total ditemukan ${combiState.foundNamesThisOverallRun.length} dari ${combiState.totalCombinationsChecked} kombinasi.`,
+          `Melanjutkan pencarian Combi... Waktu: ${Math.round((Date.now() - clickStartTime) / 1000)}/${Math.round(MAX_PROCESSING_TIME_PER_CLICK / 1000)}s, Kombinasi klik ini: ${combinationsProcessedThisClick.toLocaleString()}, Total hasil: ${combiState.foundNamesThisOverallRun.length}, Total kombinasi: ${combiState.totalCombinationsChecked.toLocaleString()}`,
         );
         combiTimeoutRef.current = setTimeout(processBatch, 0);
       }
