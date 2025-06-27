@@ -892,6 +892,24 @@ export default function NumerologyResults({
       <View className="mb-4">
         <TouchableOpacity
           className="bg-blue-50 p-3 rounded-lg"
+          onPress={() =>
+            showParameterDescription("heart_desire", patterns.angka_vokal)
+          }
+        >
+          <View className="bg-blue-200 px-2 py-1 rounded mb-2">
+            <Text className="text-sm font-medium text-blue-800 text-center">
+              Heart Desire
+            </Text>
+          </View>
+          <Text className="text-2xl font-bold text-blue-800 text-center">
+            {patterns.angka_vokal}
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <View className="mb-4">
+        <TouchableOpacity
+          className="bg-blue-50 p-3 rounded-lg"
           onPress={() => showParameterDescription("dimensional", "")}
         >
           <View className="bg-blue-200 px-2 py-1 rounded mb-2">
@@ -1118,7 +1136,7 @@ export default function NumerologyResults({
         </View>
       </View>
 
-      {true ? (
+      {isPremium ? (
         <>
           <View className="mb-6">
             <Text className="text-xl font-semibold mb-2">
@@ -1143,7 +1161,7 @@ export default function NumerologyResults({
                   <Text className="text-2xl font-bold">{patterns.destiny}</Text>
                 </View>
                 <View className="w-1/2 mb-3">
-                  <Text className="text-gray-600">{t("soul_number")}</Text>
+                  <Text className="text-gray-600">Heart Desire</Text>
                   <Text className="text-2xl font-bold">
                     {patterns.angka_vokal}
                   </Text>

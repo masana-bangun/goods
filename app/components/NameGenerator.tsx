@@ -62,7 +62,7 @@ const vlookupTable: { [key: number]: { [lang: string]: string } } = {
     en: "👮 Develop firmness, be firm in influence, remain wise in power",
     fr: "👮 Développer la fermeté, être ferme en influence, rester sage en puissance",
     es: "👮 Desarrolla firmeza, sé firme en la influencia, permanece sabio en el poder.",
-    ar: "👮 كن حازماً، حازماً في التأثير، حافظاً على الحكمة في السلطة",
+    ar: "👮 كن حازمًا، حازمًا في التأثير، حافظًا على الحكمة في السلطة",
     zh: "👮 培养坚定性，坚定影响力，保持明智的权力",
     hi: "👮 दृढ़ता विकसित करो, प्रभाव में दृढ़ रहो, शक्ति में बुद्धिमान रहो",
   },
@@ -177,7 +177,7 @@ const vlookupTable: { [key: number]: { [lang: string]: string } } = {
   28: {
     id: "💞 Upayakan sikap kecintaan, ramah dan bijaklah. Tetap tidak berlebihan",
     en: "💞 Strive for an attitude of love, kindness and wisdom. Still don't overdo it",
-    fr: "💞 Efforcez-vous d’adopter une attitude d’amour, de gentillesse et de sagesse. N'en faites toujours pas trop",
+    fr: "💞 Efforcez-vous d'adopter une attitude d'amour, de gentillesse et de sagesse. N'en faites toujours pas trop",
     es: "💞 Esfuérzate por tener una actitud de amor, bondad y sabiduría. Todavía no te excedas",
     ar: "💕اجتهد في التحلي بموقف الحب واللطف والحكمة. لا تزال لا تبالغي في ذلك",
     zh: "💞 努力追求爱、仁慈和智慧的态度。还是不要太过分",
@@ -245,15 +245,6 @@ const vlookupTable: { [key: number]: { [lang: string]: string } } = {
     ar: "👨‍👩‍👧‍👦 اصنع أسلوب حياة جميل، وعش في وئام في المنزل. التواصل المكثف",
     zh: "👨‍👩‍👧‍👦创造甜蜜生活方式，和睦相处。密切沟通",
     hi: "👨‍👩‍👧‍👦 मधुर जीवन शैली बनाएं, घर-परिवार में सद्भाव से रहें। गहन संचार",
-  },
-  37: {
-    id: "👀 Berpotensi menyukai dan mengamati alam, suka ilmu bintang (ilmu fisika alam)",
-    en: "👀 Potential to like and observe nature, likes star science (natural physics)",
-    fr: "👀 Potentiel d'aimer et d'observer la nature, aime la science des étoiles (physique naturelle)",
-    es: "👀 Potencial para gustarle y observar la naturaleza, le gusta la ciencia estelar (física natural)",
-    ar: "👀 إمكانية الإعجاب بالطبيعة ومراقبتها، يحب علم النجوم (الفيزياء الطبيعية)",
-    zh: "👀 有喜欢和观察自然的潜力，喜欢明星科学（自然物理）",
-    hi: "👀 प्रकृति को पसंद करने और उसका अवलोकन करने की क्षमता, तारा विज्ञान (प्राकृतिक भौतिकी) पसंद है",
   },
   40: {
     id: "🕌 Potensi berpengaruh dalam lingkungan agamais, tokoh agama",
@@ -328,7 +319,7 @@ const vlookupTable: { [key: number]: { [lang: string]: string } } = {
     hi: "🧗जीवन, गति, गतिविधि, ज्ञान और सौंदर्य के प्रति अपने आप को उत्साह से भरें",
   },
   75: {
-    id: "🏇 Berada dalam dunia sendiri, menata dunianya sendiri (nyata)/ maya (meditasi, kontemplasi, spiritual)",
+    id: "🏇 Berada dalam dunia sendiri, menata dunianya sendiri (nyata)/maya (meditasi, kontemplasi, spiritual)",
     en: "🏇 Being in your own world, organizing your own world (real)/virtual (meditation, contemplation, spiritual)",
     fr: "🏇 Être dans son propre monde, organiser son propre monde (réel)/virtuel (méditation, contemplation, spirituel)",
     es: "🏇 Estar en tu propio mundo, organizar tu propio mundo (real)/virtual (meditación, contemplación, espiritual)",
@@ -377,7 +368,7 @@ const vlookupTable: { [key: number]: { [lang: string]: string } } = {
     en: "😇 The command of the Almighty Messenger, guarding the trust",
     fr: "😇 Le commandement du Messager Tout-Puissant, gardant la confiance",
     es: "😇 La orden del Mensajero Todopoderoso, guardando la confianza",
-    ar: "😇أمر الرسول تعالى بحراسة الأمانة",
+    ar: "😇امر الرسول تعالى بحراسة الأمانة",
     zh: "😇 全能使者的命令，守护信任",
     hi: "😇 सर्वशक्तिमान दूत का आदेश, अमानत की रखवाली",
   },
@@ -516,11 +507,11 @@ const SAMPLE_NAMES = [
 
 // Sample language options with flag emojis
 const LANGUAGE_OPTIONS = [
-  { id: "id", name: "Indonesian", flag: "🇮🇩" },
-  { id: "en", name: "English", flag: "🇺🇸" },
-  { id: "ar", name: "Arabic", flag: "🇸🇦" },
-  { id: "jp", name: "Japanese", flag: "🇯🇵" },
-  { id: "cn", name: "Chinese", flag: "🇨🇳" },
+  { id: "id", name: "Indonesian", flag: "🇮🇩", countryName: "Indonesia" },
+  { id: "en", name: "English", flag: "🇺🇸", countryName: "United States" },
+  { id: "ar", name: "Arabic", flag: "🇸🇦", countryName: "Saudi Arabia" },
+  { id: "jp", name: "Japanese", flag: "🇯🇵", countryName: "Japan" },
+  { id: "cn", name: "Chinese", flag: "🇨🇳", countryName: "China" },
 ];
 
 export default function NameGenerator({
@@ -1146,7 +1137,7 @@ export default function NameGenerator({
 
   const processCombiSearchBatch = () => {
     const BATCH_PROCESSING_LIMIT_MS = 150;
-    const MAX_PROCESSING_TIME_PER_CLICK = 7000; // 7 seconds
+    const MAX_RESULTS_PER_CLICK = 50; // Generate 50 results per click
     const clickStartTime = Date.now();
     const startTime = Date.now();
 
@@ -1156,12 +1147,12 @@ export default function NameGenerator({
 
     const processBatch = () => {
       while (
-        Date.now() - clickStartTime < MAX_PROCESSING_TIME_PER_CLICK &&
+        newResultsFound < MAX_RESULTS_PER_CLICK &&
         !combiState.isFinishedCurrentPairSequence
       ) {
         if (Date.now() - startTime > BATCH_PROCESSING_LIMIT_MS) {
           setCombiProgress(
-            `Memproses... Waktu: ${Math.round((Date.now() - clickStartTime) / 1000)}/${Math.round(MAX_PROCESSING_TIME_PER_CLICK / 1000)}s, Kombinasi klik ini: ${combinationsProcessedThisClick.toLocaleString()}, Total hasil: ${combiState.foundNamesThisOverallRun.length}, Total kombinasi: ${combiState.totalCombinationsChecked.toLocaleString()}`,
+            `Memproses... Hasil baru klik ini: ${newResultsFound}/${MAX_RESULTS_PER_CLICK}, Kombinasi klik ini: ${combinationsProcessedThisClick.toLocaleString()}, Total hasil: ${combiState.foundNamesThisOverallRun.length}, Total kombinasi: ${combiState.totalCombinationsChecked.toLocaleString()}`,
           );
           combiTimeoutRef.current = setTimeout(processBatch, 0);
           return;
@@ -1421,14 +1412,14 @@ export default function NameGenerator({
           );
         }
         setIsCombiSearching(false);
-      } else if (Date.now() - clickStartTime >= MAX_PROCESSING_TIME_PER_CLICK) {
+      } else if (newResultsFound >= MAX_RESULTS_PER_CLICK) {
         setCombiProgress(
-          `Selesai memproses selama ${Math.round(MAX_PROCESSING_TIME_PER_CLICK / 1000)} detik. Kombinasi dicek klik ini: ${combinationsProcessedThisClick.toLocaleString()}, Total hasil: ${combiState.foundNamesThisOverallRun.length} nama (${newResultsFound} baru klik ini). Total kombinasi dicek: ${combiState.totalCombinationsChecked.toLocaleString()}. Klik lagi untuk lanjut.`,
+          `Berhasil menemukan ${newResultsFound} hasil baru! Kombinasi dicek klik ini: ${combinationsProcessedThisClick.toLocaleString()}, Total hasil: ${combiState.foundNamesThisOverallRun.length} nama. Total kombinasi dicek: ${combiState.totalCombinationsChecked.toLocaleString()}. Klik lagi untuk 50 hasil berikutnya.`,
         );
         setIsCombiSearching(false);
       } else {
         setCombiProgress(
-          `Melanjutkan pencarian Combi... Waktu: ${Math.round((Date.now() - clickStartTime) / 1000)}/${Math.round(MAX_PROCESSING_TIME_PER_CLICK / 1000)}s, Kombinasi klik ini: ${combinationsProcessedThisClick.toLocaleString()}, Total hasil: ${combiState.foundNamesThisOverallRun.length}, Total kombinasi: ${combiState.totalCombinationsChecked.toLocaleString()}`,
+          `Melanjutkan pencarian Combi... Hasil baru: ${newResultsFound}/${MAX_RESULTS_PER_CLICK}, Kombinasi klik ini: ${combinationsProcessedThisClick.toLocaleString()}, Total hasil: ${combiState.foundNamesThisOverallRun.length}, Total kombinasi: ${combiState.totalCombinationsChecked.toLocaleString()}`,
         );
         combiTimeoutRef.current = setTimeout(processBatch, 0);
       }
@@ -1548,9 +1539,6 @@ export default function NameGenerator({
           Database sumber kata (Exp) dipilih otomatis berdasarkan Life Path &
           Expression Anda.
         </Text>
-        <Text className="text-red-600 text-xs font-bold mb-2">
-          ⚠️ PERINGATAN: Proses ini SANGAT INTENSIF secara komputasi!
-        </Text>
         <Text className="text-gray-600 text-xs">
           Klik tombol "Generate Names" untuk mencari kombinasi nama berikutnya.
           Sistem akan menganalisis berbagai posisi penempatan kata
@@ -1618,22 +1606,36 @@ export default function NameGenerator({
         {renderAdvancedModeInputs()}
 
         <View className="mb-6">
-          <Text className="text-gray-700 mb-1 font-medium">Name Origin</Text>
+          <Text className="text-gray-700 mb-3 font-medium text-center text-lg">
+            Name Origin Selection
+          </Text>
           <View className="flex-row flex-wrap justify-center">
             {LANGUAGE_OPTIONS.map((lang) => (
               <TouchableOpacity
                 key={lang.id}
-                className={`m-2 w-12 h-12 rounded-full items-center justify-center ${selectedLanguages.includes(lang.id) ? "bg-purple-100 border-2 border-purple-600" : "bg-gray-100 border-2 border-gray-300"} ${!isPremium && lang.id !== "id" ? "opacity-50" : ""}`}
+                className={`m-2 px-4 py-3 rounded-full items-center justify-center flex-row ${selectedLanguages.includes(lang.id) ? "bg-purple-600 border-2 border-purple-700 shadow-lg" : "bg-white border-2 border-gray-300 shadow-md"} ${!isPremium && lang.id !== "id" ? "opacity-50" : ""}`}
                 onPress={() => toggleLanguage(lang.id)}
                 disabled={false}
                 style={{
-                  elevation: selectedLanguages.includes(lang.id) ? 4 : 2,
+                  elevation: selectedLanguages.includes(lang.id) ? 6 : 3,
+                  minWidth: 120,
                 }}
               >
-                <Text style={{ fontSize: 20 }}>{lang.flag}</Text>
+                <Text style={{ fontSize: 24, marginRight: 8 }}>
+                  {lang.flag}
+                </Text>
+                <Text
+                  className={`font-medium text-sm ${selectedLanguages.includes(lang.id) ? "text-white" : "text-gray-700"}`}
+                  numberOfLines={1}
+                >
+                  {lang.countryName}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
+          <Text className="text-center text-xs text-gray-500 mt-2">
+            Select one or more countries for name generation
+          </Text>
         </View>
 
         {
