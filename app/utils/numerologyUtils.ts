@@ -73,3 +73,87 @@ export function getNumerologyMeaning(number: number): string {
   
   return meanings[number] || "Unknown number";
 }
+
+/**
+ * Get available languages for name dictionary
+ */
+export function getAvailableLanguages(): string[] {
+  return [
+    'English',
+    'Spanish',
+    'French',
+    'German',
+    'Italian',
+    'Portuguese',
+    'Russian',
+    'Chinese',
+    'Japanese',
+    'Arabic',
+    'Hindi',
+    'Hebrew'
+  ];
+}
+
+/**
+ * Search name dictionary for names and their meanings
+ */
+export function searchNameDictionary(query: string, language: string = 'English'): Array<{
+  name: string;
+  meaning: string;
+  origin: string;
+  numerologyValue: number;
+}> {
+  // Sample name dictionary data
+  const nameDictionary: { [key: string]: Array<{
+    name: string;
+    meaning: string;
+    origin: string;
+  }> } = {
+    'English': [
+      { name: 'Alexander', meaning: 'Defender of mankind', origin: 'Greek' },
+      { name: 'Emma', meaning: 'Universal', origin: 'Germanic' },
+      { name: 'William', meaning: 'Resolute protector', origin: 'Germanic' },
+      { name: 'Sophia', meaning: 'Wisdom', origin: 'Greek' },
+      { name: 'James', meaning: 'Supplanter', origin: 'Hebrew' },
+      { name: 'Isabella', meaning: 'God is my oath', origin: 'Hebrew' },
+      { name: 'Michael', meaning: 'Who is like God?', origin: 'Hebrew' },
+      { name: 'Olivia', meaning: 'Olive tree', origin: 'Latin' },
+      { name: 'David', meaning: 'Beloved', origin: 'Hebrew' },
+      { name: 'Charlotte', meaning: 'Free woman', origin: 'French' }
+    ],
+    'Spanish': [
+      { name: 'Alejandro', meaning: 'Defender of mankind', origin: 'Greek' },
+      { name: 'María', meaning: 'Bitter', origin: 'Hebrew' },
+      { name: 'Carlos', meaning: 'Free man', origin: 'Germanic' },
+      { name: 'Ana', meaning: 'Grace', origin: 'Hebrew' },
+      { name: 'José', meaning: 'God will increase', origin: 'Hebrew' }
+    ],
+    'French': [
+      { name: 'Alexandre', meaning: 'Defender of mankind', origin: 'Greek' },
+      { name: 'Marie', meaning: 'Bitter', origin: 'Hebrew' },
+      { name: 'Pierre', meaning: 'Stone', origin: 'Greek' },
+      { name: 'Sophie', meaning: 'Wisdom', origin: 'Greek' },
+      { name: 'Jean', meaning: 'God is gracious', origin: 'Hebrew' }
+    ]
+  };
+
+  const languageNames = nameDictionary[language] || nameDictionary['English'];
+  
+  if (!query.trim()) {
+    return languageNames.slice(0, 10).map(item => ({
+      ...item,
+      numerologyValue: calculateExpressionNumber(item.name)
+    }));
+  }
+
+  const filteredNames = languageNames.filter(item =>
+    item.name.toLowerCase().includes(query.toLowerCase()) ||
+    item.meaning.toLowerCase().includes(query.toLowerCase()) ||
+    item.origin.toLowerCase().includes(query.toLowerCase())
+  );
+
+  return filteredNames.map(item => ({
+    ...item,
+    numerologyValue: calculateExpressionNumber(item.name)
+  }));
+}
