@@ -6,7 +6,8 @@ import { useEffect, useState, useCallback } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import "react-native-reanimated";
 import "../global.css";
-import { Platform } from "react-native";
+import { Platform } from "react-native"
+import { useFrameworkReady } from '@/hooks/useFrameworkReady';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -114,6 +115,7 @@ function ErrorBoundary({ children }: { children: React.ReactNode }) {
 }
 
 export default function RootLayout() {
+  useFrameworkReady();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
