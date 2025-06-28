@@ -24,13 +24,29 @@ interface Person {
   gender: "Male" | "Female";
 }
 
-export default function CompatibilityChecker() {
+interface CompatibilityCheckerProps {
+  isPremium?: boolean;
+}
+
+export default function CompatibilityChecker({ isPremium = true }: CompatibilityCheckerProps) {
   const { t } = useTranslation();
   const [person1, setPerson1] = useState<Person | null>(null);
   const [person2, setPerson2] = useState<Person | null>(null);
   const [compatibility, setCompatibility] = useState<any>(null);
   const [currentForm, setCurrentForm] = useState<"person1" | "person2" | null>("person1");
   const [showFixPersonModal, setShowFixPersonModal] = useState(false);
+
+  // Date picker state for NumerologyForm
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(new Date().getDate());
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+
+  const handleDateChange = (day: number, month: number, year: number) => {
+    setSelectedDay(day);
+    setSelectedMonth(month);
+    setSelectedYear(year);
+  };
 
   const handlePersonSubmit = (name: string, birthdate: Date, gender: "Male" | "Female") => {
     const person = { name, birthdate, gender };
@@ -117,7 +133,15 @@ export default function CompatibilityChecker() {
           </View>
         </View>
 
-        <NumerologyForm onSubmit={handlePersonSubmit} />
+        <NumerologyForm 
+          onSubmit={handlePersonSubmit}
+          showDatePicker={showDatePicker}
+          setShowDatePicker={setShowDatePicker}
+          selectedDay={selectedDay}
+          selectedMonth={selectedMonth}
+          selectedYear={selectedYear}
+          onDateChange={handleDateChange}
+        />
 
         {person1 && currentForm === "person2" && (
           <TouchableOpacity
