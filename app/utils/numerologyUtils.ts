@@ -1,36 +1,75 @@
-import React, { useState } from 'react';
-import { Plus, Minus } from 'lucide-react';
+// Numerology utility functions
 
-interface CounterProps {
-  label: string;
-  decrementTitle: string;
-  initialValue?: number;
+/**
+ * Calculate the life path number from a birth date
+ */
+export function calculateLifePathNumber(birthDate: Date): number {
+  const day = birthDate.getDate();
+  const month = birthDate.getMonth() + 1;
+  const year = birthDate.getFullYear();
+  
+  const sum = day + month + year;
+  return reduceToSingleDigit(sum);
 }
 
-export function Counter({ label, decrementTitle, initialValue = 0 }: CounterProps) {
-  const [count, setCount] = useState(initialValue);
+/**
+ * Calculate the expression number from a full name
+ */
+export function calculateExpressionNumber(fullName: string): number {
+  const letterValues: { [key: string]: number } = {
+    A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9,
+    J: 1, K: 2, L: 3, M: 4, N: 5, O: 6, P: 7, Q: 8, R: 9,
+    S: 1, T: 2, U: 3, V: 4, W: 5, X: 6, Y: 7, Z: 8
+  };
+  
+  const sum = fullName
+    .toUpperCase()
+    .replace(/[^A-Z]/g, '')
+    .split('')
+    .reduce((total, letter) => total + (letterValues[letter] || 0), 0);
+    
+  return reduceToSingleDigit(sum);
+}
 
-  return (
-    <div className="flex flex-col items-center gap-4 bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold text-gray-800">{label}</h2>
-      <div className="flex items-center gap-4">
-        <button
-          title={decrementTitle}
-          onClick={() => setCount(prev => prev - 1)}
-          className="p-2 rounded-full bg-red-100 hover:bg-red-200 transition-colors"
-          aria-label="Decrease"
-        >
-          <Minus className="w-5 h-5 text-red-600" />
-        </button>
-        <span className="text-3xl font-bold min-w-[3ch] text-center">{count}</span>
-        <button
-          onClick={() => setCount(prev => prev + 1)}
-          className="p-2 rounded-full bg-green-100 hover:bg-green-200 transition-colors"
-          aria-label="Increase"
-        >
-          <Plus className="w-5 h-5 text-green-600" />
-        </button>
-      </div>
-    </div>
-  );
+/**
+ * Reduce a number to a single digit (1-9) or master number (11, 22, 33)
+ */
+export function reduceToSingleDigit(num: number): number {
+  // Keep master numbers
+  if (num === 11 || num === 22 || num === 33) {
+    return num;
+  }
+  
+  while (num > 9) {
+    num = num.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+    
+    // Check for master numbers after reduction
+    if (num === 11 || num === 22 || num === 33) {
+      return num;
+    }
+  }
+  
+  return num;
+}
+
+/**
+ * Get numerology meaning for a given number
+ */
+export function getNumerologyMeaning(number: number): string {
+  const meanings: { [key: number]: string } = {
+    1: "Leadership, independence, and pioneering spirit",
+    2: "Cooperation, diplomacy, and partnership",
+    3: "Creativity, communication, and self-expression",
+    4: "Stability, hard work, and practicality",
+    5: "Freedom, adventure, and versatility",
+    6: "Nurturing, responsibility, and healing",
+    7: "Spirituality, introspection, and analysis",
+    8: "Material success, ambition, and authority",
+    9: "Humanitarianism, wisdom, and completion",
+    11: "Intuition, inspiration, and enlightenment (Master Number)",
+    22: "Master builder, practical idealism, and large-scale achievement (Master Number)",
+    33: "Master teacher, compassion, and spiritual guidance (Master Number)"
+  };
+  
+  return meanings[number] || "Unknown number";
 }
