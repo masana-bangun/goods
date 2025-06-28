@@ -15,7 +15,7 @@ import {
 } from "../utils/numerologyUtils";
 import NumerologyForm from "./NumerologyForm";
 import FixPersonModal from "./FixPersonModal";
-import { Heart, Users, Zap, Target, Settings, RefreshCw } from "lucide-react-native";
+import { Heart, Users, Zap, Target, Settings, RefreshCw, Wrench } from "lucide-react-native";
 import { useTranslation } from "./MainApp";
 
 interface Person {
@@ -159,30 +159,13 @@ export default function CompatibilityChecker() {
             </View>
           </View>
 
-          {/* Action Buttons */}
-          <View className="flex-row mb-4">
-            <TouchableOpacity
-              className="flex-1 bg-purple-600 py-3 px-4 rounded-lg mr-2 flex-row items-center justify-center"
-              onPress={calculateCompatibilityResult}
-            >
-              <RefreshCw size={20} color="white" />
-              <Text className="text-white font-medium ml-2">{t("calculate")}</Text>
-            </TouchableOpacity>
-            
-            <TouchableOpacity
-              className="flex-1 bg-green-600 py-3 px-4 rounded-lg ml-2 flex-row items-center justify-center"
-              onPress={() => setShowFixPersonModal(true)}
-            >
-              <Settings size={20} color="white" />
-              <Text className="text-white font-medium ml-2">Fix Person</Text>
-            </TouchableOpacity>
-          </View>
-
+          {/* Calculate Button */}
           <TouchableOpacity
-            className="bg-gray-500 py-2 px-4 rounded-lg mb-4"
-            onPress={resetAnalysis}
+            className="bg-purple-600 py-3 px-4 rounded-lg mb-4 flex-row items-center justify-center"
+            onPress={calculateCompatibilityResult}
           >
-            <Text className="text-white text-center font-medium">{t("start_new_analysis")}</Text>
+            <RefreshCw size={20} color="white" />
+            <Text className="text-white font-medium ml-2">{t("calculate")}</Text>
           </TouchableOpacity>
 
           {/* Compatibility Results */}
@@ -199,6 +182,40 @@ export default function CompatibilityChecker() {
                 <Text className={`text-center font-medium ${getCompatibilityLevel(compatibility.harmony).color}`}>
                   {getCompatibilityLevel(compatibility.harmony).level}
                 </Text>
+              </View>
+
+              {/* FixPerson Feature - Prominently displayed below harmony */}
+              <View className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-4 shadow-lg">
+                <View className="flex-row items-center justify-between mb-3">
+                  <View className="flex-1">
+                    <Text className="text-white font-bold text-lg mb-1">
+                      🔧 FixPerson Feature
+                    </Text>
+                    <Text className="text-white opacity-90 text-sm mb-2">
+                      Optimize one person's name to improve harmony with their partner
+                    </Text>
+                    <Text className="text-white opacity-80 text-xs">
+                      • Add 1 or 2 words to existing name
+                    </Text>
+                    <Text className="text-white opacity-80 text-xs">
+                      • Filter by minimum harmony (70-95%)
+                    </Text>
+                    <Text className="text-white opacity-80 text-xs">
+                      • Uses extended database (exp1-exp9)
+                    </Text>
+                  </View>
+                  <View className="w-16 h-16 bg-white rounded-full items-center justify-center">
+                    <Wrench size={32} color="#059669" />
+                  </View>
+                </View>
+                
+                <TouchableOpacity
+                  className="bg-white py-3 px-4 rounded-lg flex-row items-center justify-center"
+                  onPress={() => setShowFixPersonModal(true)}
+                >
+                  <Settings size={20} color="#059669" />
+                  <Text className="text-green-600 font-bold ml-2">Open FixPerson Tool</Text>
+                </TouchableOpacity>
               </View>
 
               {/* Detailed Metrics */}
@@ -240,23 +257,53 @@ export default function CompatibilityChecker() {
                 </Text>
               </View>
 
-              {/* Recommendations */}
+              {/* Recommendations for Low Harmony */}
               {compatibility.harmony < 70 && (
                 <View className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
                   <Text className="text-lg font-bold mb-3 text-yellow-800">💡 {t("recommendations")}</Text>
                   <Text className="text-yellow-700 mb-3">
-                    Your compatibility could be improved. Consider using the "Fix Person" feature to optimize one of the names for better harmony.
+                    Your compatibility score is below 70%. The FixPerson feature above can help optimize one of the names to achieve better harmony. This tool will:
                   </Text>
+                  <View className="mb-3">
+                    <Text className="text-yellow-700 text-sm">• Generate name variations with 1-2 additional words</Text>
+                    <Text className="text-yellow-700 text-sm">• Filter results by your desired harmony threshold</Text>
+                    <Text className="text-yellow-700 text-sm">• Show real-time compatibility with your partner</Text>
+                    <Text className="text-yellow-700 text-sm">• Use extensive Indonesian name database</Text>
+                  </View>
                   <TouchableOpacity
                     className="bg-yellow-600 py-2 px-4 rounded-lg"
                     onPress={() => setShowFixPersonModal(true)}
                   >
-                    <Text className="text-white text-center font-medium">Try Fix Person Feature</Text>
+                    <Text className="text-white text-center font-medium">Try FixPerson Now</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+
+              {/* High Harmony Celebration */}
+              {compatibility.harmony >= 80 && (
+                <View className="bg-green-50 rounded-lg p-4 border border-green-200">
+                  <Text className="text-lg font-bold mb-3 text-green-800">🎉 Excellent Compatibility!</Text>
+                  <Text className="text-green-700 mb-3">
+                    Your harmony score of {compatibility.harmony}% indicates a very strong connection! You can still use the FixPerson feature to explore even higher compatibility levels.
+                  </Text>
+                  <TouchableOpacity
+                    className="bg-green-600 py-2 px-4 rounded-lg"
+                    onPress={() => setShowFixPersonModal(true)}
+                  >
+                    <Text className="text-white text-center font-medium">Explore Further Optimization</Text>
                   </TouchableOpacity>
                 </View>
               )}
             </View>
           )}
+
+          {/* Reset Button */}
+          <TouchableOpacity
+            className="bg-gray-500 py-2 px-4 rounded-lg mt-6"
+            onPress={resetAnalysis}
+          >
+            <Text className="text-white text-center font-medium">{t("start_new_analysis")}</Text>
+          </TouchableOpacity>
         </View>
 
         {/* Fix Person Modal */}
