@@ -1,10 +1,9 @@
-import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState, useCallback } from "react";
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import "react-native-reanimated";
 import "../global.css";
 import { Platform } from "react-native";
@@ -228,16 +227,14 @@ export default function RootLayout() {
 
   return (
     <ErrorBoundary>
-      <ThemeProvider value={DefaultTheme}>
-        <Stack
-          screenOptions={({ route }) => ({
-            headerShown: !route.name.startsWith("tempobook"),
-          })}
-        >
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-        </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider>
+      <Stack
+        screenOptions={({ route }) => ({
+          headerShown: !route.name.startsWith("tempobook"),
+        })}
+      >
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+      </Stack>
+      <StatusBar style="auto" />
     </ErrorBoundary>
   );
 }
