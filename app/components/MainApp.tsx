@@ -1,5 +1,6 @@
 import React, { useState, createContext, useContext } from "react";
-import { View, SafeAreaView, Platform, StatusBar } from "react-native";
+import { View, SafeAreaView, Platform, StatusBar, Modal, Text, TouchableOpacity, ScrollView } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import TabBar from "./TabBar";
 import HomeScreen from "./HomeScreen";
 import NumerologyForm from "./NumerologyForm";
@@ -111,7 +112,7 @@ const translations = {
     time_9_desc:
       "Full of humanity, generous, compassionate, and has a spiritual soul. The inherent flaws are being too sensitive, hasty in decision-making, selfish, possessive, intolerant, and even dishonest. Very optimistic and open-minded. Likes to look beautiful/dapper and dress well. Unpretentious, looks tough but is soft on the inside. Very alert and sensitive. Knows when and how to attack and defend. Good at winning people's hearts. Does everything quickly but lacks detail. Quite emotional. Reliable at work. Has big goals and dreams. Whatever is done more often reaps success than not. The negative side is often feeling lonely in old age. There is a high level of greed within. Tends to forget to pay attention to subordinates. Doesn't have many true friends. Lifestyle tends to be materialistic",
     synchronize_desc:
-      "The Synchronize value is a parameter that indicates the relationship between one's internal code and external codes, the ability to interact with the environment, and the speed in seizing opportunities. The Synchronize range is 0.05 to 1.0 or 5% to 100%. Successful and accomplished people in all their endeavors, on both small and large scales, have a Synchronize value of 0.8 to 1.0 or 80% to 100%. Synchronize Value: 0.1 / 10%. Your ability to master a field is extremely difficult and slow. In lessons, you need repeated explanations before you can understand even a LITTLE. Socially, you may need to adapt multiple times. If your Synchronize value is at 10%, you are likely a less intelligent person. Synchronize Value: 0.2 / 20% : The potential is nearly the same as the 10% parameter, but at a level that might be slightly easier than the 10% mark. Synchronize Value 0.3 / 30% : Your potential for mastering a field is not very good if your smart potential parameter is also at 30%. While you do socialize, there is a high probability of being ostracized by those you consider friends. For lessons you feel you have understood, it is likely there are errors in your comprehension. Synchronize Value 0.4 / 40% : There is a very high probability that you have the potential to become an errand-runner for your friends. To put it bluntly, you have the potential to willingly sacrifice your self-respect just to have company. In your studies, you still frequently make mistakes in how you understand the lessons. Synchronize Value 0.5 / 50% : In your social life, your friends do not care much about you, even though you have people who are willing to be your friends. Your presence is not particularly desired by them. In your studies, you likely do not care about the subjects you are learning, even those you are supposed to be studying. Synchronize Value 0.6 / 60% : This is your potential in mastering a field, especially in social interactions and friendships. A small portion of people look forward to your presence, but the majority do not seem to care whether you are there or not. In your studies, you are very average and can sometimes understand the material you are learning. Synchronize Value 0.7 / 70% : Your potential for mastering a field is at a safe level if the number is 70%. You have many friends, but you can be selective in choosing them. You have a very good understanding of what is good and what is not, although you sometimes disregard it. In your studies, slowly but surely, you are able to understand what you are learning. Synchronize Value: 0.8 / 80% : There is a very high probability that you will become popular among your friends; your presence is eagerly awaited, and you usually have an extraordinary vibe. However, you are less able to be selective in choosing friends, wanting to befriend everyone with the reasoning that “Friendship is for everyone.” In your studies, you are quite quick to understand the material you are learning. Synchronize Value 0.9 / 90% : Your potential lies in your social life; you are very likely to become famous for your achievements. Many friends rely on you to get things done. You are so intelligent that you can understand any lesson you study with great ease. Unfortunately, you sometimes feel that you are smarter than everyone else, leading you to consider many friends a burden. Synchronize value: 1.0 / 100% : The potential from your achievements and the sensation you create will cause many people around you to admire and wonder about you, giving rise to an aura of authority and charisma that radiates from you. You are incredibly smart and intelligent in understanding any lesson you study. Unfortunately, the potential for selfishness within you is very high, because you often feel you are better than the friends who consider you important, and you prefer to befriend people you consider important",
+      "The Synchronize value is a parameter that indicates the relationship between one's internal code and external codes, the ability to interact with the environment, and the speed in seizing opportunities. The Synchronize range is 0.05 to 1.0 or 5% to 100%. Successful and accomplished people in all their endeavors, on both small and large scales, have a Synchronize value of 0.8 to 1.0 or 80% to 100%. Synchronize Value: 0.1 / 10%. Your ability to master a field is extremely difficult and slow. In lessons, you need repeated explanations before you can understand even a LITTLE. Socially, you may need to adapt multiple times. If your Synchronize value is at 10%, you are likely a less intelligent person. Synchronize Value: 0.2 / 20% : The potential is nearly the same as the 10% parameter, but at a level that might be slightly easier than the 10% mark. Synchronize Value 0.3 / 30% : Your potential for mastering a field is not very good if your smart potential parameter is also at 30%. While you do socialize, there is a high probability of being ostracized by those you consider friends. For lessons you feel you have understood, it is likely there are errors in your comprehension. Synchronize Value 0.4 / 40% : There is a very high probability that you have the potential to become an errand-runner for your friends. To put it bluntly, you have the potential to willingly sacrifice your self-respect just to have company. In your studies, you still frequently make mistakes in how you understand the lessons. Synchronize Value 0.5 / 50% : In your social life, your friends do not care much about you, even though you have people who are willing to be your friends. Your presence is not particularly desired by them. In your studies, you likely do not care about the subjects you are learning, even those you are supposed to be studying. Synchronize Value 0.6 / 60% : This is your potential in mastering a field, especially in social interactions and friendships. A small portion of people look forward to your presence, but the majority do not seem to care whether you are there or not. In your studies, you are very average and can sometimes understand the material you are learning. Synchronize Value 0.7 / 70% : Your potential for mastering a field is at a safe level if the number is 70%. You have many friends, but you can be selective in choosing them. You have a very good understanding of what is good and what is not, although you sometimes disregard it. In your studies, slowly but surely, you are able to understand what you are learning. Synchronize Value: 0.8 / 80% : There is a very high probability that you will become popular among your friends; your presence is eagerly awaited, and you usually have an extraordinary vibe. However, you are less able to be selective in choosing friends, wanting to befriend everyone with the reasoning that "Friendship is for everyone." In your studies, you are quite quick to understand the material you are learning. Synchronize Value 0.9 / 90% : Your potential lies in your social life; you are very likely to become famous for your achievements. Many friends rely on you to get things done. You are so intelligent that you can understand any lesson you study with great ease. Unfortunately, you sometimes feel that you are smarter than everyone else, leading you to consider many friends a burden. Synchronize value: 1.0 / 100% : The potential from your achievements and the sensation you create will cause many people around you to admire and wonder about you, giving rise to an aura of authority and charisma that radiates from you. You are incredibly smart and intelligent in understanding any lesson you study. Unfortunately, the potential for selfishness within you is very high, because you often feel you are better than the friends who consider you important, and you prefer to befriend people you consider important",
     coherence_desc:
       "Coherence is a parameter that indicates the structural strength of a person's interrelated internal codes, showing their level of ability and speed in mastering a field of knowledge or skill. The Coherence range is 0.1 – 1.0 or 10% to 100%. People who are successful and accomplished in life, in all their endeavors whether on a small or large scale, have a Coherence value between 0.7 to 1.0, or 70% to 100%",
 
@@ -523,7 +524,7 @@ const translations = {
     time_1_desc:
       "Lleno de ideas creativas, de voluntad fuerte, independiente, valiente y luchador. Los defectos inherentes son la terquedad, la deshonestidad, el deseo de dominar y el egoísmo, lo que conduce a una actitud de sabelotodo. La sabiduría es el enfoque principal. Tiene fuertes habilidades analíticas. Si se usa correctamente, se convertirá en una persona culta. Generalmente no responde SÍ o NO de inmediato, primero pensará. Muy detallista en muchas cosas. Muy fuerte en creatividad y muy vigilante. Estas características conducirán a la riqueza. Bueno para entretener y fiable en la construcción de relaciones. La riqueza generalmente se alcanza alrededor de los 32 a 42 años. Tiene habilidades de liderazgo. El sexo opuesto a menudo se siente atraído. Se volverá más apuesto/a o más hermoso/a con la edad - por encima de los 30 años y más allá, se verá más guapo/a. El lado negativo es que a menudo se siente solo, sintiéndose como un vagabundo. Ten cuidado al analizar a una persona o una situación, un análisis incorrecto conducirá a problemas innecesarios",
     time_2_desc:
-      "Lleno de paz, humilde, amigable y con una influencia espiritual. Los defectos inherentes son ser sensible y herirse fácilmente, prestando demasiada atención a las pequeñas cosas hasta el punto de perder mucho tiempo. Habilidoso y con una personalidad agradable, y hablador. Fiable en el trabajo que implica cooperación. Muy tranquilo, amigable y de buen corazón. Siempre enfatiza el orden, la limpieza y es muy organizado. Dispuesto a trabajar duro, muy maduro en su pensamiento. Generalmente socializa con personas mayores. Tiene la capacidad de dirigir y completar tareas. El lado negativo es estar dispuesto a escuchar las opiniones de los demás, pero quizás no a seguirlas. Terco, a menudo provoca malos chismes y tiende a ser 'pura habladuría'. Muy celoso en asuntos de amor",
+      "Lleno de paz, humilde, ودود, وله تأثير روحي. Los defectos inherentes son ser sensible y herirse fácilmente, prestando demasiada atención a las pequeñas cosas hasta el punto de perder mucho tiempo. Habilidoso y con una personalidad agradable, y hablador. Fiable en el trabajo que implica cooperación. Muy tranquilo, amigable y de buen corazón. Siempre enfatiza el orden, la limpieza y es muy organizado. Dispuesto a trabajar duro, muy maduro en su pensamiento. Generalmente socializa con personas mayores. Tiene la capacidad de dirigir y completar tareas. El lado negativo es estar dispuesto a escuchar las opiniones de los demás, pero quizás no a seguirlas. Terco, a menudo provoca malos chismes y tiende a ser 'pura habladuría'. Muy celoso en asuntos de amor",
     time_3_desc:
       "Lleno de talento artístico, espíritu de lucha, tiene la capacidad de ver 3 líneas de tiempo. Los defectos inherentes son el derroche, hablar sin pensar y la dificultad para perdonar. Atractivo y previsor, pero muy impaciente. Claro y sabe lo que quiere y cómo y dónde conseguirlo. Muy rápido para distinguir entre el bien y el mal. Puede ocupar una posición alta, ser rico y próspero. Tiene una buena vida a los ojos de la sociedad. Tiene habilidades y talentos y es bueno para aprovechar una situación. Se enoja rápidamente, pero también se calma rápidamente. Una mujer hermosa, o un hombre guapo en su juventud. El lado negativo es una tendencia a tomar las cosas a la ligera y no ser firme. A veces puede ser travieso. A veces grosero al hablar. Hay altibajos en el matrimonio, y si no se maneja bien, puede traer desastre y violencia. Generalmente piensa que tiene razón en todo lo que hace y dice, mientras que los demás están equivocados",
     time_4_desc:
@@ -728,7 +729,7 @@ const translations = {
     expression_8_desc:
       "يجب أن تقودك الإدارة والتنظيم والإدارة إلى منصب سلطة وتقدير. سيتعين عليك إجراء تقييم مناسب للأشخاص والأحداث من وقت لآخر، وهي ليست مهمة سهلة. إذا تم تطوير الكلية الفلسفية وتم إصدار حكم غير متحيز، فستكون مكافأتك هي إنجازه. قد لا يكون المال دائمًا هو خطوط التطور بالإضافة إلى الأعمال التي قد تشتهر بها",
     expression_9_desc:
-      "أنت مقدر لك أن تصبح مشهورًا في المجال الخيري أو الإنساني. سيكون حب الإخاء وخدمة الإنسانية جزءًا لا يتجزأ من شخصيتك، بينما يجب أن يثير اهتمامك الحب والرومانسية والموسيقى والفن بعمق. سيجعلك التعاطف والكرم وفهم احتياجات الآخرين مشهورًا جدًا. قد يكون الأنانية وحب الذات وعدم المغفرة ضارًا ويؤدي إلى خيبات الأمل. أن تكون غير شخصي وتطور حبًا عالميًا يمكن أن يجعلك قائدًا روحيًا",
+      "أنت مقدر لك أن تصبح مشهورًا في المج ال الخيري أو الإنساني. سيكون حب الإخاء وخدمة الإنسانية جزءًا لا يتجزأ من شخصيتك، بينما يجب أن يثير اهتمامك الحب والرومانسية والموسيقى والفن بعمق. سيجعلك التعاطف والكرم وفهم احتياجات الآخرين مشهورًا جدًا. قد يكون الأنانية وحب الذات وعدم المغفرة ضارًا ويؤدي إلى خيبات الأمل. أن تكون غير شخصي وتطور حبًا عالميًا يمكن أن يجعلك قائدًا روحيًا",
     expression_11_desc:
       "الإلهام، الوعي الروحي (غالبًا ما يكون كامنًا)، الحدس والقدرات النفسية يمكن أن تؤدي إلى السعادة الداخلية والتنوير إذا تم السيطرة على الجوانب السلبية. أنت مقدر لك تحقيق قيم أعلى؛ يمكن بسهولة فقدان الحياة الأسرية والمكاسب المادية والمكانة الاجتماعية إذا التزمت بها بصرامة. يجب عليك التغلب على الحساسية والعصبية والأنانية وأخذ الحياة المادية والاجتماعية باستخفاف. أنت موهوب بالقدرة على الوصول إلى قمم روحية وتنوير الآخرين. في بعض الأحيان تعاني من خسائر مادية، مما يؤدي إلى خيبات أمل متكررة في علاقاتك وشراكاتك",
     expression_22_desc:
@@ -931,7 +932,7 @@ const translations = {
     expression_4_desc:
       "你注定要承担责任，别人会依赖你的帮助和支持。建设、组织和管理将占据你的一生。家庭问题会经常萦绕在你心头，生活的束缚可能会让你烦躁。通过耐心、决心、秩序、真诚、诚实和服务意识，如果你克服了困难，你将确保他人和自己的安全",
     expression_5_desc:
-      "你生来就与他人互动，并促进“自由”和“进步”。变化、新环境、新方法、多样性、多才多艺和意想不到的事情将是你生活的显著特征。你可能会发现在相同的基础上或与相同的人长时间工作很困难。如果能控制消极因素，你将教会他人实现“自由”并快乐地生活",
+      "你生来就与他人互动，并促进"自由"和"进步"。变化、新环境、新方法、多样性、多才多艺和意想不到的事情将是你生活的显著特征。你可能会发现在相同的基础上或与相同的人长时间工作很困难。如果能控制消极因素，你将教会他人实现"自由"并快乐地生活",
     expression_6_desc:
       "你来到这个世界是为了以爱、责任感、责任心和仁慈服务人类。你将被公认为一个可靠的人。对你所爱的人要慷慨，但不要ถึง牺牲的地步。在你的一生中，会有人敲你的门寻求帮助，你为他人做得越多，你就会被越多的爱、舒适和金钱所包围。为了你自己的进步，你需要美丽、陪伴、爱与和谐。你能够探索人生的哲理，并达到精神上的高峰",
     expression_Texpression_7_desc:
@@ -943,27 +944,27 @@ const translations = {
     expression_11_desc:
       "如果能控制消极方面，灵感、精神意识（通常是潜在的）、直觉和心灵能力可以带来内心的幸福和启迪。你注定要达到更高的价值观；如果你严格遵守，家庭生活、物质收益和社会地位很容易失去。你必须克服敏感、紧张和以自我为中心，并轻松看待物质和社会生活。你被赋予了达到精神高峰和启迪他人的力量。你有时会遭受物质损失，这会导致你在人际关系和伙伴关系中反复失望",
     expression_22_desc:
-      "有效管理大型项目的能力可能会让你在人生的某个时刻在物质世界的特定领域处于权威地位。你可能会有重要的项目。但你的成功将取决于你控制“承担超出你能力范围的工作”的欲望的能力，并防止你的精神意识干扰你的实际方法。另一方面，如果你倾向于在神秘和玄学领域工作，你可以为他人做很多好事，并成为著名的光明传播者",
+      "有效管理大型项目的能力可能会让你在人生的某个时刻在物质世界的特定领域处于权威地位。你可能会有重要的项目。但你的成功将取决于你控制"承担超出你能力范围的工作"的欲望的能力，并防止你的精神意识干扰你的实际方法。另一方面，如果你倾向于在神秘和玄学领域工作，你可以为他人做很多好事，并成为著名的光明传播者",
     time_1_desc:
-      "充满创意，意志坚强，独立，勇敢，是一名斗士。固有的缺点是固执、不诚实、渴望支配和自私，这导致了一种自以为是的态度。智慧是主要焦点。具有很强的分析能力。如果使用得当，将成为一个有学问的人。通常不会立即回答“是”或“否”，会先思考。在很多事情上都非常细致。在创造力方面非常强，并且非常警惕。这些特质将带来财富。擅长娱乐，在建立关系方面可靠。财富通常在32至42岁左右获得。具有领导才能。异性常常被吸引。随着年龄的增长会变得更好看或更美丽——30多岁以后，会显得更英俊/美丽。消极的一面是常常感到孤独，感觉自己像个流浪者。在分析一个人或一种情况时要小心，错误的分析会导致不必要的问题。",
+      "充满创意，意志坚强，独立，勇敢，是一名斗士。固有的缺点是固执、不诚实、渴望支配和自私，这导致了一种自以为是的态度。智慧是主要焦点。具有很强的分析能力。如果使用得当，将成为一个有学问的人。通常不会立即回答"是"或"否"，会先思考。在很多事情上都非常细致。在创造力方面非常强，并且非常警惕。这些特质将带来财富。擅长娱乐，在建立关系方面可靠。财富通常在32至42岁左右获得。具有领导才能。异性常常被吸引。随着年龄的增长会变得更好看或更美丽——30多岁以后，会显得更英俊/美丽。消极的一面是常常感到孤独，感觉自己像个流浪者。在分析一个人或一种情况时要小心，错误的分析会导致不必要的问题。",
     time_2_desc:
-      "充满和平，谦逊，友好，并具有精神影响力。固有的缺点是敏感且容易受伤，过分关注小事以至于浪费大量时间。技术娴熟，性格开朗，健谈。在涉及合作的工作中可靠。非常冷静，友好，心地善良。总是强调整洁、干净，并且非常有条理。愿意努力工作，思想非常成熟。通常与年长的人交往。有能力指导和完成任务。消极的一面是愿意听取他人的意见，但可能不会采纳。固执，常常引发恶意的八卦，并倾向于“光说不练”。在爱情问题上非常嫉妒。",
+      "充满和平，谦逊，友好，并具有精神影响力。固有的缺点是敏感且容易受伤，过分关注小事以至于浪费大量时间。技术娴熟，性格开朗，健谈。在涉及合作的工作中可靠。非常冷静，友好，心地善良。总是强调整洁、干净，并且非常有条理。愿意努力工作，思想非常成熟。通常与年长的人交往。有能力指导和完成任务。消极的一面是愿意听取他人的意见，但可能不会采纳。固执，常常引发恶意的八卦，并倾向于"光说不练"。在爱情问题上非常嫉妒。",
     time_3_desc:
       "充满艺术才华，斗志昂扬，有能力看到3个时间线。固有的缺点是浪费、言语轻率和难以原谅。有吸引力且有远见，但非常不耐烦。思路清晰，知道自己想要什么，以及如何和在哪里得到它。能非常迅速地分辨好坏。可以占据高位，富有和繁荣。在社会眼中生活得很好。有能力和才华，并善于利用形势。脾气来得快，去得也快。年轻时是美女或俊男。消极的一面是倾向于轻视事物且不坚定。有时可能很淘气。说话时有时很粗鲁。婚姻中有起有落，如果处理不当，可能会带来灾难和暴力。通常认为自己所做所说的一切都是对的，而别人是错的。",
     time_4_desc:
       "充满责任感，科学思维，诚实和忠诚。固有的缺点是固执，喜欢辩论和渴望支配，以及工作狂的性质。聪明，有艺术气息，在人生的考验中表现出色。值得信赖，在社会上容易相处。充满同情心和魅力。天生是计划者和思考者，三思而后行。喜欢旅行和过自由的生活方式。在很小的时候就展现出能力。能够在经历生活困难后迅速崛起。如果是女性，她会溺爱她的伴侣。消极的一面是积累财富方面的弱点。在关系或婚姻中必须小心，否则会涉及不必要的糟糕事件。",
     time_5_desc:
-      "充满性能量，热爱自由和变革，充满智慧和迅速的行动，能够娱乐他人。固有的缺点是在“爱情和婚姻”中不忠，以及无法控制不安和不满。性格非常坚强。天生具有领导者的灵魂，在工作上通常处于高于许多人的位置。在很多事情上都有很强的直觉。现实且努力工作。能够适应和调整当前的情况或环境。尽管面临生活中的障碍，但在面对财务问题时，总有办法克服。消极的一面是如果来自贫困家庭，性格固执。如果走上错误的道路，往往会为了不正当的目的而兜圈子，甚至倾向于说谎。对许多事情和问题都非常挑剔和吹毛求疵。学会不要这样，人们会更欣赏你。",
+      "充满性能量，热爱自由和变革，充满智慧和迅速的行动，能够娱乐他人。固有的缺点是在"爱情和婚姻"中不忠，以及无法控制不安和不满。性格非常坚强。天生具有领导者的灵魂，在工作上通常处于高于许多人的位置。在很多事情上都有很强的直觉。现实且努力工作。能够适应和调整当前的情况或环境。尽管面临生活中的障碍，但在面对财务问题时，总有办法克服。消极的一面是如果来自贫困家庭，性格固执。如果走上错误的道路，往往会为了不正当的目的而兜圈子，甚至倾向于说谎。对许多事情和问题都非常挑剔和吹毛求疵。学会不要这样，人们会更欣赏你。",
     time_6_desc:
       "充满平衡，无私，乐于从事人道主义活动，忠诚并坚定地为他人谋福利。固有的缺点是喜爱赞美和声望，以及在牺牲中无法自控。坚韧，能够管理财富和福祉。非常有礼貌，品味高雅。在艺术、宗教或教育领域有良好的职业生涯。可以成为一个颇受欢迎的人物。不容易听取他人，特别是上级的意见，但会思考并关注下属。照顾家人和近亲。以家庭为重。消极的一面是傲慢和自负，不愿做简单的工作。在关系方面，占有欲强，总是想控制每一个人和每一件事，但通常不会承认。戒掉支配欲，你所爱的人会更爱你。",
     time_7_desc:
-      "充满智慧，孤独，神秘主义，一个充满魅力的个性。固有的缺点是难以自我表达，不信任他人，过分关注自我导致不理解“伴侣”的需求。处理各种事务都很细致。永远不会忘记任何帮助过他的人。能够改变和扭转局势。喜欢追求名声和财富。在管理娱乐领域方面可靠。可以成为精神人物/宗教领袖，通常在50多岁以后。消极的一面是喜欢辩论，优柔寡断/经常改变意见，以及决策缓慢。倾向于有婚姻问题。虽然善于感恩，但有一种倾向是他们自己可能不会对他人表示感激。",
+      "充满智慧，孤独，神秘主义，一个充满魅力的个性。固有的缺点是难以自我表达，不信任他人，过分关注自我导致不理解"伴侣"的需求。处理各种事务都很细致。永远不会忘记任何帮助过他的人。能够改变和扭转局势。喜欢追求名声和财富。在管理娱乐领域方面可靠。可以成为精神人物/宗教领袖，通常在50多岁以后。消极的一面是喜欢辩论，优柔寡断/经常改变意见，以及决策缓慢。倾向于有婚姻问题。虽然善于感恩，但有一种倾向是他们自己可能不会对他人表示感激。",
     time_8_desc:
       "充满理想主义，物质主义，是值得信赖的秘密守护者。固有的缺点是渴望炫耀权力，缺乏人情味和固执。几乎所有时间8的人最终都会遭遇悲剧。安静，保守，倾向于被动，但在他人中充满激情。非常负责，尽管有时感到压力。充满美德，值得信赖。不会玩弄别人。外表看起来坚强，但内心其实很柔软。消极的一面是脾气暴躁，拖延，倾向于等待和观望。这常常会导致错失良机。需要更善于审时度势。过于小心将一事无成。相信自己的观点，按自己的方式做事。有时不清楚自己在做什么。如果走上错误的道路，他们会成为一个恶霸，想要支配，自私，残忍，只考虑自己的发展。",
     time_9_desc:
       "充满人性，慷慨，富有同情心，并具有精神灵魂。固有的缺点是过于敏感，决策草率，自私，占有欲强，不宽容，甚至不诚实。非常乐观和思想开放。喜欢看起来漂亮/时髦并穿着得体。不张扬，外表看起来坚强但内心柔软。非常警觉和敏感。知道何时以及如何进攻和防守。善于赢得人心。做事迅速但缺乏细节。相当情绪化。工作可靠。有远大的目标和梦想。所做之事多半成功。消极的一面是晚年常常感到孤独。内心有很高的贪婪程度。倾向于忘记关注下属。没有多少真正的朋友。生活方式倾向于物质主义。",
     synchronize_desc:
-      "同步值 (Synchronize Value) 是一个参数，它表示一个人的内在准则与外部准则之间的关系、与环境互动的能力以及抓住机遇的速度。同步值的范围是0.05到1.0，即5%到100%。在所有大小事务上成功和有成就的人，其同步值在0.8到1.0之间，即80%到100%。同步值：0.1 / 10%. 你掌握一个领域的能力极度困难且缓慢。在学习中，你需要反复的解释才能理解一点点。在社交上，你可能需要多次适应。如果你的同步值在10%，你可能是一个不太聪明的人。同步值：0.2 / 20%. 潜力与10%的参数几乎相同，但水平可能比10%的水平稍容易一些。同步值：0.3 / 30% 如果你在智能潜力参数上也是30%，那么你掌握一个领域的潜力不是很好。虽然你进行社交，但很有可能会被你认为是朋友的人排斥。对于你觉得已经理解的课程，你的理解方式很可能存在错误。同步值：0.4 / 40% 你很有可能成为朋友们的“跑腿的”。说白了，你有可能为了有伴而愿意牺牲自尊。在学习中，你理解课程的方式仍然经常出错。同步值：0.5 / 50% 在你的社交生活中，你的朋友不太在乎你，尽管有人愿意成为你的朋友。他们并不是特别期望你的出现。在学习上，你可能不在乎你正在学习的科目，即使是那些你应该学习的科目.同步值：0.6 / 60%. 这是你掌握一个领域的潜力，尤其是在社交互动和友谊方面。一小部分人期待你的出现，但大多数人似乎不在乎你是否在他们中间。在学习上，你非常普通，有时能够理解你正在学习的内容。同步值：0.7 / 70%. 如果数字是70%，你掌握一个领域的潜力处于安全水平。你有很多朋友，但你能够有选择性地交友。你非常清楚什么是好的，什么是不好的，尽管有时你会忽略它。在学习上，缓慢但坚定地，你能够理解你所学的内容。同步值：0.8 / 80%. 你很有可能在朋友中变得受欢迎；你的出现备受期待，你通常有一种非凡的气场。然而，你在选择朋友方面能力较差，以“交友不分对象”为由想和所有人交朋友。在学习上，你理解所学内容的速度相当快。同步值：0.9 / 90%. 你的潜力在于你的社交生活；你很可能因为成就而闻名。许多朋友在做事时依赖你。你非常聪明，可以轻松理解任何你学习的课程。不幸的是，你有时会觉得自己比任何人都聪明，因此认为许多朋友是你的负担。同步值：1.0 / 100% 你的成就和你所创造的轰动效应会让你周围的许多人钦佩和好奇，从而散发出权威和魅力的光环。你在理解任何你学习的课程方面都非常聪明和智慧。不幸的是，你内心的自私潜力非常高，因为你常常觉得自己比那些认为你重要的朋友更优秀，并且你更喜欢与你认为重要的人交朋友",
+      "同步值 (Synchronize Value) 是一个参数，它表示一个人的内在准则与外部准则之间的关系、与环境互动的能力以及抓住机遇的速度。同步值的范围是0.05到1.0，即5%到100%。在所有大小事务上成功和有成就的人，其同步值在0.8到1.0之间，即80%到100%。同步值：0.1 / 10%. 你掌握一个领域的能力极度困难且缓慢。在学习中，你需要反复的解释才能理解一点点。在社交上，你可能需要多次适应。如果你的同步值在10%，你可能是一个不太聪明的人。同步值：0.2 / 20%. 潜力与10%的参数几乎相同，但水平可能比10%的水平稍容易一些。同步值：0.3 / 30% 如果你在智能潜力参数上也是30%，那么你掌握一个领域的潜力不是很好。虽然你进行社交，但很有可能会被你认为是朋友的人排斥。对于你觉得已经理解的课程，你的理解方式很可能存在错误。同步值：0.4 / 40% 你很有可能成为朋友们的"跑腿的"。说白了，你有可能为了有伴而愿意牺牲自尊。在学习中，你理解课程的方式仍然经常出错。同步值：0.5 / 50% 在你的社交生活中，你的朋友不太在乎你，尽管有人愿意成为你的朋友。他们并不是特别期望你的出现。在学习上，你可能不在乎你正在学习的科目，即使是那些你应该学习的科目.同步值：0.6 / 60%. 这是你掌握一个领域的潜力，尤其是在社交互动和友谊方面。一小部分人期待你的出现，但大多数人似乎不在乎你是否在他们中间。在学习上，你非常普通，有时能够理解你正在学习的内容。同步值：0.7 / 70%. 如果数字是70%，你掌握一个领域的潜力处于安全水平。你有很多朋友，但你能够有选择性地交友。你非常清楚什么是好的，什么是不好的，尽管有时你会忽略它。在学习上，缓慢但坚定地，你能够理解你所学的内容。同步值：0.8 / 80%. 你很有可能在朋友中变得受欢迎；你的出现备受期待，你通常有一种非凡的气场。然而，你在选择朋友方面能力较差，以"交友不分对象"为由想和所有人交朋友。在学习上，你理解所学内容的速度相当快。同步值：0.9 / 90%. 你的潜力在于你的社交生活；你很可能因为成就而闻名。许多朋友在做事时依赖你。你非常聪明，可以轻松理解任何你学习的课程。不幸的是，你有时会觉得自己比任何人都聪明，因此认为许多朋友是你的负担。同步值：1.0 / 100% 你的成就和你所创造的轰动效应会让你周围的许多人钦佩和好奇，从而散发出权威和魅力的光环。你在理解任何你学习的课程方面都非常聪明和智慧。不幸的是，你内心的自私潜力非常高，因为你常常觉得自己比那些认为你重要的朋友更优秀，并且你更喜欢与你认为重要的人交朋友",
     coherence_desc:
       "内聚性 (Coherence) 是一个参数，它表示一个人内在准则相互关联的结构强度，显示了其在掌握知识或技能领域的能力水平和速度。内聚性的范围是 0.1 – 1.0，即 10% 到 100%。在生活中成功且有成就的人，无论其事业规模大小，其内聚性值都在 0.7 到 1.0 之间，即 70% 到 100%",
     // Numerology Results
@@ -1173,7 +1174,7 @@ const translations = {
     time_9_desc:
       "मानवता, उदारता, करुणा से भरपूर, और एक आध्यात्मिक आत्मा है। निहित दोष हैं बहुत संवेदनशील होना, निर्णय लेने में जल्दबाजी, स्वार्थी, अधिकारपूर्ण, असहिष्णु, और यहां तक ​​कि बेईमान। बहुत आशावादी और खुले विचारों वाला। सुंदर/साफ-सुथरा दिखना और अच्छे कपड़े पहनना पसंद करता है। सरल, सख्त दिखता है लेकिन अंदर से नरम है। बहुत सतर्क और संवेदनशील। जानता है कि कब और कैसे हमला करना और बचाव करना है। लोगों का दिल जीतने में अच्छा है। सब कुछ जल्दी करता है लेकिन विस्तार की कमी है। काफी भावुक। काम में भरोसेमंद। बड़े लक्ष्य और सपने हैं। जो कुछ भी किया जाता है वह अक्सर सफलता प्राप्त करता है। नकारात्मक पक्ष यह है कि बुढ़ापे में अक्सर अकेलापन महसूस होता है। भीतर लालच का एक उच्च स्तर है। अधीनस्थों पर ध्यान देना भूल जाता है। बहुत सारे सच्चे दोस्त नहीं हैं। जीवन शैली भौतिकवादी होती है।",
     synchronize_desc:
-      "सिंक्रोनाइज़ वैल्यू एक पैरामीटर है जो किसी व्यक्ति के आंतरिक कोड और बाहरी कोड के बीच संबंध, पर्यावरण के साथ बातचीत करने की क्षमता, और अवसरों को पकड़ने की गति को इंगित करता है। सिंक्रोनाइज़ रेंज 0.05 से 1.0 या 5% से 100% तक है। छोटे और बड़े पैमाने पर अपने सभी प्रयासों में सफल और निपुण लोगों का सिंक्रोनाइज़ वैल्यू 0.8 से 1.0 या 80% से 100% होता है। 0.1 / 10% पर, किसी क्षेत्र में महारत हासिल करने की आपकी क्षमता अत्यंत कठिन और धीमी होती है; पाठों में, आपको थोड़ा समझने से पहले बार-बार स्पष्टीकरण की आवश्यकता होती है, और सामाजिक रूप से, आपको कई बार अनुकूलन करना पड़ सकता है, और यदि आपकी वैल्यू 10% है, तो संभावना है कि आप कम बुद्धिमान व्यक्ति हैं। 0.2 / 20% पर, क्षमता 10% पैरामीटर के लगभग समान होती है, लेकिन एक ऐसे स्तर पर जो 10% के निशान से थोड़ा आसान हो सकता है। 0.3 / 30% पर, किसी क्षेत्र में महारत हासिल करने की आपकी क्षमता बहुत अच्छी नहीं होती, और आपके मित्रों द्वारा आपको बहिष्कृत किए जाने की उच्च संभावना है, साथ ही आपके द्वारा समझे गए पाठों में आपकी समझ में त्रुटियां होने की संभावना है। 0.4 / 40% पर, इस बात की बहुत अधिक संभावना है कि आप अपने दोस्तों के लिए काम करने वाले बन सकते हैं, और आप केवल साथ पाने के लिए स्वेच्छा से अपने आत्म-सम्मान का त्याग कर सकते हैं, साथ ही आप अपनी पढ़ाई में समझने में अक्सर गलतियाँ करते हैं। 0.5 / 50% पर, आपके दोस्त आपकी ज्यादा परवाह नहीं करते, और आपकी उपस्थिति विशेष रूप से वांछित नहीं होती, और संभवतः आप अपनी पढ़ाई की परवाह नहीं करते हैं। 0.6 / 60% पर, किसी क्षेत्र में महारت हासिल करने की आपकी क्षमता, विशेष रूप से सामाजिक मेलजोल और दोस्ती में, औसत होती है, जहाँ कुछ लोग आपकी उपस्थिति की उम्मीद करते हैं लेकिन बहुमत को परवाह नहीं होती, और आपकी पढ़ाई औसत होती है। 0.7 / 70% पर, आपकी क्षमता एक सुरक्षित स्तर पर होती है, आपके कई दोस्त होते हैं लेकिन आप चयनशील हो सकते हैं, और आप धीरे-धीरे लेकिन निश्चित रूप से सीखते हैं। 0.8 / 80% पर, आपके दोस्तों के बीच लोकप्रिय होने की बहुत अधिक संभावना है और आपकी उपस्थिति का बेसब्री से इंतजार किया जाता है, लेकिन आप दोस्त चुनने में कम चयनशील होते हैं, और आप पढ़ाई में काफी तेज होते हैं। 0.9 / 90% पर, आपकी क्षमता आपके सामाजिक जीवन में है, जहाँ आप अपनी उपलब्धियों के लिए प्रसिद्ध हो सकते हैं और दोस्त आप पर निर्भर करते हैं, और आप पढ़ाई को आसानी से समझ लेते हैं, लेकिन दुर्भाग्य से, आप कभी-कभी खुद को सबसे चतुर समझते हैं और दोस्तों को बोझ मानते हैं। अंत में, 1.0 / 100% पर, आपकी उपलब्धियाँ और आपके द्वारा बनाए गए सेंसेशन से आपके आस-पास के लोग आपकी प्रशंसा करते हैं, जिससे अधिकार और करिश्मा का एक आभामंडल उत्पन्न होता है। आप पढ़ाई को समझने में अविश्वसनीय रूप से चतुर हैं, लेकिन दुर्भाग्य से, आपके भीतर स्वार्थ की संभावना बहुत अधिक है, क्योंकि आप अक्सर खुद को उन दोस्तों से बेहतर महसूस करते हैं जो आपको महत्वपूर्ण मानते हैं, और आप उन लोगों से दोस्ती करना पसंद करते हैं जिन्हें आप महत्वपूर्ण मानते हैं।",
+      "सिंक्रोनाइज़ वैल्यू एक पैरामीटर है जो किसी व्यक्ति के आंतरिक कोड और बाहरी कोड के बीच संबंध, पर्यावरण के साथ बातचीत करने की क्षमता, और अवसरों को पकड़ने की गति को इंगित करता है। सिंक्रोनाइज़ रेंज 0.05 से 1.0 या 5% से 100% तक है। छोटे और बड़े पैमाने पर अपने सभी प्रयासों में सफल और निपुण लोगों का सिंक्रोनाइज़ वैल्यू 0.8 से 1.0 या 80% से 100% होता है। 0.1 / 10% पर, किसी क्षेत्र में महारत हासिल करने की आपकी क्षमता अत्यंत कठिन और धीमी होती है; पाठों में, आपको थोड़ा समझने से पहले बार-बार स्पष्टीकरण की आवश्यकता होती है, और सामाजिक रूप से, आपको कई बार अनुकूलन करना पड़ सकता है, और यदि आपकी वैल्यू 10% है, तो संभावना है कि आप कम बुद्धिमान व्यक्ति हैं। 0.2 / 20% पर, क्षमता 10% पैरामीटर के लगभग समान होती है, लेकिन एक ऐसे स्तर पर जो 10% के निशान से थोड़ा आसान हो सकता है। 0.3 / 30% पर, किसी क्षेत्र में महारत हासिल करने की आपकी क्षमता बहुत अच्छी नहीं होती, और आपके मित्रों द्वारा आपको बहिष्कृत किए जाने की उच्च संभावना है, साथ ही आपके द्वारा समझे गए पाठों में आपकी समझ में त्रुटियां होने की संभावना है। 0.4 / 40% पर, इस बात की बहुत अधिक संभावना है कि आप अपने दोस्तों के लिए काम करने वाले बन सकते हैं, और आप केवल साथ पाने के लिए स्वेच्छा से अपने आत्म-सम्मान का त्याग कर सकते हैं, साथ ही आप अपनी पढ़ाई में समझने में अक्सर गलतियाँ करते हैं। 0.5 / 50% पर, आपके दोस्त आपकी ज्यादा परवाह नहीं करते, और आपकी उपस्थिति विशेष रूप से वांछित नहीं होती, और संभवतः आप अपनी पढ़ाई की परवाह नहीं करते हैं। 0.6 / 60% पर, किसी क्षेत्र में महारत हासिल करने की आपकी क्षमता, विशेष रूप से सामाजिक मेलजोल और दोस्ती में, औसत होती है, जहाँ कुछ लोग आपकी उपस्थिति की उम्मीद करते हैं लेकिन बहुमत को परवाह नहीं होती, और आपकी पढ़ाई औसत होती है। 0.7 / 70% पर, आपकी क्षमता एक सुरक्षित स्तर पर होती है, आपके कई दोस्त होते हैं लेकिन आप चयनशील हो सकते हैं, और आप धीरे-धीरे लेकिन निश्चित रूप से सीखते हैं। 0.8 / 80% पर, आपके दोस्तों के बीच लोकप्रिय होने की बहुत अधिक संभावना है और आपकी उपस्थिति का बेसब्री से इंतजार किया जाता है, लेकिन आप दोस्त चुनने में कम चयनशील होते हैं, और आप पढ़ाई में काफी तेज होते हैं। 0.9 / 90% पर, आपकी क्षमता आपके सामाजिक जीवन में है, जहाँ आप अपनी उपलब्धियों के लिए प्रसिद्ध हो सकते हैं और दोस्त आप पर निर्भर करते हैं, और आप पढ़ाई को आसानी से समझ लेते हैं, लेकिन दुर्भाग्य से, आप कभी-कभी खुद को सबसे चतुर समझते हैं और दोस्तों को बोझ मानते हैं। अंत में, 1.0 / 100% पर, आपकी उपलब्धियाँ और आपके द्वारा बनाए गए सेंसेशन से आपके आस-पास के लोग आपकी प्रशंसा करते हैं, जिससे अधिकार और करिश्मा का एक आभामंडल उत्पन्न होता है। आप पढ़ाई को समझने में अविश्वसनीय रूप से चतुर हैं, लेकिन दुर्भाग्य से, आपके भीतर स्वार्थ की संभावना बहुत अधिक है, क्योंकि आप अक्सर खुद को उन दोस्तों से बेहतर महसूस करते हैं जो आपको महत्वपूर्ण मानते हैं, और आप उन लोगों से दोस्ती करना पसंद करते हैं जिन्हें आप महत्वपूर्ण मानते हैं।",
     coherence_desc:
       "सुसंगतता (Coherence) एक पैरामीटर है जो किसी व्यक्ति के परस्पर जुड़े आंतरिक कोड की संरचनात्मक ताकत को इंगित करता है, और ज्ञान या कौशल के किसी क्षेत्र में महारत हासिल करने में उसकी क्षमता और गति के स्तर को दर्शाता है। सुसंगतता की सीमा 0.1 – 1.0 या 10% से 100% तक है। जो लोग जीवन में सफल और निपुण होते हैं, अपने सभी प्रयासों में, चाहे वे छोटे पैमाने पर हों या बड़े पैमाने पर, उनका सुसंगतता मान 0.7 से 1.0 के बीच, या 70% से 100% तक होता है।",
     // Numerology Results
@@ -1385,7 +1386,7 @@ const translations = {
     time_9_desc:
       "Penuh kemanusiaan, murah hati, welas asih, dan memiliki jiwa spiritual. Kekurangan yang melekat adalah terlalu sensitif, tergesa-gesa dalam pengambilan keputusan, egois, posesif, tidak toleran, dan bahkan tidak jujur. Sangat optimis dan berpikiran terbuka. Suka terlihat cantik/necis dan berpakaian bagus. Bersahaja, terlihat tangguh tetapi lembut di dalam. Sangat waspada dan sensitif. Tahu kapan dan bagaimana harus menyerang dan bertahan. Pandai memenangkan hati orang. Melakukan segalanya dengan cepat tetapi kurang detail. Cukup emosional. Andal dalam bekerja. Memiliki tujuan dan impian besar. Apa pun yang dilakukan lebih sering menuai sukses daripada tidak. Sisi negatifnya adalah sering merasa kesepian di usia tua. Ada tingkat keserakahan yang tinggi di dalam diri. Cenderung lupa memperhatikan bawahan. Tidak punya banyak teman sejati. Gaya hidup cenderung materialistis",
     synchronize_desc:
-      "Nilai Sinkronisasi (Synchronize Value) adalah parameter yang menunjukkan relasi antara kode dalam diri seseorang dengan kode-kode di luar dirinya, kemampuan untuk berinteraksi dengan lingkungan, dan kecepatan dalam mengambil peluang. Rentang Sinkronisasi adalah 0,05 hingga 1,0 atau 5% hingga 100%. Orang-orang yang sukses dan berhasil dalam semua usahanya, baik dalam skala kecil maupun besar, memiliki Nilai Sinkronisasi dari 0,8 hingga 1,0 atau 80% hingga 100%. Nilai Sinkronisasi: 0,1 / 10%. Kemampuan Anda untuk menguasai suatu bidang sangat sulit dan lambat. Dalam pelajaran, Anda memerlukan penjelasan berulang kali sebelum bisa memahami walau HANYA SEDIKIT. Secara sosial, Anda mungkin perlu beradaptasi berkali-kali. Jika Nilai Sinkronisasi Anda 10%, kemungkinan Anda adalah orang yang kurang cerdas. Nilai Sinkronisasi: 0,2 / 20%. Potensinya hampir sama dengan parameter 10%, tetapi pada tingkat yang mungkin sedikit lebih mudah daripada level 10%. Nilai Sinkronisasi: 0,3 / 30%. Potensi Anda untuk menguasai suatu bidang tidak terlalu baik, apalagi jika parameter potensi cerdas Anda juga 30%. Meskipun Anda bersosialisasi, ada kemungkinan besar Anda akan dikucilkan oleh orang-orang yang Anda anggap teman. Untuk pelajaran yang Anda rasa sudah Anda pahami, kemungkinan besar ada kesalahan dalam cara Anda memahaminya. Nilai Sinkronisasi: 0,4 / 40%. Ada kemungkinan yang sangat tinggi bahwa Anda berpotensi menjadi pesuruh untuk teman-teman Anda. Terus terang, Anda berpotensi rela mengorbankan harga diri Anda hanya demi ditemani. Dalam studi Anda, Anda masih sering membuat kesalahan dalam cara Anda memahami pelajaran. Nilai Sinkronisasi: 0,5 / 50%. Dalam kehidupan sosial Anda, teman-teman tidak terlalu peduli pada Anda, meskipun Anda memiliki orang-orang yang bersedia menjadi teman Anda. Kehadiran Anda tidak terlalu diharapkan oleh mereka. Dalam studi Anda, kemungkinan besar Anda tidak peduli pada mata pelajaran yang sedang Anda pelajari, bahkan yang seharusnya Anda pelajari. Nilai Sinkronisasi: 0,6 / 60%. Ini adalah potensi Anda dalam menguasai suatu bidang, terutama dalam interaksi sosial dan pertemanan. Sebagian kecil orang menantikan kehadiran Anda, tetapi mayoritas tampaknya tidak peduli apakah Anda ada di sana atau tidak. Dalam studi Anda, Anda sangat rata-rata dan terkadang dapat memahami materi yang Anda pelajari. Nilai Sinkronisasi: 0,7 / 70%. Potensi Anda untuk menguasai suatu bidang berada pada tingkat yang aman jika angkanya 70%. Anda punya banyak teman, tetapi Anda bisa selektif dalam memilihnya. Anda memiliki pemahaman yang sangat baik tentang apa yang baik dan apa yang tidak, meskipun terkadang Anda mengabaikannya. Dalam studi Anda, perlahan tapi pasti, Anda mampu memahami apa yang Anda pelajari. Nilai Sinkronisasi: 0,8 / 80%. Sangat besar kemungkinannya Anda akan menjadi populer di antara teman-teman Anda; kehadiran Anda sangat ditunggu-tunggu, dan Anda biasanya memiliki aura yang luar biasa. Namun, Anda kurang bisa selektif dalam memilih teman, ingin berteman dengan semua orang dengan alasan “Pertemanan itu untuk siapa saja.” Dalam studi Anda, Anda cukup cepat dalam memahami materi yang Anda pelajari. Nilai Sinkronisasi: 0,9 / 90%. Potensi Anda terletak pada kehidupan sosial Anda; Anda sangat mungkin menjadi terkenal karena prestasi Anda. Banyak teman mengandalkan Anda untuk menyelesaikan sesuatu. Anda begitu cerdas sehingga dapat memahami pelajaran apa pun yang Anda pelajari dengan sangat mudah. Sayangnya, Anda terkadang merasa bahwa Anda lebih pintar dari orang lain, yang membuat Anda menganggap banyak teman sebagai beban. Nilai Sinkronisasi: 1,0 / 100%. Potensi dari prestasi dan sensasi yang Anda ciptakan akan membuat banyak orang di sekitar Anda mengagumi dan bertanya-tanya tentang Anda, sehingga memunculkan aura wibawa dan karisma yang terpancar dari diri Anda. Anda luar biasa pintar dan cerdas dalam memahami pelajaran apa pun yang Anda pelajari. Sayangnya, potensi sifat egois dalam diri Anda sangat tinggi, karena Anda sering merasa lebih baik daripada teman-teman yang menganggap Anda penting, dan Anda lebih suka berteman dengan orang-orang yang Anda anggap penting",
+      "Nilai Sinkronisasi (Synchronize Value) adalah parameter yang menunjukkan relasi antara kode dalam diri seseorang dengan kode-kode di luar dirinya, kemampuan untuk berinteraksi dengan lingkungan, dan kecepatan dalam mengambil peluang. Rentang Sinkronisasi adalah 0,05 hingga 1,0 atau 5% hingga 100%. Orang-orang yang sukses dan berhasil dalam semua usahanya, baik dalam skala kecil maupun besar, memiliki Nilai Sinkronisasi dari 0,8 hingga 1,0 atau 80% hingga 100%. Nilai Sinkronisasi: 0,1 / 10%. Kemampuan Anda untuk menguasai suatu bidang sangat sulit dan lambat. Dalam pelajaran, Anda memerlukan penjelasan berulang kali sebelum bisa memahami walau HANYA SEDIKIT. Secara sosial, Anda mungkin perlu beradaptasi berkali-kali. Jika Nilai Sinkronisasi Anda 10%, kemungkinan Anda adalah orang yang kurang cerdas. Nilai Sinkronisasi: 0,2 / 20%. Potensinya hampir sama dengan parameter 10%, tetapi pada tingkat yang mungkin sedikit lebih mudah daripada level 10%. Nilai Sinkronisasi: 0,3 / 30%. Potensi Anda untuk menguasai suatu bidang tidak terlalu baik, apalagi jika parameter potensi cerdas Anda juga 30%. Meskipun Anda bersosialisasi, ada kemungkinan besar Anda akan dikucilkan oleh orang-orang yang Anda anggap teman. Untuk pelajaran yang Anda rasa sudah Anda pahami, kemungkinan besar ada kesalahan dalam cara Anda memahaminya. Nilai Sinkronisasi: 0,4 / 40%. Ada kemungkinan yang sangat tinggi bahwa Anda berpotensi menjadi pesuruh untuk teman-teman Anda. Terus terang, Anda berpotensi rela mengorbankan harga diri Anda hanya demi ditemani. Dalam studi Anda, Anda masih sering membuat kesalahan dalam cara Anda memahami pelajaran. Nilai Sinkronisasi: 0,5 / 50%. Dalam kehidupan sosial Anda, teman-teman tidak terlalu peduli pada Anda, meskipun Anda memiliki orang-orang yang bersedia menjadi teman Anda. Kehadiran Anda tidak terlalu diharapkan oleh mereka. Dalam studi Anda, kemungkinan besar Anda tidak peduli pada mata pelajaran yang sedang Anda pelajari, bahkan yang seharusnya Anda pelajari. Nilai Sinkronisasi: 0,6 / 60%. Ini adalah potensi Anda dalam menguasai suatu bidang, terutama dalam interaksi sosial dan pertemanan. Sebagian kecil orang menantikan kehadiran Anda, tetapi mayoritas tampaknya tidak peduli apakah Anda ada di sana atau tidak. Dalam studi Anda, Anda sangat rata-rata dan terkadang dapat memahami materi yang Anda pelajari. Nilai Sinkronisasi: 0,7 / 70%. Potensi Anda untuk menguasai suatu bidang berada pada tingkat yang aman jika angkanya 70%. Anda punya banyak teman, tetapi Anda bisa selektif dalam memilihnya. Anda memiliki pemahaman yang sangat baik tentang apa yang baik dan apa yang tidak, meskipun terkadang Anda mengabaikannya. Dalam studi Anda, perlahan tapi pasti, Anda mampu memahami apa yang Anda pelajari. Nilai Sinkronisasi: 0,8 / 80%. Sangat besar kemungkinannya Anda akan menjadi populer di antara teman-teman Anda; kehadiran Anda sangat ditunggu-tunggu, dan Anda biasanya memiliki aura yang luar biasa. Namun, Anda kurang bisa selektif dalam memilih teman, ingin berteman dengan semua orang dengan alasan "Pertemanan itu untuk siapa saja." Dalam studi Anda, Anda cukup cepat dalam memahami materi yang Anda pelajari. Nilai Sinkronisasi: 0,9 / 90%. Potensi Anda terletak pada kehidupan sosial Anda; Anda sangat mungkin menjadi terkenal karena prestasi Anda. Banyak teman mengandalkan Anda untuk menyelesaikan sesuatu. Anda begitu cerdas sehingga dapat memahami pelajaran apa pun yang Anda pelajari dengan sangat mudah. Sayangnya, Anda terkadang merasa bahwa Anda lebih pintar dari orang lain, yang membuat Anda menganggap banyak teman sebagai beban. Nilai Sinkronisasi: 1,0 / 100%. Potensi dari prestasi dan sensasi yang Anda ciptakan akan membuat banyak orang di sekitar Anda mengagumi dan bertanya-tanya tentang Anda, sehingga memunculkan aura wibawa dan karisma yang terpancar dari diri Anda. Anda luar biasa pintar dan cerdas dalam memahami pelajaran apa pun yang Anda pelajari. Sayangnya, potensi sifat egois dalam diri Anda sangat tinggi, karena Anda sering merasa lebih baik daripada teman-teman yang menganggap Anda penting, dan Anda lebih suka berteman dengan orang-orang yang Anda anggap penting",
     coherence_desc:
       "Coherence value adalah parameter yang menunjukkan tingkat kekuatan struktur kode-kode dalam diri yang saling berkaitan, yang menunjukkan tingkat kemampuan dan kecepatan seseorang dalam menguasai suatu bidang pengetahuan atau keterampilan. Rentang Koherensi adalah 0,1 – 1,0 atau 10% s.d. 100%. Orang-orang yang sukses dan berhasil dalam hidupnya atas segala sesuatu yang mereka upayakan, baik dalam skala kecil maupun besar, memiliki nilai Koherensi di antara 0,7 sampai dengan 1,0, atau 70% s.d. 100%",
     // Numerology Results
@@ -1524,6 +1525,12 @@ export default function MainApp() {
   const [showResults, setShowResults] = useState(false);
   const [showLifeReport, setShowLifeReport] = useState(false);
 
+  // Date picker state
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [selectedDay, setSelectedDay] = useState(new Date().getDate());
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+
   // Translation function
   const t = (key: string) => {
     // Early return for invalid inputs
@@ -1632,6 +1639,35 @@ export default function MainApp() {
     }
   };
 
+  const handleDateChange = (day: number, month: number, year: number) => {
+    setSelectedDay(day);
+    setSelectedMonth(month);
+    setSelectedYear(year);
+  };
+
+  const generateYears = () => {
+    const years = [];
+    for (let year = 10000; year >= 0; year--) {
+      years.push(year);
+    }
+    return years;
+  };
+
+  const months = [
+    { value: 1, label: t("january") || "January" },
+    { value: 2, label: t("february") || "February" },
+    { value: 3, label: t("march") || "March" },
+    { value: 4, label: t("april") || "April" },
+    { value: 5, label: t("may") || "May" },
+    { value: 6, label: t("june") || "June" },
+    { value: 7, label: t("july") || "July" },
+    { value: 8, label: t("august") || "August" },
+    { value: 9, label: t("september") || "September" },
+    { value: 10, label: t("october") || "October" },
+    { value: 11, label: t("november") || "November" },
+    { value: 12, label: t("december") || "December" },
+  ];
+
   const renderContent = () => {
     switch (activeTab) {
       case "home":
@@ -1661,7 +1697,15 @@ export default function MainApp() {
             isPremium={isPremium}
           />
         ) : (
-          <NumerologyForm onSubmit={handleAnalysisSubmit} />
+          <NumerologyForm
+            onSubmit={handleAnalysisSubmit}
+            showDatePicker={showDatePicker}
+            setShowDatePicker={setShowDatePicker}
+            selectedDay={selectedDay}
+            selectedMonth={selectedMonth}
+            selectedYear={selectedYear}
+            onDateChange={handleDateChange}
+          />
         );
       case "names":
         return (
@@ -1705,6 +1749,206 @@ export default function MainApp() {
           {renderContent()}
         </View>
         <TabBar activeTab={activeTab} onChangeTab={setActiveTab} />
+
+        {/* Date Picker Modal */}
+        <Modal
+          visible={showDatePicker}
+          transparent={true}
+          animationType="slide"
+          onRequestClose={() => setShowDatePicker(false)}
+        >
+          <View className="flex-1 justify-center items-center bg-black bg-opacity-50">
+            <View className="bg-white rounded-lg p-6 w-96 max-w-full max-h-[90%]">
+              <Text className="text-lg font-bold text-center mb-4 text-purple-800">
+                {t("select_birth_date")}
+              </Text>
+
+              {/* Year and Month Dropdowns */}
+              <View className="flex-row justify-between mb-4">
+                <View className="flex-1 mr-2">
+                  <Text className="text-gray-700 mb-1 font-medium text-sm">
+                    {t("year")}
+                  </Text>
+                  <View className="border border-gray-300 rounded-md bg-gray-50">
+                    <Picker
+                      selectedValue={selectedYear}
+                      onValueChange={(itemValue) => {
+                        setSelectedYear(itemValue);
+                        handleDateChange(selectedDay, selectedMonth, itemValue);
+                      }}
+                      style={{ height: 40 }}
+                    >
+                      {generateYears().map((year) => (
+                        <Picker.Item
+                          key={year}
+                          label={year.toString()}
+                          value={year}
+                        />
+                      ))}
+                    </Picker>
+                  </View>
+                </View>
+
+                <View className="flex-1 ml-2">
+                  <Text className="text-gray-700 mb-1 font-medium text-sm">
+                    {t("month")}
+                  </Text>
+                  <View className="border border-gray-300 rounded-md bg-gray-50">
+                    <Picker
+                      selectedValue={selectedMonth}
+                      onValueChange={(itemValue) => {
+                        setSelectedMonth(itemValue);
+                        handleDateChange(selectedDay, itemValue, selectedYear);
+                      }}
+                      style={{ height: 40 }}
+                    >
+                      {months.map((month) => (
+                        <Picker.Item
+                          key={month.value}
+                          label={month.label}
+                          value={month.value}
+                        />
+                      ))}
+                    </Picker>
+                  </View>
+                </View>
+              </View>
+
+              {/* Calendar Grid */}
+              <ScrollView className="mb-4" style={{ maxHeight: 300 }}>
+                <Text className="text-center font-semibold mb-3 text-purple-700">
+                  {months.find((m) => m.value === selectedMonth)?.label}{" "}
+                  {selectedYear}
+                </Text>
+
+                {/* Days of Week Header */}
+                <View className="flex-row mb-2">
+                  {[
+                    t("sun") || "Sun",
+                    t("mon") || "Mon",
+                    t("tue") || "Tue",
+                    t("wed") || "Wed",
+                    t("thu") || "Thu",
+                    t("fri") || "Fri",
+                    t("sat") || "Sat",
+                  ].map((day) => (
+                    <View key={day} className="flex-1 p-2 bg-purple-100">
+                      <Text className="text-purple-800 text-center font-semibold text-xs">
+                        {day}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
+
+                {/* Calendar Days Grid */}
+                <View className="border border-gray-300">
+                  {(() => {
+                    const firstDayOfMonth = new Date(
+                      selectedYear,
+                      selectedMonth - 1,
+                      1,
+                    ).getDay();
+                    const daysInMonth = new Date(
+                      selectedYear,
+                      selectedMonth,
+                      0,
+                    ).getDate();
+                    const totalCells =
+                      Math.ceil((firstDayOfMonth + daysInMonth) / 7) * 7;
+                    const calendarGrid = [];
+
+                    // Add empty cells for days before the first day of the month
+                    for (let i = 0; i < firstDayOfMonth; i++) {
+                      calendarGrid.push(null);
+                    }
+
+                    // Add days of the month
+                    for (let day = 1; day <= daysInMonth; day++) {
+                      calendarGrid.push(day);
+                    }
+
+                    // Add empty cells to complete the grid
+                    while (calendarGrid.length < totalCells) {
+                      calendarGrid.push(null);
+                    }
+
+                    return Array.from(
+                      { length: Math.ceil(calendarGrid.length / 7) },
+                      (_, weekIndex) => (
+                        <View key={weekIndex} className="flex-row">
+                          {calendarGrid
+                            .slice(weekIndex * 7, (weekIndex + 1) * 7)
+                            .map((day, dayIndex) => (
+                              <TouchableOpacity
+                                key={`${weekIndex}-${dayIndex}`}
+                                className={`flex-1 border border-gray-200 min-h-[40px] justify-center items-center ${
+                                  day ? "bg-white" : "bg-gray-50"
+                                } ${
+                                  day === selectedDay
+                                    ? "bg-purple-700 shadow-lg border-purple-800"
+                                    : ""
+                                }`}
+                                disabled={!day}
+                                onPress={() => {
+                                  if (day) {
+                                    setSelectedDay(day);
+                                    handleDateChange(
+                                      day,
+                                      selectedMonth,
+                                      selectedYear,
+                                    );
+                                  }
+                                }}
+                              >
+                                {day && (
+                                  <Text
+                                    className={`text-sm font-bold ${
+                                      day === selectedDay
+                                        ? "text-white shadow-sm"
+                                        : "text-gray-800"
+                                    }`}
+                                  >
+                                    {day}
+                                  </Text>
+                                )}
+                              </TouchableOpacity>
+                            ))}
+                        </View>
+                      ),
+                    );
+                  })()}
+                </View>
+              </ScrollView>
+
+              {/* Selected Date Display */}
+              <View className="mb-4 p-3 bg-purple-50 rounded-lg">
+                <Text className="text-center text-purple-800 font-semibold">
+                  {t("selected_date") || "Selected Date"}: {selectedDay}/
+                  {selectedMonth}/{selectedYear}
+                </Text>
+              </View>
+
+              <View className="flex-row justify-between">
+                <TouchableOpacity
+                  className="bg-gray-300 py-2 px-4 rounded-md flex-1 mr-2"
+                  onPress={() => setShowDatePicker(false)}
+                >
+                  <Text className="text-gray-700 text-center font-medium">
+                    {t("cancel")}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  className="bg-purple-600 py-2 px-4 rounded-md flex-1 ml-2"
+                  onPress={() => setShowDatePicker(false)}
+                >
+                  <Text className="text-white text-center font-medium">
+                    {t("done")}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
       </SafeAreaView>
     </TranslationContext.Provider>
   );
