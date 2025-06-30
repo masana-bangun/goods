@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import { normalisasiNama } from "../utils/numerologyUtils";
-import { useTranslation } from "./MainApp";
+import { useTranslation } from "./TranslationProvider";
 
 interface NumerologyFormProps {
   onSubmit: (name: string, birthdate: Date, gender: "Male" | "Female") => void;

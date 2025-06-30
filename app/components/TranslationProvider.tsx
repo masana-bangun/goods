@@ -1,12 +1,4 @@
 import React, { useState, createContext, useContext } from "react";
-import { View, SafeAreaView, Platform } from "react-native";
-import TabBar from "./TabBar";
-import HomeScreen from "./HomeScreen";
-import NumerologyForm from "./NumerologyForm";
-import NameGenerator from "./NameGenerator";
-import CompatibilityChecker from "./CompatibilityChecker";
-import AccountScreen from "./AccountScreen";
-import LifeReport from "./LifeReport";
 
 // Translation context
 interface TranslationContextType {
@@ -145,127 +137,20 @@ const translations: Record<string, Record<string, string>> = {
   },
 };
 
-interface Person {
-  name: string;
-  birthdate: Date;
-  gender: "Male" | "Female";
+interface TranslationProviderProps {
+  children: React.ReactNode;
 }
 
-export default function MainApp() {
-  const [activeTab, setActiveTab] = useState("home");
+export function TranslationProvider({ children }: TranslationProviderProps) {
   const [language, setLanguage] = useState("en");
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [selectedDay, setSelectedDay] = useState(new Date().getDate());
-  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  const [currentPerson, setCurrentPerson] = useState<Person | null>(null);
 
   const t = (key: string): string => {
     return translations[language]?.[key] || translations.en[key] || key;
   };
 
-  const handleDateChange = (day: number, month: number, year: number) => {
-    setSelectedDay(day);
-    setSelectedMonth(month);
-    setSelectedYear(year);
-  };
-
-  const handleAnalysisSubmit = (name: string, birthdate: Date, gender: "Male" | "Female") => {
-    const person = { name, birthdate, gender };
-    setCurrentPerson(person);
-    setActiveTab("report");
-  };
-
-  const handleNavigate = (screen: string) => {
-    if (screen === "editProfile" || screen === "membership" || screen === "privacy" || screen === "help" || screen === "logout") {
-      // Handle account navigation
-      return;
-    }
-    setActiveTab(screen);
-  };
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case "home":
-        return (
-          <HomeScreen
-            userName="User"
-            isPremium={true}
-            onNavigate={handleNavigate}
-          />
-        );
-      case "analyze":
-        return (
-          <View className="flex-1 justify-center items-center p-4">
-            <NumerologyForm
-              onSubmit={handleAnalysisSubmit}
-              showDatePicker={showDatePicker}
-              setShowDatePicker={setShowDatePicker}
-              selectedDay={selectedDay}
-              selectedMonth={selectedMonth}
-              selectedYear={selectedYear}
-              onDateChange={handleDateChange}
-            />
-          </View>
-        );
-      case "names":
-        return <NameGenerator isPremium={true} />;
-      case "compatibility":
-        return <CompatibilityChecker isPremium={true} />;
-      case "report":
-        if (currentPerson) {
-          return (
-            <LifeReport
-              name={currentPerson.name}
-              birthdate={currentPerson.birthdate}
-              gender={currentPerson.gender}
-              isPremium={true}
-            />
-          );
-        }
-        return (
-          <View className="flex-1 justify-center items-center p-4">
-            <NumerologyForm
-              onSubmit={(name, birthdate, gender) => {
-                setCurrentPerson({ name, birthdate, gender });
-              }}
-              showDatePicker={showDatePicker}
-              setShowDatePicker={setShowDatePicker}
-              selectedDay={selectedDay}
-              selectedMonth={selectedMonth}
-              selectedYear={selectedYear}
-              onDateChange={handleDateChange}
-            />
-          </View>
-        );
-      case "account":
-        return (
-          <AccountScreen
-            userName="User"
-            email="user@example.com"
-            isPremium={true}
-            onNavigate={handleNavigate}
-          />
-        );
-      default:
-        return (
-          <HomeScreen
-            userName="User"
-            isPremium={true}
-            onNavigate={handleNavigate}
-          />
-        );
-    }
-  };
-
   return (
     <TranslationContext.Provider value={{ language, setLanguage, t }}>
-      <SafeAreaView className="flex-1 bg-white">
-        <View className="flex-1">
-          {renderContent()}
-        </View>
-        <TabBar activeTab={activeTab} onChangeTab={setActiveTab} />
-      </SafeAreaView>
+      {children}
     </TranslationContext.Provider>
   );
 }

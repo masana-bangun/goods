@@ -229,12 +229,8 @@ export default function RootLayout() {
 
   return (
     <ErrorBoundary>
-      <Stack
-        screenOptions={({ route }) => ({
-          headerShown: !route.name.startsWith("tempobook"),
-        })}
-      >
-        <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen 
           name="date-picker-modal" 
           options={{ 

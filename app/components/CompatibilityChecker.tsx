@@ -16,7 +16,7 @@ import {
 import NumerologyForm from "./NumerologyForm";
 import FixPersonModal from "./FixPersonModal";
 import { Heart, Users, Zap, Target, Settings, RefreshCw, Wrench } from "lucide-react-native";
-import { useTranslation } from "./MainApp";
+import { useTranslation } from "./TranslationProvider";
 
 interface Person {
   name: string;
