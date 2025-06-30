@@ -3,7 +3,6 @@ import { View, SafeAreaView, Platform } from "react-native";
 import TabBar from "./TabBar";
 import HomeScreen from "./HomeScreen";
 import NumerologyForm from "./NumerologyForm";
-import NumerologyResults from "./NumerologyResults";
 import NameGenerator from "./NameGenerator";
 import CompatibilityChecker from "./CompatibilityChecker";
 import AccountScreen from "./AccountScreen";
@@ -49,6 +48,7 @@ const translations: Record<string, Record<string, string>> = {
     month: "Month",
     cancel: "Cancel",
     done: "Done",
+    analyze: "Analyze",
     quick_actions: "Quick Actions",
     name_analysis: "Analysis",
     love_couple: "Love",
@@ -107,6 +107,7 @@ const translations: Record<string, Record<string, string>> = {
     month: "Bulan",
     cancel: "Batal",
     done: "Selesai",
+    analyze: "Analisis",
     quick_actions: "Aksi Cepat",
     name_analysis: "Analisis",
     love_couple: "Cinta",
@@ -157,7 +158,6 @@ export default function MainApp() {
   const [selectedDay, setSelectedDay] = useState(new Date().getDate());
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  const [analysisResult, setAnalysisResult] = useState<any>(null);
   const [currentPerson, setCurrentPerson] = useState<Person | null>(null);
 
   const t = (key: string): string => {
@@ -173,18 +173,7 @@ export default function MainApp() {
   const handleAnalysisSubmit = (name: string, birthdate: Date, gender: "Male" | "Female") => {
     const person = { name, birthdate, gender };
     setCurrentPerson(person);
-    
-    // Simple analysis result
-    const result = {
-      name,
-      birthdate,
-      gender,
-      lifePathNumber: Math.floor(Math.random() * 9) + 1,
-      expressionNumber: Math.floor(Math.random() * 9) + 1,
-      personalityNumber: Math.floor(Math.random() * 9) + 1,
-    };
-    
-    setAnalysisResult(result);
+    setActiveTab("report");
   };
 
   const handleNavigate = (screen: string) => {
@@ -206,15 +195,6 @@ export default function MainApp() {
           />
         );
       case "analyze":
-        if (analysisResult) {
-          return (
-            <NumerologyResults
-              result={analysisResult}
-              onBack={() => setAnalysisResult(null)}
-              isPremium={true}
-            />
-          );
-        }
         return (
           <View className="flex-1 justify-center items-center p-4">
             <NumerologyForm

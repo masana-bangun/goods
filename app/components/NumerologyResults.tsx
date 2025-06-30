@@ -1,46 +1,38 @@
 import React from "react";
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { ArrowLeft, Star, TrendingUp, Heart, Brain, Target } from "lucide-react-native";
+import { 
+  generateNumerologyPatterns, 
+  calculateLifePathNumber,
+  getNumerologyMeaning,
+  hitungNilaiNama 
+} from "../utils/numerologyUtils";
 
 interface NumerologyResultsProps {
-  result: {
-    name: string;
-    birthdate: Date;
-    gender: "Male" | "Female";
-    lifePathNumber: number;
-    expressionNumber: number;
-    personalityNumber: number;
-  };
+  name: string;
+  birthdate: Date;
+  gender: "Male" | "Female";
   onBack: () => void;
   isPremium?: boolean;
 }
 
 export default function NumerologyResults({
-  result,
+  name,
+  birthdate,
+  gender,
   onBack,
   isPremium = true,
 }: NumerologyResultsProps) {
+  const patterns = generateNumerologyPatterns(name, birthdate, gender);
+  const lifePathNumber = calculateLifePathNumber(birthdate);
+  const expressionNumber = hitungNilaiNama(name);
+
   const formatDate = (date: Date) => {
     return date.toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
     });
-  };
-
-  const getNumberMeaning = (number: number) => {
-    const meanings: Record<number, string> = {
-      1: "Leadership, independence, and pioneering spirit",
-      2: "Cooperation, diplomacy, and partnership",
-      3: "Creativity, communication, and self-expression",
-      4: "Stability, hard work, and practicality",
-      5: "Freedom, adventure, and versatility",
-      6: "Nurturing, responsibility, and healing",
-      7: "Spirituality, introspection, and analysis",
-      8: "Material success, ambition, and authority",
-      9: "Humanitarianism, wisdom, and completion",
-    };
-    return meanings[number] || "Unique path of discovery";
   };
 
   return (
@@ -62,12 +54,12 @@ export default function NumerologyResults({
         {/* Personal Info */}
         <View className="bg-white rounded-lg p-4 mb-4 shadow-sm">
           <Text className="text-xl font-bold mb-2 text-gray-800">
-            {result.name}
+            {patterns.namaNormal}
           </Text>
           <Text className="text-gray-600 mb-1">
-            Born: {formatDate(result.birthdate)}
+            Born: {formatDate(birthdate)}
           </Text>
-          <Text className="text-gray-600">Gender: {result.gender}</Text>
+          <Text className="text-gray-600">Gender: {gender}</Text>
         </View>
 
         {/* Life Path Number */}
@@ -79,10 +71,10 @@ export default function NumerologyResults({
             </Text>
           </View>
           <Text className="text-white text-3xl font-bold mb-2">
-            {result.lifePathNumber}
+            {lifePathNumber}
           </Text>
           <Text className="text-white opacity-90">
-            {getNumberMeaning(result.lifePathNumber)}
+            {getNumerologyMeaning(lifePathNumber)}
           </Text>
         </View>
 
@@ -95,26 +87,42 @@ export default function NumerologyResults({
             </Text>
           </View>
           <Text className="text-purple-600 text-2xl font-bold mb-2">
-            {result.expressionNumber}
+            {expressionNumber}
           </Text>
           <Text className="text-gray-700">
-            {getNumberMeaning(result.expressionNumber)}
+            {getNumerologyMeaning(expressionNumber)}
           </Text>
         </View>
 
-        {/* Personality Number */}
+        {/* Name Pattern */}
         <View className="bg-white rounded-lg p-4 mb-4 shadow-sm">
           <View className="flex-row items-center mb-3">
             <Brain size={20} color="#8b5cf6" />
             <Text className="text-gray-800 text-lg font-bold ml-2">
-              Personality Number
+              Name Pattern
             </Text>
           </View>
           <Text className="text-purple-600 text-2xl font-bold mb-2">
-            {result.personalityNumber}
+            {patterns.pola_nama}
           </Text>
           <Text className="text-gray-700">
-            {getNumberMeaning(result.personalityNumber)}
+            Your name carries the energy of {patterns.pola_nama.toLowerCase()}
+          </Text>
+        </View>
+
+        {/* Birth Pattern */}
+        <View className="bg-white rounded-lg p-4 mb-4 shadow-sm">
+          <View className="flex-row items-center mb-3">
+            <Heart size={20} color="#8b5cf6" />
+            <Text className="text-gray-800 text-lg font-bold ml-2">
+              Birth Pattern
+            </Text>
+          </View>
+          <Text className="text-purple-600 text-2xl font-bold mb-2">
+            {patterns.pola_ultah}
+          </Text>
+          <Text className="text-gray-700">
+            Your birth date resonates with {patterns.pola_ultah.toLowerCase()} energy
           </Text>
         </View>
 
@@ -154,7 +162,7 @@ export default function NumerologyResults({
           </TouchableOpacity>
           
           <TouchableOpacity className="bg-blue-500 py-3 px-4 rounded-lg">
-            <Text className="text-white text-center font-semibent">
+            <Text className="text-white text-center font-semibold">
               Optimize Name
             </Text>
           </TouchableOpacity>
