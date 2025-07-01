@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useTranslation } from './components/MainApp';
+import { useTranslation } from './components/TranslationProvider';
 
 export default function DatePickerModal() {
   const { t } = useTranslation();

@@ -11,7 +11,7 @@ import {
 } from "lucide-react-native";
 import { Picker } from "@react-native-picker/picker";
 import NameDictionary from "./NameDictionary";
-import { useTranslation } from "./MainApp";
+import { useTranslation } from "./TranslationProvider";
 
 interface HomeScreenProps {
   userName?: string;
